@@ -1,0 +1,23 @@
+name: ios_springboard
+description: A new Flutter application.
+version: 1.0.0+1
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_hooks:
+  flutter_portal:
+  freezed_annotation:
+  gap:
+  hooks_riverpod:
+  state_notifier:
+dev_dependencies:
+  build_runner:
+  flutter_test:
+    sdk: flutter
+  freezed:
+  json_serializable:
+  pedantic_mono:
+flutter:
+  uses-material-design: true
