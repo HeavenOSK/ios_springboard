@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/pages/home.dart';
+import 'package:ios_springboard/app/canvas.dart';
 import 'package:ios_springboard/providers/navigator_key_provider.dart';
 
 class App extends ConsumerWidget {
@@ -12,7 +12,7 @@ class App extends ConsumerWidget {
       navigatorKey: ref.watch(navigatorKeyProvider),
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const Home(),
+      home: const Canvas(),
     );
   }
 }

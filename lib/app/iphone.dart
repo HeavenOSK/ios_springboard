@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ios_springboard/component/home/iphone/iphone_scales.dart';
-import 'package:ios_springboard/component/home/spring_board/spring_board.dart';
+import 'package:ios_springboard/app/iphone_scales.dart';
 
 class IPhone extends StatelessWidget {
-  const IPhone({Key? key}) : super(key: key);
+  const IPhone({
+    required this.child,
+    Key? key,
+  }) : super(key: key);
+
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +37,12 @@ class IPhone extends StatelessWidget {
           horizontal: IPhoneScales.padding.horizontal / 2,
         ),
         child: Column(
-          children: const [
-            _TopArea(),
+          children: [
+            const _TopArea(),
             Expanded(
-              child: SpringBoard(),
+              child: child,
             ),
-            _BottomArea(),
+            const _BottomArea(),
           ],
         ),
       ),
