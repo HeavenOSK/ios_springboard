@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:ios_springboard/component/home/app_icon/app_icon.dart';
+import 'package:ios_springboard/component/home/home_icon/home_icon.dart';
+import 'package:ios_springboard/component/home/home_icon/home_icon_scales.dart';
 import 'package:ios_springboard/component/home/spring_board/spring_board_scales.dart';
-import 'package:ios_springboard/composable/home/home_icon/home_icon.dart';
-import 'package:ios_springboard/composable/home/home_icon/home_icon_scales.dart';
 
 class SpringBoard extends StatelessWidget {
   const SpringBoard({Key? key}) : super(key: key);
