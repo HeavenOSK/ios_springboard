@@ -1,23 +1,35 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
 import 'package:ios_springboard/components/functional/shaker.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon_scales.dart';
+import 'package:ios_springboard/screen/spring_board/state/spring_board_state.dart';
 
-class HomeIcon extends StatelessWidget {
-  const HomeIcon({Key? key}) : super(key: key);
+class HomeIcon extends HookConsumerWidget {
+  const HomeIcon({
+    this.onLongPress,
+    Key? key,
+  }) : super(key: key);
+
+  final VoidCallback? onLongPress;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final shaking = ref.watch(
+      springBoardState.select((value) => value.shaking),
+    );
     return Shaker(
-      maxDegree: 2,
+      shaking: shaking,
       child: SizedBox(
         height: HomeIconScales.areaSize.height,
         width: HomeIconScales.areaSize.width,
         child: Column(
-          children: const [
-            AppIcon(),
-            Expanded(
+          children: [
+            AppIcon(
+              onLongPress: onLongPress,
+            ),
+            const Expanded(
               child: Center(
                 child: Material(
                   type: MaterialType.transparency,
