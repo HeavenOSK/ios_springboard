@@ -1,36 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:ios_springboard/component/home/iphone/screen.dart';
+import 'package:ios_springboard/component/home/iphone/iphone_scales.dart';
+import 'package:ios_springboard/component/home/spring_board/spring_board.dart';
 
 class IPhone extends StatelessWidget {
-  const IPhone({
-    Key? key,
-  }) : super(key: key);
-
-  static const baseSize = Size(
-    67.3,
-    138.4,
-  );
-
-  static const _verticalPadding = 14.0;
+  const IPhone({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: baseSize.height,
-      width: baseSize.width,
+      height: IPhoneScales.caseSize.height,
+      width: IPhoneScales.caseSize.width,
       decoration: BoxDecoration(
         color: Colors.green,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 2,
+        padding: EdgeInsets.symmetric(
+          horizontal: IPhoneScales.padding.horizontal / 2,
         ),
         child: Column(
           children: const [
             _TopArea(),
             Expanded(
-              child: Screen(),
+              child: SpringBoard(),
             ),
             _BottomArea(),
           ],
@@ -46,29 +38,32 @@ class _TopArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: IPhone._verticalPadding,
-      child: Center(
+      height: IPhoneScales.padding.top,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 7),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Expanded(
               child: Align(
-                alignment: Alignment.centerRight,
+                alignment: Alignment.bottomRight,
                 child: Container(
-                  height: 1,
-                  width: 1,
-                  margin: const EdgeInsets.only(right: 2.5),
+                  height: IPhoneScales.frontCameraRadius * 2,
+                  width: IPhoneScales.frontCameraRadius * 2,
+                  margin: const EdgeInsets.only(right: 4),
                   decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(24),
+                    color: Colors.lightGreen,
+                    borderRadius:
+                        BorderRadius.circular(IPhoneScales.frontCameraRadius),
                   ),
                 ),
               ),
             ),
             Container(
-              width: 10,
-              height: 1,
+              width: IPhoneScales.micHoleSize.width,
+              height: IPhoneScales.micHoleSize.height,
               decoration: BoxDecoration(
-                color: Colors.black,
+                color: Colors.lightGreen,
                 borderRadius: BorderRadius.circular(24),
               ),
             ),
@@ -85,20 +80,20 @@ class _BottomArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const radius = IPhone._verticalPadding * 0.65;
     return SizedBox(
-      height: IPhone._verticalPadding,
+      height: IPhoneScales.padding.bottom,
       child: Center(
         child: Container(
-          height: radius,
-          width: radius,
+          height: IPhoneScales.homeButtonRadius * 2,
+          width: IPhoneScales.homeButtonRadius * 2,
           decoration: BoxDecoration(
             color: Colors.transparent,
             border: Border.all(
+              color: Colors.lightGreen,
               width: 0.3,
             ),
             borderRadius: BorderRadius.circular(
-              IPhone._verticalPadding,
+              IPhoneScales.homeButtonRadius,
             ),
           ),
         ),
