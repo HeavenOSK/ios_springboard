@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ios_springboard/components/app_icon/app_icon.dart';
+import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
+import 'package:ios_springboard/components/functional/shaker.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon_scales.dart';
 
 class HomeIcon extends StatelessWidget {
@@ -7,32 +9,35 @@ class HomeIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: HomeIconScales.areaSize.height,
-      width: HomeIconScales.areaSize.width,
-      child: Column(
-        children: const [
-          AppIcon(),
-          Expanded(
-            child: Center(
-              child: Material(
-                type: MaterialType.transparency,
-                child: SizedBox(
-                  height: 1.7,
-                  child: FittedBox(
-                    child: Text(
-                      'name',
-                      style: TextStyle(
-                        height: 1,
-                        color: Colors.white,
+    return Shaker(
+      maxDegree: 2,
+      child: SizedBox(
+        height: HomeIconScales.areaSize.height,
+        width: HomeIconScales.areaSize.width,
+        child: Column(
+          children: const [
+            AppIcon(),
+            Expanded(
+              child: Center(
+                child: Material(
+                  type: MaterialType.transparency,
+                  child: SizedBox(
+                    height: 1.7,
+                    child: FittedBox(
+                      child: Text(
+                        'name',
+                        style: TextStyle(
+                          height: 1,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

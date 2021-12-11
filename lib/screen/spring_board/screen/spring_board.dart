@@ -1,7 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:ios_springboard/components/app_icon/app_icon.dart';
+import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
+import 'package:ios_springboard/components/functional/shaker.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon_scales.dart';
 import 'package:ios_springboard/screen/spring_board/screen/spring_board_scales.dart';
@@ -83,12 +84,12 @@ class _BottomArea extends StatelessWidget {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  AppIcon(),
-                  AppIcon(),
-                  AppIcon(),
-                  AppIcon(),
-                ],
+                children: List.generate(
+                  4,
+                  (index) => const Shaker(
+                    child: AppIcon(),
+                  ),
+                ),
               ),
             ),
           ),

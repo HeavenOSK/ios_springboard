@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ios_springboard/components/app_icon/app_icon_scales.dart';
+import 'package:ios_springboard/components/atom/app_icon/app_icon_scales.dart';
 
 class AppIcon extends StatelessWidget {
   const AppIcon({Key? key}) : super(key: key);
