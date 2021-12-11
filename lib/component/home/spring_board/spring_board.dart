@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:ios_springboard/component/home/app_icon/app_icon.dart';
 import 'package:ios_springboard/component/home/spring_board/spring_board_scales.dart';
@@ -9,12 +11,15 @@ class SpringBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: const [
-        Expanded(
+        Positioned.fill(
           child: _ScrollableArea(),
         ),
-        _BottomArea(),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: _BottomArea(),
+        ),
       ],
     );
   }
@@ -53,23 +58,41 @@ class _BottomArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: SpringBoardScales.bottomAreaHeight,
       width: double.infinity,
-      color: Colors.amberAccent,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: SpringBoardScales.horizontalPadding,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            AppIcon(),
-            AppIcon(),
-            AppIcon(),
-            AppIcon(),
-          ],
-        ),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: ClipRect(
+              child: ImageFiltered(
+                imageFilter: ImageFilter.blur(
+                  sigmaX: 15,
+                  sigmaY: 15,
+                ),
+                child: Container(
+                  color: Colors.blue.shade50,
+                ),
+              ),
+            ),
+          ),
+          Positioned.fill(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: SpringBoardScales.horizontalPadding,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  AppIcon(),
+                  AppIcon(),
+                  AppIcon(),
+                  AppIcon(),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

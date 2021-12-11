@@ -13,6 +13,25 @@ class HomeIcon extends StatelessWidget {
       child: Column(
         children: const [
           AppIcon(),
+          Expanded(
+            child: Center(
+              child: Material(
+                type: MaterialType.transparency,
+                child: SizedBox(
+                  height: 1.7,
+                  child: FittedBox(
+                    child: Text(
+                      'name',
+                      style: TextStyle(
+                        height: 1,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

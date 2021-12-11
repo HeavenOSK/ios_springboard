@@ -11,7 +11,7 @@ class IPhone extends StatelessWidget {
       height: IPhoneScales.caseSize.height,
       width: IPhoneScales.caseSize.width,
       decoration: BoxDecoration(
-        color: Colors.green,
+        color: Colors.black,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Padding(
@@ -52,7 +52,7 @@ class _TopArea extends StatelessWidget {
                   width: IPhoneScales.frontCameraRadius * 2,
                   margin: const EdgeInsets.only(right: 4),
                   decoration: BoxDecoration(
-                    color: Colors.lightGreen,
+                    color: Colors.white.withOpacity(0.3),
                     borderRadius:
                         BorderRadius.circular(IPhoneScales.frontCameraRadius),
                   ),
@@ -63,7 +63,7 @@ class _TopArea extends StatelessWidget {
               width: IPhoneScales.micHoleSize.width,
               height: IPhoneScales.micHoleSize.height,
               decoration: BoxDecoration(
-                color: Colors.lightGreen,
+                color: Colors.white.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(24),
               ),
             ),
@@ -89,7 +89,7 @@ class _BottomArea extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.transparent,
             border: Border.all(
-              color: Colors.lightGreen,
+              color: Colors.white.withOpacity(0.3),
               width: 0.3,
             ),
             borderRadius: BorderRadius.circular(
