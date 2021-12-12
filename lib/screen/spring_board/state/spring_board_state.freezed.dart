@@ -17,9 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SpringBoardStateTearOff {
   const _$SpringBoardStateTearOff();
 
-  _SpringBoardState call({bool shaking = false}) {
+  _SpringBoardState call({bool movable = false}) {
     return _SpringBoardState(
-      shaking: shaking,
+      movable: movable,
     );
   }
 }
@@ -29,7 +29,7 @@ const $SpringBoardState = _$SpringBoardStateTearOff();
 
 /// @nodoc
 mixin _$SpringBoardState {
-  bool get shaking => throw _privateConstructorUsedError;
+  bool get movable => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SpringBoardStateCopyWith<SpringBoardState> get copyWith =>
@@ -41,7 +41,7 @@ abstract class $SpringBoardStateCopyWith<$Res> {
   factory $SpringBoardStateCopyWith(
           SpringBoardState value, $Res Function(SpringBoardState) then) =
       _$SpringBoardStateCopyWithImpl<$Res>;
-  $Res call({bool shaking});
+  $Res call({bool movable});
 }
 
 /// @nodoc
@@ -55,12 +55,12 @@ class _$SpringBoardStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? shaking = freezed,
+    Object? movable = freezed,
   }) {
     return _then(_value.copyWith(
-      shaking: shaking == freezed
-          ? _value.shaking
-          : shaking // ignore: cast_nullable_to_non_nullable
+      movable: movable == freezed
+          ? _value.movable
+          : movable // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -73,7 +73,7 @@ abstract class _$SpringBoardStateCopyWith<$Res>
           _SpringBoardState value, $Res Function(_SpringBoardState) then) =
       __$SpringBoardStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool shaking});
+  $Res call({bool movable});
 }
 
 /// @nodoc
@@ -89,12 +89,12 @@ class __$SpringBoardStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? shaking = freezed,
+    Object? movable = freezed,
   }) {
     return _then(_SpringBoardState(
-      shaking: shaking == freezed
-          ? _value.shaking
-          : shaking // ignore: cast_nullable_to_non_nullable
+      movable: movable == freezed
+          ? _value.movable
+          : movable // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -103,15 +103,15 @@ class __$SpringBoardStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SpringBoardState implements _SpringBoardState {
-  const _$_SpringBoardState({this.shaking = false});
+  const _$_SpringBoardState({this.movable = false});
 
   @JsonKey(defaultValue: false)
   @override
-  final bool shaking;
+  final bool movable;
 
   @override
   String toString() {
-    return 'SpringBoardState(shaking: $shaking)';
+    return 'SpringBoardState(movable: $movable)';
   }
 
   @override
@@ -119,12 +119,12 @@ class _$_SpringBoardState implements _SpringBoardState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SpringBoardState &&
-            const DeepCollectionEquality().equals(other.shaking, shaking));
+            const DeepCollectionEquality().equals(other.movable, movable));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(shaking));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(movable));
 
   @JsonKey(ignore: true)
   @override
@@ -133,10 +133,10 @@ class _$_SpringBoardState implements _SpringBoardState {
 }
 
 abstract class _SpringBoardState implements SpringBoardState {
-  const factory _SpringBoardState({bool shaking}) = _$_SpringBoardState;
+  const factory _SpringBoardState({bool movable}) = _$_SpringBoardState;
 
   @override
-  bool get shaking;
+  bool get movable;
   @override
   @JsonKey(ignore: true)
   _$SpringBoardStateCopyWith<_SpringBoardState> get copyWith =>

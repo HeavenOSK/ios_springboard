@@ -16,12 +16,12 @@ class SpringBoard extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTapDown: (_) {
-        if (!ref.read(springBoardState).shaking) {
+        if (!ref.read(springBoardState).movable) {
           return;
         }
         ref.read(springBoardState.notifier).state =
             ref.read(springBoardState).copyWith(
-                  shaking: false,
+                  movable: false,
                 );
       },
       child: Stack(
@@ -64,7 +64,7 @@ class _ScrollableArea extends HookConsumerWidget {
           onLongPress: () {
             ref.read(springBoardState.notifier).state =
                 ref.read(springBoardState).copyWith(
-                      shaking: true,
+                      movable: true,
                     );
           },
         ),
@@ -80,7 +80,7 @@ class _BottomArea extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final shaking = ref.watch(
-      springBoardState.select((value) => value.shaking),
+      springBoardState.select((value) => value.movable),
     );
     return SizedBox(
       height: SpringBoardScales.bottomAreaHeight,
@@ -115,7 +115,7 @@ class _BottomArea extends HookConsumerWidget {
                       onLongPress: () {
                         ref.read(springBoardState.notifier).state =
                             ref.read(springBoardState).copyWith(
-                                  shaking: true,
+                                  movable: true,
                                 );
                       },
                     ),

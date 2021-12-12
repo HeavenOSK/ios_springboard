@@ -6,7 +6,7 @@ part 'spring_board_state.freezed.dart';
 @freezed
 class SpringBoardState with _$SpringBoardState {
   const factory SpringBoardState({
-    @Default(false) bool shaking,
+    @Default(false) bool movable,
   }) = _SpringBoardState;
 }
 

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
@@ -16,11 +15,11 @@ class HomeIcon extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final shaking = ref.watch(
-      springBoardState.select((value) => value.shaking),
+    final movable = ref.watch(
+      springBoardState.select((value) => value.movable),
     );
     return Shaker(
-      shaking: shaking,
+      shaking: movable,
       child: SizedBox(
         height: HomeIconScales.areaSize.height,
         width: HomeIconScales.areaSize.width,
