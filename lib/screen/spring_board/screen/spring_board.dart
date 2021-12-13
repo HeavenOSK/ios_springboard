@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
 import 'package:ios_springboard/components/functional/shaker.dart';
+import 'package:ios_springboard/providers/screen_scale_provider.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon_scales.dart';
 import 'package:ios_springboard/screen/spring_board/screen/spring_board_scales.dart';
@@ -16,11 +17,11 @@ class SpringBoard extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTapDown: (_) {
-        if (!ref.read(springBoardState).movable) {
+        if (!ref.read(springBoardStateProvider).movable) {
           return;
         }
-        ref.read(springBoardState.notifier).state =
-            ref.read(springBoardState).copyWith(
+        ref.read(springBoardStateProvider.notifier).state =
+            ref.read(springBoardStateProvider).copyWith(
                   movable: false,
                 );
       },
@@ -56,14 +57,14 @@ class _ScrollableArea extends HookConsumerWidget {
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
-          mainAxisSpacing: 1,
-          crossAxisSpacing: 4.1,
+          mainAxisSpacing: SpringBoardScales.verticalSpacing,
+          crossAxisSpacing: SpringBoardScales.horizontalSpacing,
           childAspectRatio: 1 / HomeIconScales.areaSize.aspectRatio,
         ),
         itemBuilder: (context, index) => HomeIcon(
           onLongPress: () {
-            ref.read(springBoardState.notifier).state =
-                ref.read(springBoardState).copyWith(
+            ref.read(springBoardStateProvider.notifier).state =
+                ref.read(springBoardStateProvider).copyWith(
                       movable: true,
                     );
           },
@@ -80,8 +81,10 @@ class _BottomArea extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final shaking = ref.watch(
-      springBoardState.select((value) => value.movable),
+      springBoardStateProvider.select((value) => value.movable),
     );
+    final scaleRatio = ref.watch(screenScaleRatioProvider);
+
     return SizedBox(
       height: SpringBoardScales.bottomAreaHeight,
       width: double.infinity,
@@ -113,8 +116,8 @@ class _BottomArea extends HookConsumerWidget {
                     shaking: shaking,
                     child: AppIcon(
                       onLongPress: () {
-                        ref.read(springBoardState.notifier).state =
-                            ref.read(springBoardState).copyWith(
+                        ref.read(springBoardStateProvider.notifier).state =
+                            ref.read(springBoardStateProvider).copyWith(
                                   movable: true,
                                 );
                       },

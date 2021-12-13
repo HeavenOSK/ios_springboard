@@ -16,7 +16,7 @@ class HomeIcon extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final movable = ref.watch(
-      springBoardState.select((value) => value.movable),
+      springBoardStateProvider.select((value) => value.movable),
     );
     return Shaker(
       shaking: movable,

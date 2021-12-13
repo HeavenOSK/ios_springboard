@@ -10,6 +10,6 @@ class SpringBoardState with _$SpringBoardState {
   }) = _SpringBoardState;
 }
 
-final springBoardState = StateProvider<SpringBoardState>(
+final springBoardStateProvider = StateProvider<SpringBoardState>(
   (ref) => const SpringBoardState(),
 );
