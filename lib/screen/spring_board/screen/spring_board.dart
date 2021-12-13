@@ -2,11 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
-import 'package:ios_springboard/components/functional/shaker.dart';
-import 'package:ios_springboard/providers/screen_scale_provider.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon_scales.dart';
+import 'package:ios_springboard/screen/spring_board/components/spring_board_draggable.dart';
 import 'package:ios_springboard/screen/spring_board/screen/spring_board_scales.dart';
 import 'package:ios_springboard/screen/spring_board/state/spring_board_state.dart';
 
@@ -49,27 +47,17 @@ class _ScrollableArea extends HookConsumerWidget {
       height: SpringBoardScales.bottomAreaHeight,
       width: double.infinity,
       color: Colors.blue,
-      child: GridView.builder(
-        padding: const EdgeInsets.symmetric(
-          horizontal: SpringBoardScales.horizontalPadding,
-        ).copyWith(
-          top: SpringBoardScales.topPadding,
+      padding: const EdgeInsets.symmetric(
+        horizontal: SpringBoardScales.horizontalPadding,
+      ).copyWith(
+        top: SpringBoardScales.topPadding,
+      ),
+      child: const Align(
+        alignment: Alignment.topLeft,
+        child: SpringBoardDraggable(
+          size: HomeIconScales.areaSize,
+          child: HomeIcon(),
         ),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-          mainAxisSpacing: SpringBoardScales.verticalSpacing,
-          crossAxisSpacing: SpringBoardScales.horizontalSpacing,
-          childAspectRatio: 1 / HomeIconScales.areaSize.aspectRatio,
-        ),
-        itemBuilder: (context, index) => HomeIcon(
-          onLongPress: () {
-            ref.read(springBoardStateProvider.notifier).state =
-                ref.read(springBoardStateProvider).copyWith(
-                      movable: true,
-                    );
-          },
-        ),
-        itemCount: 24,
       ),
     );
   }
@@ -80,10 +68,10 @@ class _BottomArea extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final shaking = ref.watch(
-      springBoardStateProvider.select((value) => value.movable),
-    );
-    final scaleRatio = ref.watch(screenScaleRatioProvider);
+    // final shaking = ref.watch(
+    //   springBoardStateProvider.select((value) => value.movable),
+    // );
+    // final scaleRatio = ref.watch(screenScaleRatioProvider);
 
     return SizedBox(
       height: SpringBoardScales.bottomAreaHeight,
@@ -103,30 +91,30 @@ class _BottomArea extends HookConsumerWidget {
               ),
             ),
           ),
-          Positioned.fill(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: SpringBoardScales.horizontalPadding,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(
-                  4,
-                  (index) => Shaker(
-                    shaking: shaking,
-                    child: AppIcon(
-                      onLongPress: () {
-                        ref.read(springBoardStateProvider.notifier).state =
-                            ref.read(springBoardStateProvider).copyWith(
-                                  movable: true,
-                                );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+          // Positioned.fill(
+          //   child: Padding(
+          //     padding: const EdgeInsets.symmetric(
+          //       horizontal: SpringBoardScales.horizontalPadding,
+          //     ),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: List.generate(
+          //         4,
+          //         (index) => Shaker(
+          //           shaking: shaking,
+          //           child: AppIcon(
+          //             onLongPress: () {
+          //               ref.read(springBoardStateProvider.notifier).state =
+          //                   ref.read(springBoardStateProvider).copyWith(
+          //                         movable: true,
+          //                       );
+          //             },
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
