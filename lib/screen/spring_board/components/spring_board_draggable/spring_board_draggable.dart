@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ios_springboard/components/atom/zoomable.dart';
 
@@ -17,6 +18,8 @@ class SpringBoardDraggable extends StatefulWidget {
 
 class _SpringBoardDraggableState extends State<SpringBoardDraggable> {
   bool _grabbing = false;
+  int _activeCount = 0;
+  GestureRecognizer? _recognizer;
 
   void _startGrab() {
     setState(() {
@@ -30,28 +33,44 @@ class _SpringBoardDraggableState extends State<SpringBoardDraggable> {
     });
   }
 
+  void _routePointer(PointerDownEvent event) {
+    if (_activeCount > 0) {
+      return;
+    }
+    _recognizer!.addPointer(event);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onLongPress: () {
-        // print('Long Press')
+    final canDrag = _activeCount <= 0;
+    final showChild = _activeCount == 0;
+    return Listener(
+      behavior: HitTestBehavior.translucent,
+      onPointerDown: canDrag
+          ? (event) async {
+              _startGrab();
+              await Future<void>.delayed(
+                const Duration(milliseconds: 120),
+              );
+              _routePointer(event);
+            }
+          : null,
+      onPointerUp: (_) {
+        _finishGrab();
       },
-      child: Listener(
-        behavior: HitTestBehavior.translucent,
-        onPointerDown: (_) {
-          _startGrab();
-        },
-        onPointerUp: (_) {
-          _finishGrab();
-        },
-        onPointerCancel: (_) {
-          _finishGrab();
-        },
-        child: Zoomable(
-          duration: const Duration(milliseconds: 120),
-          zooming: _grabbing,
-          size: widget.size,
-          child: widget.child,
+      onPointerCancel: (_) {
+        _finishGrab();
+      },
+      child: IgnorePointer(
+        ignoring: !showChild,
+        child: Opacity(
+          opacity: showChild ? 1.0 : 0.0,
+          child: Zoomable(
+            duration: const Duration(milliseconds: 120),
+            zooming: _grabbing,
+            size: widget.size,
+            child: widget.child,
+          ),
         ),
       ),
     );
