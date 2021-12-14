@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon_scales.dart';
-import 'package:ios_springboard/screen/spring_board/components/spring_board_draggable.dart';
+import 'package:ios_springboard/screen/spring_board/components/spring_board_draggable/spring_board_draggable.dart';
 import 'package:ios_springboard/screen/spring_board/screen/spring_board_scales.dart';
 import 'package:ios_springboard/screen/spring_board/state/spring_board_state.dart';
 
