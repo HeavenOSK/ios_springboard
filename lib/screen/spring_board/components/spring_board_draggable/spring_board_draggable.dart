@@ -1,6 +1,9 @@
+// ignore_for_file: type=lint
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:ios_springboard/components/atom/fixed_sized_box.dart';
 import 'package:ios_springboard/components/atom/zoomable.dart';
+import 'package:ios_springboard/screen/spring_board/components/spring_board_draggable/spring_board_drag_avatar.dart';
 
 class SpringBoardDraggable extends StatefulWidget {
   const SpringBoardDraggable({
@@ -20,6 +23,74 @@ class _SpringBoardDraggableState extends State<SpringBoardDraggable> {
   bool _grabbing = false;
   int _activeCount = 0;
   GestureRecognizer? _recognizer;
+  Offset? _localStartOffset;
+
+  @override
+  void initState() {
+    super.initState();
+    _recognizer = ImmediateMultiDragGestureRecognizer()..onStart = _startDrag;
+  }
+
+  @override
+  void dispose() {
+    _disposeRecognizerIfInactive();
+    super.dispose();
+  }
+
+  void _disposeRecognizerIfInactive() {
+    if (_activeCount > 0) return;
+    _recognizer!.dispose();
+    _recognizer = null;
+  }
+
+  SpringBoardDragAvatar? _startDrag(Offset position) {
+    if (_activeCount > 0) {
+      return null;
+    }
+    // final dragStartPoint = childDragAnchorStrategy(widget, context, position);
+    setState(() {
+      _activeCount += 1;
+    });
+    final avatar = SpringBoardDragAvatar(
+      localStartPoint: (_localStartOffset ?? Offset.zero) * 5,
+      size: widget.size * 5 * 1.1,
+      feedback: FixedSizedBox(
+        size: widget.size * 5 * 1.1,
+        child: widget.child,
+      ),
+      onDragUpdate: (DragUpdateDetails details) {
+        // if (mounted && widget.onDragUpdate != null) {
+        //   widget.onDragUpdate!(details);
+        // }
+      },
+      onDragEnd: (Velocity velocity, Offset offset, bool wasAccepted) {
+        if (mounted) {
+          setState(() {
+            _activeCount -= 1;
+          });
+        } else {
+          _activeCount -= 1;
+          _disposeRecognizerIfInactive();
+        }
+      },
+      initialPosition: position,
+      overlayState: Overlay.of(
+        context,
+        debugRequiredFor: widget,
+        rootOverlay: false,
+      )!,
+    );
+    return avatar;
+  }
+
+  Offset childDragAnchorStrategy(
+    SpringBoardDraggable draggable,
+    BuildContext context,
+    Offset position,
+  ) {
+    final RenderBox renderObject = context.findRenderObject()! as RenderBox;
+    return renderObject.globalToLocal(position);
+  }
 
   void _startGrab() {
     setState(() {
@@ -37,6 +108,7 @@ class _SpringBoardDraggableState extends State<SpringBoardDraggable> {
     if (_activeCount > 0) {
       return;
     }
+    _localStartOffset = event.localPosition;
     _recognizer!.addPointer(event);
   }
 
@@ -49,9 +121,9 @@ class _SpringBoardDraggableState extends State<SpringBoardDraggable> {
       onPointerDown: canDrag
           ? (event) async {
               _startGrab();
-              await Future<void>.delayed(
-                const Duration(milliseconds: 120),
-              );
+              // await Future<void>.delayed(
+              //   const Duration(milliseconds: 120),
+              // );
               _routePointer(event);
             }
           : null,

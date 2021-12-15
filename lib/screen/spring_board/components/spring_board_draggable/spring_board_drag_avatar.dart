@@ -5,11 +5,13 @@ enum _DragEndKind { dropped, canceled }
 
 class SpringBoardDragAvatar extends Drag {
   SpringBoardDragAvatar({
+    required this.localStartPoint,
     required this.onDragUpdate,
     this.onDragEnd,
     required this.feedback,
     required this.overlayState,
     this.dragStartPoint = Offset.zero,
+    required this.size,
     required Offset initialPosition,
   }) : _position = initialPosition {
     _entry = OverlayEntry(builder: _build);
@@ -17,10 +19,12 @@ class SpringBoardDragAvatar extends Drag {
   }
 
   final Offset dragStartPoint;
+  final Offset localStartPoint;
   final OverlayState overlayState;
   final Widget feedback;
   final DragUpdateCallback? onDragUpdate;
   final void Function(Velocity, Offset, bool)? onDragEnd;
+  final Size size;
 
   late Offset? _lastOffset;
   Offset _position;
@@ -49,7 +53,8 @@ class SpringBoardDragAvatar extends Drag {
   }
 
   void updateDrag(Offset globalPosition) {
-    _lastOffset = globalPosition - dragStartPoint;
+    _lastOffset = globalPosition - dragStartPoint - localStartPoint;
+
     _entry!.markNeedsBuild();
     final result = HitTestResult();
     WidgetsBinding.instance!.hitTest(result, globalPosition);
