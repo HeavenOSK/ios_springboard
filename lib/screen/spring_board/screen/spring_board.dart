@@ -6,7 +6,7 @@ import 'package:ios_springboard/screen/spring_board/components/home_icon.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon_scales_provider.dart';
 import 'package:ios_springboard/screen/spring_board/components/spring_board_draggable/spring_board_draggable.dart';
 import 'package:ios_springboard/screen/spring_board/screen/spring_board_scales_provider.dart';
-import 'package:ios_springboard/screen/spring_board/state/spring_board_state.dart';
+import 'package:ios_springboard/screen/spring_board/state/spring_board_controller.dart';
 
 class SpringBoard extends HookConsumerWidget {
   const SpringBoard({Key? key}) : super(key: key);
@@ -14,15 +14,13 @@ class SpringBoard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: GestureDetector(
         onTapDown: (_) {
-          if (!ref.read(springBoardStateProvider).movable) {
+          if (!ref.read(springBoardController).movable) {
             return;
           }
-          ref.read(springBoardStateProvider.notifier).state =
-              ref.read(springBoardStateProvider).copyWith(
-                    movable: false,
-                  );
+          ref.read(springBoardController.notifier).stopReordering();
         },
         child: Stack(
           children: const [
