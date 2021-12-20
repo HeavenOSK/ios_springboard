@@ -52,10 +52,10 @@ class _SpringBoardDraggableState extends State<SpringBoardDraggable> {
       _activeCount += 1;
     });
     final avatar = SpringBoardDragAvatar(
-      localStartPoint: (_localStartOffset ?? Offset.zero) * 5,
-      size: widget.size * 5 * 1.1,
+      localStartPoint: _localStartOffset ?? Offset.zero,
+      size: widget.size * 1.1,
       feedback: FixedSizedBox(
-        size: widget.size * 5 * 1.1,
+        size: widget.size * 1.1,
         child: widget.child,
       ),
       onDragUpdate: (DragUpdateDetails details) {

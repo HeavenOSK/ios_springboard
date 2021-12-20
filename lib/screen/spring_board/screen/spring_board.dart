@@ -3,9 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon.dart';
-import 'package:ios_springboard/screen/spring_board/components/home_icon_scales.dart';
+import 'package:ios_springboard/screen/spring_board/components/home_icon_scales_provider.dart';
 import 'package:ios_springboard/screen/spring_board/components/spring_board_draggable/spring_board_draggable.dart';
-import 'package:ios_springboard/screen/spring_board/screen/spring_board_scales.dart';
+import 'package:ios_springboard/screen/spring_board/screen/spring_board_scales_provider.dart';
 import 'package:ios_springboard/screen/spring_board/state/spring_board_state.dart';
 
 class SpringBoard extends HookConsumerWidget {
@@ -13,26 +13,28 @@ class SpringBoard extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return GestureDetector(
-      onTapDown: (_) {
-        if (!ref.read(springBoardStateProvider).movable) {
-          return;
-        }
-        ref.read(springBoardStateProvider.notifier).state =
-            ref.read(springBoardStateProvider).copyWith(
-                  movable: false,
-                );
-      },
-      child: Stack(
-        children: const [
-          Positioned.fill(
-            child: _ScrollableArea(),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: _BottomArea(),
-          ),
-        ],
+    return MaterialApp(
+      home: GestureDetector(
+        onTapDown: (_) {
+          if (!ref.read(springBoardStateProvider).movable) {
+            return;
+          }
+          ref.read(springBoardStateProvider.notifier).state =
+              ref.read(springBoardStateProvider).copyWith(
+                    movable: false,
+                  );
+        },
+        child: Stack(
+          children: const [
+            Positioned.fill(
+              child: _ScrollableArea(),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: _BottomArea(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -43,20 +45,22 @@ class _ScrollableArea extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final homeIconScales = ref.watch(homeIconScalesProvider);
+    final springBoardScales = ref.watch(springBoardScalesProvider);
     return Container(
-      height: SpringBoardScales.bottomAreaHeight,
+      height: springBoardScales.bottomAreaHeight,
       width: double.infinity,
       color: Colors.blue,
-      padding: const EdgeInsets.symmetric(
-        horizontal: SpringBoardScales.horizontalPadding,
+      padding: EdgeInsets.symmetric(
+        horizontal: springBoardScales.horizontalPadding,
       ).copyWith(
-        top: SpringBoardScales.topPadding,
+        top: springBoardScales.topPadding,
       ),
-      child: const Align(
+      child: Align(
         alignment: Alignment.topLeft,
         child: SpringBoardDraggable(
-          size: HomeIconScales.areaSize,
-          child: HomeIcon(),
+          size: homeIconScales.areaSize,
+          child: const HomeIcon(),
         ),
       ),
     );
@@ -72,9 +76,9 @@ class _BottomArea extends HookConsumerWidget {
     //   springBoardStateProvider.select((value) => value.movable),
     // );
     // final scaleRatio = ref.watch(screenScaleRatioProvider);
-
+    final springBoardScales = ref.watch(springBoardScalesProvider);
     return SizedBox(
-      height: SpringBoardScales.bottomAreaHeight,
+      height: springBoardScales.bottomAreaHeight,
       width: double.infinity,
       child: Stack(
         children: [

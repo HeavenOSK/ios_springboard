@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
-import 'package:ios_springboard/screen/spring_board/components/home_icon_scales.dart';
+import 'package:ios_springboard/screen/spring_board/components/home_icon_scales_provider.dart';
 
 class HomeIcon extends HookConsumerWidget {
   const HomeIcon({
@@ -10,9 +10,10 @@ class HomeIcon extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final homeIconScales = ref.watch(homeIconScalesProvider);
     return SizedBox(
-      height: HomeIconScales.areaSize.height,
-      width: HomeIconScales.areaSize.width,
+      height: homeIconScales.areaSize.height,
+      width: homeIconScales.areaSize.width,
       child: Column(
         children: const [
           AppIcon(),
