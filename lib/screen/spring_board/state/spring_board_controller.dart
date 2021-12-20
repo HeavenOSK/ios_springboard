@@ -19,4 +19,11 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
       movable: false,
     );
   }
+
+  void shuffle() {
+    final copied = <int>[...state.order]..shuffle();
+    state = state.copyWith(
+      order: copied,
+    );
+  }
 }

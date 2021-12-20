@@ -1,10 +1,22 @@
+# 2021/12/21
+- やったこと
+  - デバッグ用に order の表示と shuffle button を表示した
+  - movable の実装消した
+- 次やること
+  - 画面サイズを見て preferred position を算出するようにして、AnimatedPositionedで宣言的に移動させる
+  - Animated なしで Positioned を使って表示する
+    - 画面サイズと縦横の最大アイコン数を使って距離などを求めるようにする
+      - もしかしたらアイコンのサイズも動的に決定するようにした方がいいかも
+      - どのデータが computed にできないのか考える。
+  
 # 2021/12/20
 - やったこと
   - Scale の拡大縮小をクラス内に閉じ込める
   - MockIconData を作成
   - SpringBoardState に order と mockIconData を追加
-- 次やること
+- 次やること 
   - デバッグ用に order の表示と shuffle button を表示する
+  - movable の実装消す
   - 画面サイズを見て preferred position を算出するようにして、AnimatedPositionedで宣言的に移動させる
 
 # 2021/12/15

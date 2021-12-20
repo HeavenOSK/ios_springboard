@@ -14,8 +14,8 @@ class HomeIconScales with _$HomeIconScales {
   HomeIconScales._();
 
   late final areaSize = Size(
-    appIconScales.iconSize + textAreaHeight,
     appIconScales.iconSize,
+    appIconScales.iconSize + textAreaHeight,
   );
 
   late final double textAreaHeight = 3.0 * rate;
