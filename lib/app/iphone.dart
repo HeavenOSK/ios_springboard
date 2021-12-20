@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ios_springboard/app/iphone_scales.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ios_springboard/app/iphone_scales_provider.dart';
 
-class IPhone extends StatelessWidget {
+class IPhone extends HookConsumerWidget {
   const IPhone({
     required this.child,
     Key? key,
@@ -10,13 +11,14 @@ class IPhone extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final iPhoneScale = ref.watch(iPhoneScalesProvider);
     return Container(
-      height: IPhoneScales.caseSize.height,
-      width: IPhoneScales.caseSize.width,
+      height: iPhoneScale.caseSize.height,
+      width: iPhoneScale.caseSize.width,
       decoration: BoxDecoration(
         color: Colors.black,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(iPhoneScale.caseRadius),
         boxShadow: [
           BoxShadow(
             offset: const Offset(0, 20),
@@ -34,7 +36,7 @@ class IPhone extends StatelessWidget {
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: IPhoneScales.padding.horizontal / 2,
+          horizontal: iPhoneScale.padding.horizontal / 2,
         ),
         child: Column(
           children: [
@@ -50,15 +52,19 @@ class IPhone extends StatelessWidget {
   }
 }
 
-class _TopArea extends StatelessWidget {
+class _TopArea extends HookConsumerWidget {
   const _TopArea({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final iPhoneScale = ref.watch(iPhoneScalesProvider);
+
     return SizedBox(
-      height: IPhoneScales.padding.top,
+      height: iPhoneScale.padding.top,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 7),
+        padding: EdgeInsets.only(
+          bottom: iPhoneScale.speakerHoleBottomMargin,
+        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -66,24 +72,28 @@ class _TopArea extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: Container(
-                  height: IPhoneScales.frontCameraRadius * 2,
-                  width: IPhoneScales.frontCameraRadius * 2,
-                  margin: const EdgeInsets.only(right: 4),
+                  height: iPhoneScale.frontCameraRadius * 2,
+                  width: iPhoneScale.frontCameraRadius * 2,
+                  margin: EdgeInsets.only(
+                    right: iPhoneScale.speakerHoleRightMargin,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(
-                      IPhoneScales.frontCameraRadius,
+                      iPhoneScale.frontCameraRadius,
                     ),
                   ),
                 ),
               ),
             ),
             Container(
-              width: IPhoneScales.micHoleSize.width,
-              height: IPhoneScales.micHoleSize.height,
+              width: iPhoneScale.micHoleSize.width,
+              height: iPhoneScale.micHoleSize.height,
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(24),
+                borderRadius: BorderRadius.circular(
+                  iPhoneScale.micHoleSize.height / 2,
+                ),
               ),
             ),
             const Spacer(),
@@ -94,17 +104,18 @@ class _TopArea extends StatelessWidget {
   }
 }
 
-class _BottomArea extends StatelessWidget {
+class _BottomArea extends HookConsumerWidget {
   const _BottomArea({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final iPhoneScale = ref.watch(iPhoneScalesProvider);
     return SizedBox(
-      height: IPhoneScales.padding.bottom,
+      height: iPhoneScale.padding.bottom,
       child: Center(
         child: Container(
-          height: IPhoneScales.homeButtonRadius * 2,
-          width: IPhoneScales.homeButtonRadius * 2,
+          height: iPhoneScale.homeButtonRadius * 2,
+          width: iPhoneScale.homeButtonRadius * 2,
           decoration: BoxDecoration(
             color: Colors.transparent,
             border: Border.all(
@@ -112,7 +123,7 @@ class _BottomArea extends StatelessWidget {
               width: 0.3,
             ),
             borderRadius: BorderRadius.circular(
-              IPhoneScales.homeButtonRadius,
+              iPhoneScale.homeButtonRadius,
             ),
           ),
         ),
