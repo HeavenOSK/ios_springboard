@@ -1,8 +1,11 @@
 # 2021/12/20
 - やったこと
   - Scale の拡大縮小をクラス内に閉じ込める
-- State の分析 
-  - State の分析ができれば 
+  - MockIconData を作成
+  - SpringBoardState に order と mockIconData を追加
+- 次やること
+  - デバッグ用に order の表示と shuffle button を表示する
+  - 画面サイズを見て preferred position を算出するようにして、AnimatedPositionedで宣言的に移動させる
 
 # 2021/12/15
 - やったこと
