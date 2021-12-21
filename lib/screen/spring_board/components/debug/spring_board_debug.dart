@@ -45,7 +45,7 @@ class SpringBoardDebug extends HookConsumerWidget {
               onPressed: () {
                 ref.read(springBoardController.notifier).reset();
               },
-              child: Text('reset'),
+              child: const Text('reset'),
             ),
           ],
         ),

@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ios_springboard/components/atom/fixed_sized_box.dart';
 import 'package:ios_springboard/components/atom/zoomable.dart';
+import 'package:ios_springboard/screen/spring_board/components/slot_area/slot_area_key.dart';
 import 'package:ios_springboard/screen/spring_board/components/spring_board_draggable/spring_board_drag_avatar.dart';
 
 class SpringBoardDraggable extends StatefulWidget {
@@ -10,10 +11,12 @@ class SpringBoardDraggable extends StatefulWidget {
     Key? key,
     required this.size,
     required this.child,
+    required this.onUpdate,
   }) : super(key: key);
 
   final Size size;
   final Widget child;
+  final void Function(Offset) onUpdate;
 
   @override
   State<SpringBoardDraggable> createState() => _SpringBoardDraggableState();
@@ -24,6 +27,13 @@ class _SpringBoardDraggableState extends State<SpringBoardDraggable> {
   int _activeCount = 0;
   GestureRecognizer? _recognizer;
   Offset? _localStartOffset;
+
+  Offset _slotOffset() {
+    RenderBox box = slotAreaKey.currentContext!.findRenderObject() as RenderBox;
+    return box.localToGlobal(Offset.zero);
+  }
+
+  late final slotOffset = _slotOffset();
 
   @override
   void initState() {
@@ -47,21 +57,23 @@ class _SpringBoardDraggableState extends State<SpringBoardDraggable> {
     if (_activeCount > 0) {
       return null;
     }
-    // final dragStartPoint = childDragAnchorStrategy(widget, context, position);
+
     setState(() {
       _activeCount += 1;
     });
     final avatar = SpringBoardDragAvatar(
       localStartPoint: _localStartOffset ?? Offset.zero,
-      size: widget.size * 1.1,
+      size: widget.size,
       feedback: FixedSizedBox(
-        size: widget.size * 1.1,
+        size: widget.size,
         child: widget.child,
       ),
       onDragUpdate: (DragUpdateDetails details) {
-        // if (mounted && widget.onDragUpdate != null) {
-        //   widget.onDragUpdate!(details);
-        // }
+        if (mounted) {
+          widget.onUpdate(
+            details.globalPosition - slotOffset,
+          );
+        }
       },
       onDragEnd: (Velocity velocity, Offset offset, bool wasAccepted) {
         if (mounted) {
@@ -92,11 +104,11 @@ class _SpringBoardDraggableState extends State<SpringBoardDraggable> {
     return renderObject.globalToLocal(position);
   }
 
-  void _startGrab() {
-    setState(() {
-      _grabbing = true;
-    });
-  }
+  // void _startGrab() {
+  //   setState(() {
+  //     _grabbing = true;
+  //   });
+  // }
 
   void _finishGrab() {
     setState(() {
@@ -120,7 +132,8 @@ class _SpringBoardDraggableState extends State<SpringBoardDraggable> {
       behavior: HitTestBehavior.translucent,
       onPointerDown: canDrag
           ? (event) async {
-              _startGrab();
+              // TODO(HeavenOSK): 拡大表示を実装する
+              // _startGrab();
               // await Future<void>.delayed(
               //   const Duration(milliseconds: 120),
               // );

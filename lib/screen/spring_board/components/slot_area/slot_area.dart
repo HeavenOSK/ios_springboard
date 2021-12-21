@@ -14,6 +14,7 @@ class SlotArea extends HookConsumerWidget {
     );
 
     return Stack(
+      key: slotAreaKey,
       children: mockDataList
           .map(
             (data) => HomeIcon(

@@ -32,4 +32,22 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
       order: List.generate(state.mockDataList.length, (index) => index),
     );
   }
+
+  void moveItem({
+    required int id,
+    required int targetIndex,
+  }) {
+    final originalIndex = state.order.indexOf(id);
+    if (originalIndex == targetIndex) {
+      return;
+    }
+    final cloned = [
+      ...state.order,
+    ]
+      ..remove(id)
+      ..insert(targetIndex, id);
+    state = state.copyWith(
+      order: cloned,
+    );
+  }
 }

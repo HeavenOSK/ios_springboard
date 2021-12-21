@@ -1,10 +1,10 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon/home_icon_order_faimily.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon/home_icon_scales_provider.dart';
+import 'package:ios_springboard/screen/spring_board/components/spring_board_draggable/spring_board_draggable.dart';
+import 'package:ios_springboard/screen/spring_board/state/dragging_state/dragging_controller.dart';
 import 'package:ios_springboard/screen/spring_board/state/icons/mock_icon_data.dart';
 import 'package:ios_springboard/screen/spring_board/state/slot_layer_computed/slot_layer_computed_provider.dart';
 
@@ -22,17 +22,26 @@ class HomeIcon extends HookConsumerWidget {
     final index = ref.watch(
       homeIconOrderIndexFamily(mockIconData.id),
     );
-    final position = slotLayerComputed.positions[index];
+    final computed = slotLayerComputed.slotItems[index];
     return AnimatedPositioned(
       curve: Curves.easeOutCubic,
       duration: const Duration(milliseconds: 350),
-      top: position.dy,
-      left: position.dx,
+      top: computed.position.dy,
+      left: computed.position.dx,
       child: SizedBox.fromSize(
         size: slotLayerComputed.slotSize,
-        child: Center(
-          child: _HomeIcon(
-            mockIconData: mockIconData,
+        child: SpringBoardDraggable(
+          size: slotLayerComputed.slotSize,
+          onUpdate: (currentPosition) {
+            ref.read(draggingController).updatePosition(
+                  id: mockIconData.id,
+                  currentPosition: currentPosition,
+                );
+          },
+          child: Center(
+            child: _HomeIcon(
+              mockIconData: mockIconData,
+            ),
           ),
         ),
       ),
