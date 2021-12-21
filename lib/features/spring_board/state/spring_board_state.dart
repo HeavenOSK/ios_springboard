@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ios_springboard/screen/spring_board/state/icons/mock_icon_data.dart';
-import 'package:ios_springboard/screen/spring_board/state/icons/mock_icon_data_list.dart';
+import 'package:ios_springboard/features/spring_board/state/icons/mock_icon_data.dart';
+import 'package:ios_springboard/features/spring_board/state/icons/mock_icon_data_list.dart';
 
 part 'spring_board_state.freezed.dart';
 

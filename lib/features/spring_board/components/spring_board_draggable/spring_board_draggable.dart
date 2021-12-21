@@ -3,8 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ios_springboard/components/atom/fixed_sized_box.dart';
 import 'package:ios_springboard/components/atom/zoomable.dart';
-import 'package:ios_springboard/screen/spring_board/components/slot_area/slot_area_key.dart';
-import 'package:ios_springboard/screen/spring_board/components/spring_board_draggable/spring_board_drag_avatar.dart';
+import 'package:ios_springboard/features/spring_board/components/slot_area/slot_area_key.dart';
+import 'package:ios_springboard/features/spring_board/components/spring_board_draggable/spring_board_drag_avatar.dart';
 
 class SpringBoardDraggable extends StatefulWidget {
   const SpringBoardDraggable({

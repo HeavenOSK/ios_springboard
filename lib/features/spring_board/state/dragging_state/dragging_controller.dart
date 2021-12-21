@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ios_springboard/features/spring_board/state/slot_layer_computed/slot_layer_computed_provider.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_controller.dart';
 import 'package:ios_springboard/providers/position_slot_config/position_slot_config_provider.dart';
-import 'package:ios_springboard/screen/spring_board/state/slot_layer_computed/slot_layer_computed_provider.dart';
-import 'package:ios_springboard/screen/spring_board/state/spring_board_controller.dart';
 
 final draggingController = Provider(
   (ref) => DraggingController(ref.read),

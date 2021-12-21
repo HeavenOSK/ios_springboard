@@ -1,5 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/screen/spring_board/state/spring_board_state.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_state.dart';
 
 final springBoardController =
     StateNotifierProvider<SpringBoardController, SpringBoardState>(

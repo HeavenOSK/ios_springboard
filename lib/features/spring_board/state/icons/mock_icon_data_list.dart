@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ios_springboard/screen/spring_board/state/icons/mock_icon_data.dart';
+import 'package:ios_springboard/features/spring_board/state/icons/mock_icon_data.dart';
 
 final _colors = <Color>[
   Colors.yellowAccent,

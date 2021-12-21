@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/screen/spring_board/components/spring_board_scrollable_area.dart';
-import 'package:ios_springboard/screen/spring_board/screen/spring_board_scales_provider.dart';
-import 'package:ios_springboard/screen/spring_board/state/spring_board_controller.dart';
+import 'package:ios_springboard/features/spring_board/components/spring_board_scrollable_area.dart';
+import 'package:ios_springboard/features/spring_board/screen/spring_board_scales_provider.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_controller.dart';
 
 class SpringBoard extends HookConsumerWidget {
   const SpringBoard({Key? key}) : super(key: key);
