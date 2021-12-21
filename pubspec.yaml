@@ -11,6 +11,7 @@ dependencies:
   freezed_annotation:
   gap:
   hooks_riverpod:
+  sprung:
   state_notifier:
 dev_dependencies:
   build_runner:

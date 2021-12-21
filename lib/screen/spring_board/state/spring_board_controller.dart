@@ -10,7 +10,7 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
   SpringBoardController()
       : super(
           SpringBoardStateX.getInitialState(
-            itemCount: 4,
+            itemCount: 8,
           ),
         );
 
@@ -24,6 +24,12 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
     final copied = <int>[...state.order]..shuffle();
     state = state.copyWith(
       order: copied,
+    );
+  }
+
+  void reset() {
+    state = state.copyWith(
+      order: List.generate(state.mockDataList.length, (index) => index),
     );
   }
 }
