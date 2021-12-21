@@ -15,10 +15,10 @@ class ScrollableArea extends HookConsumerWidget {
     final slots = List.generate(
       slotLayerComputed.positions.length,
       (index) {
-        final slotComputed = slotLayerComputed.positions[index];
+        final position = slotLayerComputed.positions[index];
         return Positioned(
-          top: slotComputed.position.dy,
-          left: slotComputed.position.dx,
+          top: position.dy,
+          left: position.dx,
           child: Container(
             height: slotLayerComputed.slotSize.height,
             width: slotLayerComputed.slotSize.width,
