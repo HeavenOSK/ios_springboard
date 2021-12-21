@@ -5,8 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon/home_icon_order_faimily.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon/home_icon_scales_provider.dart';
-import 'package:ios_springboard/screen/spring_board/components/slot_layer_computed/slot_layer_computed_provider.dart';
 import 'package:ios_springboard/screen/spring_board/state/icons/mock_icon_data.dart';
+import 'package:ios_springboard/screen/spring_board/state/slot_layer_computed/slot_layer_computed_provider.dart';
 
 class HomeIcon extends HookConsumerWidget {
   const HomeIcon({
