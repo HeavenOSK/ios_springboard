@@ -24,6 +24,11 @@ class IPhoneScales with _$IPhoneScales {
       ) *
       rate;
 
+  late final screenSize = Size(
+    caseSize.width - padding.horizontal,
+    caseSize.height - padding.vertical,
+  );
+
   late final micHoleSize = (const Size(
         12,
         1.5,

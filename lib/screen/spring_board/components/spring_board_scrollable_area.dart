@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/screen/spring_board/components/home_icon/home_icon.dart';
+import 'package:ios_springboard/constants/colors.dart';
+import 'package:ios_springboard/screen/spring_board/components/slot_layer_computed/slot_layer_computed_provider.dart';
 import 'package:ios_springboard/screen/spring_board/screen/spring_board_scales_provider.dart';
-import 'package:ios_springboard/screen/spring_board/state/spring_board_controller.dart';
 
 class ScrollableArea extends HookConsumerWidget {
   const ScrollableArea({Key? key}) : super(key: key);
@@ -10,9 +10,23 @@ class ScrollableArea extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final springBoardScales = ref.watch(springBoardScalesProvider);
-    final mockDataList = ref.watch(
-      springBoardController.select((value) => value.mockDataList),
-    );
+
+    final slotLayerComputed = ref.watch(slotLayerComputedProvider);
+    final slots = List.generate(
+      slotLayerComputed.positions.length,
+      (index) {
+        final slotComputed = slotLayerComputed.positions[index];
+        return Positioned(
+          top: slotComputed.position.dy,
+          left: slotComputed.position.dx,
+          child: Container(
+            height: slotLayerComputed.slotSize.height,
+            width: slotLayerComputed.slotSize.width,
+            color: colors[index],
+          ),
+        );
+      },
+    ).toList();
     return Container(
       height: springBoardScales.bottomAreaHeight,
       width: double.infinity,
@@ -23,14 +37,7 @@ class ScrollableArea extends HookConsumerWidget {
         top: springBoardScales.topPadding,
       ),
       child: Stack(
-        children: mockDataList
-            .map(
-              (data) => HomeIcon(
-                key: ValueKey(data.id),
-                mockIconData: data,
-              ),
-            )
-            .toList(),
+        children: slots,
       ),
     );
   }

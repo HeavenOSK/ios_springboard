@@ -26,6 +26,13 @@ class SpringBoardDebug extends HookConsumerWidget {
               },
               child: Text('shuffle'),
             ),
+            const Gap(8),
+            ElevatedButton(
+              onPressed: () {
+                ref.read(springBoardController.notifier).switchShowDebugSlot();
+              },
+              child: Text('switch showDebugSlot'),
+            ),
           ],
         ),
       ),

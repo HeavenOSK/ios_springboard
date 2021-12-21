@@ -32,4 +32,10 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
       order: List.generate(state.mockDataList.length, (index) => index),
     );
   }
+
+  void switchShowDebugSlot() {
+    state = state.copyWith(
+      showDebugSlot: !state.showDebugSlot,
+    );
+  }
 }

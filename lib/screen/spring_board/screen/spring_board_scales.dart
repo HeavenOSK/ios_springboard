@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ios_springboard/app/iphone_scales.dart';
 
 part 'spring_board_scales.freezed.dart';
 
@@ -15,4 +17,15 @@ class SpringBoardScales with _$SpringBoardScales {
   late final horizontalSpacing = 4.1 * rate;
   late final horizontalPadding = 4.0 * rate;
   late final topPadding = 5.0 * rate;
+}
+
+extension SpringBoardScalesX on SpringBoardScales {
+  Size slotArea({
+    required IPhoneScales iPhoneScales,
+  }) {
+    return Size(
+      iPhoneScales.screenSize.width - horizontalPadding * 2,
+      iPhoneScales.screenSize.height - topPadding - bottomAreaHeight,
+    );
+  }
 }
