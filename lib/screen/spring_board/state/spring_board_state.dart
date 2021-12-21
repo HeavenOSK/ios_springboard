@@ -9,7 +9,6 @@ class SpringBoardState with _$SpringBoardState {
   const factory SpringBoardState({
     @Default(false) bool movable,
     required List<MockIconData> mockDataList,
-    @Default(false) bool showDebugSlot,
     required List<int> order,
   }) = _SpringBoardState;
 }
