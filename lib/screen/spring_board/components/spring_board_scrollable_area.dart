@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ios_springboard/screen/spring_board/components/debug/debug_slot_layer/debug_slot_layer.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon/home_icon.dart';
 import 'package:ios_springboard/screen/spring_board/screen/spring_board_scales_provider.dart';
 import 'package:ios_springboard/screen/spring_board/state/spring_board_controller.dart';
@@ -23,14 +24,21 @@ class ScrollableArea extends HookConsumerWidget {
         top: springBoardScales.topPadding,
       ),
       child: Stack(
-        children: mockDataList
-            .map(
-              (data) => HomeIcon(
-                key: ValueKey(data.id),
-                mockIconData: data,
-              ),
-            )
-            .toList(),
+        children: [
+          const DebugSlotLayer(),
+          Positioned.fill(
+            child: Stack(
+              children: mockDataList
+                  .map(
+                    (data) => HomeIcon(
+                      key: ValueKey(data.id),
+                      mockIconData: data,
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
+        ],
       ),
     );
   }
