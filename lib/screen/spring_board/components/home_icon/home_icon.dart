@@ -3,7 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
+import 'package:ios_springboard/screen/spring_board/components/home_icon/home_icon_order_faimily.dart';
 import 'package:ios_springboard/screen/spring_board/components/home_icon/home_icon_scales_provider.dart';
+import 'package:ios_springboard/screen/spring_board/components/slot_layer_computed/slot_layer_computed_provider.dart';
 import 'package:ios_springboard/screen/spring_board/state/icons/mock_icon_data.dart';
 
 class HomeIcon extends HookConsumerWidget {
@@ -16,8 +18,24 @@ class HomeIcon extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return _HomeIcon(
-      mockIconData: mockIconData,
+    final slotLayerComputed = ref.watch(slotLayerComputedProvider);
+    final index = ref.watch(
+      homeIconOrderIndexFamily(mockIconData.id),
+    );
+    final position = slotLayerComputed.positions[index];
+    return AnimatedPositioned(
+      curve: Curves.easeOutCubic,
+      duration: const Duration(milliseconds: 350),
+      top: position.dy,
+      left: position.dx,
+      child: SizedBox.fromSize(
+        size: slotLayerComputed.slotSize,
+        child: Center(
+          child: _HomeIcon(
+            mockIconData: mockIconData,
+          ),
+        ),
+      ),
     );
   }
 }
@@ -48,14 +66,16 @@ class _HomeIcon extends HookConsumerWidget {
                 type: MaterialType.transparency,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 1.7),
-                  child: Text(
-                    mockIconData.name,
-                    style: const TextStyle(
-                      fontSize: 10,
-                      height: 1,
-                      letterSpacing: 1,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w100,
+                  child: FittedBox(
+                    child: Text(
+                      mockIconData.name,
+                      style: const TextStyle(
+                        fontSize: 10,
+                        height: 1,
+                        letterSpacing: 1,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w100,
+                      ),
                     ),
                   ),
                 ),

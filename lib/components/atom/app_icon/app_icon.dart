@@ -14,6 +14,7 @@ class AppIcon extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appIconScales = ref.watch(appIconScalesProvider);
+    final color = this.color ?? Colors.white;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: Material(
@@ -22,7 +23,7 @@ class AppIcon extends HookConsumerWidget {
           height: appIconScales.iconSize,
           width: appIconScales.iconSize,
           decoration: BoxDecoration(
-            color: color ?? Colors.white,
+            color: color,
             borderRadius: BorderRadius.circular(
               appIconScales.borderRadius,
             ),
@@ -31,10 +32,12 @@ class AppIcon extends HookConsumerWidget {
               ? Center(
                   child: Text(
                     icon!,
-                    style: const TextStyle(
+                    style: TextStyle(
                       height: 1,
                       fontSize: 12,
-                      color: Colors.white,
+                      color: color.computeLuminance() < 0.5
+                          ? Colors.white
+                          : Colors.black38,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

@@ -10,7 +10,7 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
   SpringBoardController()
       : super(
           SpringBoardStateX.getInitialState(
-            itemCount: 8,
+            itemCount: 24,
           ),
         );
 
