@@ -18,7 +18,7 @@ class _$SlotLayerComputedTearOff {
   const _$SlotLayerComputedTearOff();
 
   _SlotLayerComputed call(
-      {required Size slotSize, required List<ComputedSlotPosition> positions}) {
+      {required Size slotSize, required List<Offset> positions}) {
     return _SlotLayerComputed(
       slotSize: slotSize,
       positions: positions,
@@ -32,8 +32,7 @@ const $SlotLayerComputed = _$SlotLayerComputedTearOff();
 /// @nodoc
 mixin _$SlotLayerComputed {
   Size get slotSize => throw _privateConstructorUsedError;
-  List<ComputedSlotPosition> get positions =>
-      throw _privateConstructorUsedError;
+  List<Offset> get positions => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SlotLayerComputedCopyWith<SlotLayerComputed> get copyWith =>
@@ -45,7 +44,7 @@ abstract class $SlotLayerComputedCopyWith<$Res> {
   factory $SlotLayerComputedCopyWith(
           SlotLayerComputed value, $Res Function(SlotLayerComputed) then) =
       _$SlotLayerComputedCopyWithImpl<$Res>;
-  $Res call({Size slotSize, List<ComputedSlotPosition> positions});
+  $Res call({Size slotSize, List<Offset> positions});
 }
 
 /// @nodoc
@@ -70,7 +69,7 @@ class _$SlotLayerComputedCopyWithImpl<$Res>
       positions: positions == freezed
           ? _value.positions
           : positions // ignore: cast_nullable_to_non_nullable
-              as List<ComputedSlotPosition>,
+              as List<Offset>,
     ));
   }
 }
@@ -82,7 +81,7 @@ abstract class _$SlotLayerComputedCopyWith<$Res>
           _SlotLayerComputed value, $Res Function(_SlotLayerComputed) then) =
       __$SlotLayerComputedCopyWithImpl<$Res>;
   @override
-  $Res call({Size slotSize, List<ComputedSlotPosition> positions});
+  $Res call({Size slotSize, List<Offset> positions});
 }
 
 /// @nodoc
@@ -109,7 +108,7 @@ class __$SlotLayerComputedCopyWithImpl<$Res>
       positions: positions == freezed
           ? _value.positions
           : positions // ignore: cast_nullable_to_non_nullable
-              as List<ComputedSlotPosition>,
+              as List<Offset>,
     ));
   }
 }
@@ -122,7 +121,7 @@ class _$_SlotLayerComputed implements _SlotLayerComputed {
   @override
   final Size slotSize;
   @override
-  final List<ComputedSlotPosition> positions;
+  final List<Offset> positions;
 
   @override
   String toString() {
@@ -153,12 +152,12 @@ class _$_SlotLayerComputed implements _SlotLayerComputed {
 abstract class _SlotLayerComputed implements SlotLayerComputed {
   const factory _SlotLayerComputed(
       {required Size slotSize,
-      required List<ComputedSlotPosition> positions}) = _$_SlotLayerComputed;
+      required List<Offset> positions}) = _$_SlotLayerComputed;
 
   @override
   Size get slotSize;
   @override
-  List<ComputedSlotPosition> get positions;
+  List<Offset> get positions;
   @override
   @JsonKey(ignore: true)
   _$SlotLayerComputedCopyWith<_SlotLayerComputed> get copyWith =>
