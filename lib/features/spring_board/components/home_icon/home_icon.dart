@@ -38,9 +38,12 @@ class HomeIcon extends HookConsumerWidget {
                   currentPosition: currentPosition,
                 );
           },
-          child: Center(
-            child: _HomeIcon(
-              mockIconData: mockIconData,
+          child: SizedBox.fromSize(
+            size: slotLayerComputed.slotSize,
+            child: Center(
+              child: _HomeIcon(
+                mockIconData: mockIconData,
+              ),
             ),
           ),
         ),

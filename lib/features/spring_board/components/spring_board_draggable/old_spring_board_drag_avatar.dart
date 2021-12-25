@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 enum _DragEndKind { dropped, canceled }
 
-class SpringBoardDragAvatar extends Drag {
-  SpringBoardDragAvatar({
+class OldSpringBoardDragAvatar extends Drag {
+  OldSpringBoardDragAvatar({
     required this.localStartPoint,
     required this.onDragUpdate,
     this.onDragEnd,
