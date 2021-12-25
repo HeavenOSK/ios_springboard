@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ios_springboard/components/atom/fixed_sized_box.dart';
 
 class Zoomable extends StatelessWidget {
   const Zoomable({
@@ -22,11 +21,11 @@ class Zoomable extends StatelessWidget {
       duration: duration,
       builder: (context, value, child) {
         final diff = value - 1;
-        return Transform.translate(
-          offset: -(size * diff).bottomRight(Offset.zero) / 2,
-          child: FixedSizedBox(
-            size: size * value,
-            child: child!,
+        return Transform.scale(
+          scale: value,
+          child: Transform.translate(
+            offset: -(size * diff).bottomRight(Offset.zero) / 2,
+            child: FittedBox(child: child!),
           ),
         );
       },

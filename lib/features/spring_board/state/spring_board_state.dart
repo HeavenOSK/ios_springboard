@@ -7,7 +7,7 @@ part 'spring_board_state.freezed.dart';
 @freezed
 class SpringBoardState with _$SpringBoardState {
   const factory SpringBoardState({
-    @Default(false) bool movable,
+    @Default(false) bool dragging,
     required List<MockIconData> mockDataList,
     required List<int> order,
   }) = _SpringBoardState;

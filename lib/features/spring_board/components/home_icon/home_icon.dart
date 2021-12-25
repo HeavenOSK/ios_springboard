@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
+import 'package:ios_springboard/components/atom/shaker.dart';
+import 'package:ios_springboard/components/atom/zoomable.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/home_icon_order_faimily.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/home_icon_scales_provider.dart';
 import 'package:ios_springboard/features/spring_board/components/spring_board_draggable/spring_board_draggable.dart';
 import 'package:ios_springboard/features/spring_board/state/dragging_state/dragging_controller.dart';
 import 'package:ios_springboard/features/spring_board/state/icons/mock_icon_data.dart';
 import 'package:ios_springboard/features/spring_board/state/slot_layer_computed/slot_layer_computed_provider.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_controller.dart';
 
 class HomeIcon extends HookConsumerWidget {
   const HomeIcon({
@@ -25,12 +28,23 @@ class HomeIcon extends HookConsumerWidget {
     final computed = slotLayerComputed.slotItems[index];
     return AnimatedPositioned(
       curve: Curves.easeOutCubic,
-      duration: const Duration(milliseconds: 350),
+      duration: const Duration(milliseconds: 500),
       top: computed.position.dy,
       left: computed.position.dx,
       child: SizedBox.fromSize(
         size: slotLayerComputed.slotSize,
         child: SpringBoardDraggable(
+          onDragStart: () {
+            ref.read(springBoardController.notifier).updateDragging(
+                  isDragging: true,
+                );
+          },
+          onDragEnd: () {
+            ref.read(springBoardController.notifier).updateDragging(
+                  isDragging: false,
+                );
+          },
+          currentSlotPosition: computed.position,
           size: slotLayerComputed.slotSize,
           onUpdate: (currentPosition) {
             ref.read(draggingController).updatePosition(
@@ -38,11 +52,19 @@ class HomeIcon extends HookConsumerWidget {
                   currentPosition: currentPosition,
                 );
           },
-          child: SizedBox.fromSize(
-            size: slotLayerComputed.slotSize,
-            child: Center(
-              child: _HomeIcon(
-                mockIconData: mockIconData,
+          child: Shaker(
+            shaking: ref.watch(springBoardController).dragging,
+            child: Zoomable(
+              // zooming: ref.watch(springBoardController).dragging,
+              size: slotLayerComputed.slotSize,
+              duration: const Duration(seconds: 1),
+              child: SizedBox.fromSize(
+                size: slotLayerComputed.slotSize,
+                child: Center(
+                  child: _HomeIcon(
+                    mockIconData: mockIconData,
+                  ),
+                ),
               ),
             ),
           ),

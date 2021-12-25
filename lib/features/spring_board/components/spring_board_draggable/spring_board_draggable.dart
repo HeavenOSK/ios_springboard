@@ -6,6 +6,9 @@ import 'package:ios_springboard/features/spring_board/screen/portal_root_key.dar
 
 class SpringBoardDraggable extends ConsumerStatefulWidget {
   const SpringBoardDraggable({
+    required this.onDragEnd,
+    required this.onDragStart,
+    required this.currentSlotPosition,
     required this.size,
     required this.child,
     required this.onUpdate,
@@ -15,13 +18,38 @@ class SpringBoardDraggable extends ConsumerStatefulWidget {
   final Size size;
   final Widget child;
   final void Function(Offset) onUpdate;
+  final Offset currentSlotPosition;
+  final VoidCallback onDragStart;
+  final VoidCallback onDragEnd;
 
   @override
   ConsumerState<SpringBoardDraggable> createState() =>
       _SpringBoardDraggableState();
 }
 
-class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable> {
+class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _cancelAnimationController =
+      AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 250),
+  );
+
+  Animation<Offset> _getCancelAnimation({
+    required Offset currentPosition,
+    required Offset finishPosition,
+  }) {
+    return Tween<Offset>(
+      begin: currentPosition,
+      end: finishPosition,
+    ).animate(
+      CurvedAnimation(
+        parent: _cancelAnimationController,
+        curve: Curves.easeOutCubic,
+      ),
+    );
+  }
+
   bool _dragging = false;
 
   bool get dragging => _dragging;
@@ -65,12 +93,41 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable> {
     return box.localToGlobal(Offset.zero);
   }
 
+  void _animatePosition(Animation<Offset> positionAnimation) {
+    setState(() {
+      lastRawTouchOffset = positionAnimation.value;
+    });
+  }
+
+  void _finishDragging({
+    required Offset currentPosition,
+  }) {
+    final cancelAnimation = _getCancelAnimation(
+      currentPosition: currentPosition,
+      finishPosition:
+          widget.currentSlotPosition + localTouchOffset! + slotAreaOffset,
+    );
+    void _animate() {
+      _animatePosition(cancelAnimation);
+    }
+
+    cancelAnimation.addListener(_animate);
+    _cancelAnimationController.forward(from: 0).then(
+      (_) {
+        cancelAnimation.removeListener(_animate);
+        dragging = false;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Listener(
       behavior: HitTestBehavior.translucent,
       onPointerDown: !dragging
-          ? (event) {
+          ? (event) async {
+              widget.onDragStart();
+              await Future<void>.delayed(const Duration(seconds: 1));
               lastRawTouchOffset = event.position;
               localTouchOffset = event.localPosition;
               dragging = true;
@@ -84,11 +141,17 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable> {
           event.position - slotAreaOffset,
         );
       },
-      onPointerUp: (_) {
-        dragging = false;
+      onPointerUp: (event) {
+        _finishDragging(
+          currentPosition: event.position,
+        );
+        widget.onDragEnd();
       },
-      onPointerCancel: (_) {
-        dragging = false;
+      onPointerCancel: (event) {
+        _finishDragging(
+          currentPosition: event.position,
+        );
+        widget.onDragEnd();
       },
       child: PortalEntry(
         visible: dragging,

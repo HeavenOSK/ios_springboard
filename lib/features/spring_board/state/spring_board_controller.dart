@@ -14,9 +14,11 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
           ),
         );
 
-  void stopReordering() {
+  void updateDragging({
+    required bool isDragging,
+  }) {
     state = state.copyWith(
-      movable: false,
+      dragging: isDragging,
     );
   }
 

@@ -6,7 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/features/spring_board/components/spring_board_scrollable_area.dart';
 import 'package:ios_springboard/features/spring_board/screen/portal_root_key.dart';
 import 'package:ios_springboard/features/spring_board/screen/spring_board_scales_provider.dart';
-import 'package:ios_springboard/features/spring_board/state/spring_board_controller.dart';
 
 class SpringBoard extends HookConsumerWidget {
   const SpringBoard({Key? key}) : super(key: key);
@@ -19,24 +18,16 @@ class SpringBoard extends HookConsumerWidget {
       builder: (context, child) => Portal(
         child: child!,
       ),
-      home: GestureDetector(
-        onTapDown: (_) {
-          if (!ref.read(springBoardController).movable) {
-            return;
-          }
-          ref.read(springBoardController.notifier).stopReordering();
-        },
-        child: Stack(
-          children: const [
-            Positioned.fill(
-              child: ScrollableArea(),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: _BottomArea(),
-            ),
-          ],
-        ),
+      home: Stack(
+        children: const [
+          Positioned.fill(
+            child: ScrollableArea(),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: _BottomArea(),
+          ),
+        ],
       ),
     );
   }
