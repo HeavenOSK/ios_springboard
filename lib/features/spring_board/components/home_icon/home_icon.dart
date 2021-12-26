@@ -5,7 +5,7 @@ import 'package:ios_springboard/components/atom/shaker.dart';
 import 'package:ios_springboard/components/atom/zoomable.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/home_icon_order_faimily.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/home_icon_scales_provider.dart';
-import 'package:ios_springboard/features/spring_board/components/spring_board_draggable/spring_board_draggable.dart';
+import 'package:ios_springboard/features/spring_board/components/spring_board_draggable.dart';
 import 'package:ios_springboard/features/spring_board/state/dragging_state/dragging_controller.dart';
 import 'package:ios_springboard/features/spring_board/state/icons/mock_icon_data.dart';
 import 'package:ios_springboard/features/spring_board/state/slot_layer_computed/slot_layer_computed_provider.dart';
