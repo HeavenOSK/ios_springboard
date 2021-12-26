@@ -67,6 +67,7 @@ class HomeIcon extends HookConsumerWidget {
                 size: slotLayerComputed.slotSize,
                 child: Center(
                   child: _HomeIcon(
+                    isDragging: isDragging,
                     mockIconData: mockIconData,
                   ),
                 ),
@@ -81,11 +82,13 @@ class HomeIcon extends HookConsumerWidget {
 
 class _HomeIcon extends HookConsumerWidget {
   const _HomeIcon({
+    required this.isDragging,
     required this.mockIconData,
     Key? key,
   }) : super(key: key);
 
   final MockIconData mockIconData;
+  final bool isDragging;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -106,14 +109,17 @@ class _HomeIcon extends HookConsumerWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 1.7),
                   child: FittedBox(
-                    child: Text(
-                      mockIconData.name,
-                      style: const TextStyle(
-                        fontSize: 10,
-                        height: 1,
-                        letterSpacing: 1,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w100,
+                    child: Opacity(
+                      opacity: isDragging ? 0.0 : 1.0,
+                      child: Text(
+                        mockIconData.name,
+                        style: const TextStyle(
+                          fontSize: 10,
+                          height: 1,
+                          letterSpacing: 1,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w100,
+                        ),
                       ),
                     ),
                   ),
