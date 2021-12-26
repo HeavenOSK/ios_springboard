@@ -3,10 +3,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/app/iphone_scales_provider.dart';
 import 'package:ios_springboard/features/spring_board/screen/spring_board_scales.dart';
 import 'package:ios_springboard/features/spring_board/screen/spring_board_scales_provider.dart';
-import 'package:ios_springboard/features/spring_board/state/slot_layer_computed/slot_layer_computed.dart';
+import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/slot_layer_computed_values.dart';
 import 'package:ios_springboard/providers/position_slot_config/position_slot_config_provider.dart';
 
-final slotLayerComputedProvider = StateProvider<SlotLayerComputed>(
+final slotLayerComputedValuesProvider = StateProvider<SlotLayerComputedValues>(
   (ref) {
     final config = ref.watch(positionSlotConfigProvider);
     final iPhoneScales = ref.watch(iPhoneScalesProvider);
@@ -44,7 +44,7 @@ final slotLayerComputedProvider = StateProvider<SlotLayerComputed>(
         dragTargets.add(dragTarget);
       }
     }
-    return SlotLayerComputed(
+    return SlotLayerComputedValues(
       slotSize: slotSize,
       slotPositions: slotItems,
       dragTargets: dragTargets,

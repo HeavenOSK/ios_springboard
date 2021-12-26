@@ -1,5 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/features/spring_board/state/spring_board_state.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_controller/spring_board_state.dart';
 
 final springBoardController =
     StateNotifierProvider<SpringBoardController, SpringBoardState>(
@@ -13,14 +13,6 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
             itemCount: 24,
           ),
         );
-
-  void updateDragging({
-    required bool isDragging,
-  }) {
-    state = state.copyWith(
-      dragging: isDragging,
-    );
-  }
 
   void shuffle() {
     final copied = <int>[...state.order]..shuffle();

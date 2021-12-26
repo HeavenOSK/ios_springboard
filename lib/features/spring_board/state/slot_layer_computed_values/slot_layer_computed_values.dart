@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'slot_layer_computed.freezed.dart';
+part 'slot_layer_computed_values.freezed.dart';
 
 @freezed
-class SlotLayerComputed with _$SlotLayerComputed {
-  const factory SlotLayerComputed({
+class SlotLayerComputedValues with _$SlotLayerComputedValues {
+  const factory SlotLayerComputedValues({
     required Size slotSize,
     required List<Offset> slotPositions,
     required List<Rect> dragTargets,
-  }) = _SlotLayerComputed;
+  }) = _SlotLayerComputedValues;
 }

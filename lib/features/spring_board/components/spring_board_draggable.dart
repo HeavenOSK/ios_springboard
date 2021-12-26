@@ -6,6 +6,7 @@ import 'package:ios_springboard/features/spring_board/screen/portal_root_key.dar
 
 class SpringBoardDraggable extends ConsumerStatefulWidget {
   const SpringBoardDraggable({
+    required this.canDrag,
     required this.onDragEnd,
     required this.onDragStart,
     required this.currentSlotPosition,
@@ -21,6 +22,7 @@ class SpringBoardDraggable extends ConsumerStatefulWidget {
   final Offset currentSlotPosition;
   final VoidCallback onDragStart;
   final VoidCallback onDragEnd;
+  final bool canDrag;
 
   @override
   ConsumerState<SpringBoardDraggable> createState() =>
@@ -122,55 +124,58 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
 
   @override
   Widget build(BuildContext context) {
-    return Listener(
-      behavior: HitTestBehavior.translucent,
-      onPointerDown: !dragging
-          ? (event) async {
-              widget.onDragStart();
-              await Future<void>.delayed(const Duration(seconds: 1));
-              lastRawTouchOffset = event.position;
-              localTouchOffset = event.localPosition;
-              dragging = true;
-            }
-          : null,
-      onPointerMove: (event) {
-        setState(() {
-          lastRawTouchOffset = event.position;
-        });
-        widget.onUpdate(
-          event.position - slotAreaOffset,
-        );
-      },
-      onPointerUp: (event) {
-        _finishDragging(
-          currentPosition: event.position,
-        );
-        widget.onDragEnd();
-      },
-      onPointerCancel: (event) {
-        _finishDragging(
-          currentPosition: event.position,
-        );
-        widget.onDragEnd();
-      },
-      child: PortalEntry(
-        visible: dragging,
-        portal: IgnorePointer(
-          child: Stack(
-            children: [
-              Positioned(
-                left: visiblePosition.dx,
-                top: visiblePosition.dy,
-                child: widget.child,
-              ),
-            ],
+    return IgnorePointer(
+      ignoring: !widget.canDrag,
+      child: Listener(
+        behavior: HitTestBehavior.translucent,
+        onPointerDown: !dragging
+            ? (event) async {
+                widget.onDragStart();
+                await Future<void>.delayed(const Duration(seconds: 1));
+                lastRawTouchOffset = event.position;
+                localTouchOffset = event.localPosition;
+                dragging = true;
+              }
+            : null,
+        onPointerMove: (event) {
+          setState(() {
+            lastRawTouchOffset = event.position;
+          });
+          widget.onUpdate(
+            event.position - slotAreaOffset,
+          );
+        },
+        onPointerUp: (event) {
+          _finishDragging(
+            currentPosition: event.position,
+          );
+          widget.onDragEnd();
+        },
+        onPointerCancel: (event) {
+          _finishDragging(
+            currentPosition: event.position,
+          );
+          widget.onDragEnd();
+        },
+        child: PortalEntry(
+          visible: dragging,
+          portal: IgnorePointer(
+            child: Stack(
+              children: [
+                Positioned(
+                  left: visiblePosition.dx,
+                  top: visiblePosition.dy,
+                  child: widget.child,
+                ),
+              ],
+            ),
           ),
-        ),
-        child: IgnorePointer(
-          ignoring: dragging,
-          child: Opacity(
-            opacity: dragging ? 0 : 1,
-            child: widget.child,
+          child: IgnorePointer(
+            ignoring: dragging,
+            child: Opacity(
+              opacity: dragging ? 0 : 1,
+              child: widget.child,
+            ),
           ),
         ),
       ),

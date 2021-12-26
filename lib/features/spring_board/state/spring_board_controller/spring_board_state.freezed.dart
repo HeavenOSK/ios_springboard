@@ -18,11 +18,8 @@ class _$SpringBoardStateTearOff {
   const _$SpringBoardStateTearOff();
 
   _SpringBoardState call(
-      {bool dragging = false,
-      required List<MockIconData> mockDataList,
-      required List<int> order}) {
+      {required List<MockIconData> mockDataList, required List<int> order}) {
     return _SpringBoardState(
-      dragging: dragging,
       mockDataList: mockDataList,
       order: order,
     );
@@ -34,7 +31,6 @@ const $SpringBoardState = _$SpringBoardStateTearOff();
 
 /// @nodoc
 mixin _$SpringBoardState {
-  bool get dragging => throw _privateConstructorUsedError;
   List<MockIconData> get mockDataList => throw _privateConstructorUsedError;
   List<int> get order => throw _privateConstructorUsedError;
 
@@ -48,7 +44,7 @@ abstract class $SpringBoardStateCopyWith<$Res> {
   factory $SpringBoardStateCopyWith(
           SpringBoardState value, $Res Function(SpringBoardState) then) =
       _$SpringBoardStateCopyWithImpl<$Res>;
-  $Res call({bool dragging, List<MockIconData> mockDataList, List<int> order});
+  $Res call({List<MockIconData> mockDataList, List<int> order});
 }
 
 /// @nodoc
@@ -62,15 +58,10 @@ class _$SpringBoardStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? dragging = freezed,
     Object? mockDataList = freezed,
     Object? order = freezed,
   }) {
     return _then(_value.copyWith(
-      dragging: dragging == freezed
-          ? _value.dragging
-          : dragging // ignore: cast_nullable_to_non_nullable
-              as bool,
       mockDataList: mockDataList == freezed
           ? _value.mockDataList
           : mockDataList // ignore: cast_nullable_to_non_nullable
@@ -90,7 +81,7 @@ abstract class _$SpringBoardStateCopyWith<$Res>
           _SpringBoardState value, $Res Function(_SpringBoardState) then) =
       __$SpringBoardStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool dragging, List<MockIconData> mockDataList, List<int> order});
+  $Res call({List<MockIconData> mockDataList, List<int> order});
 }
 
 /// @nodoc
@@ -106,15 +97,10 @@ class __$SpringBoardStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? dragging = freezed,
     Object? mockDataList = freezed,
     Object? order = freezed,
   }) {
     return _then(_SpringBoardState(
-      dragging: dragging == freezed
-          ? _value.dragging
-          : dragging // ignore: cast_nullable_to_non_nullable
-              as bool,
       mockDataList: mockDataList == freezed
           ? _value.mockDataList
           : mockDataList // ignore: cast_nullable_to_non_nullable
@@ -130,12 +116,8 @@ class __$SpringBoardStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SpringBoardState implements _SpringBoardState {
-  const _$_SpringBoardState(
-      {this.dragging = false, required this.mockDataList, required this.order});
+  const _$_SpringBoardState({required this.mockDataList, required this.order});
 
-  @JsonKey(defaultValue: false)
-  @override
-  final bool dragging;
   @override
   final List<MockIconData> mockDataList;
   @override
@@ -143,7 +125,7 @@ class _$_SpringBoardState implements _SpringBoardState {
 
   @override
   String toString() {
-    return 'SpringBoardState(dragging: $dragging, mockDataList: $mockDataList, order: $order)';
+    return 'SpringBoardState(mockDataList: $mockDataList, order: $order)';
   }
 
   @override
@@ -151,7 +133,6 @@ class _$_SpringBoardState implements _SpringBoardState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SpringBoardState &&
-            const DeepCollectionEquality().equals(other.dragging, dragging) &&
             const DeepCollectionEquality()
                 .equals(other.mockDataList, mockDataList) &&
             const DeepCollectionEquality().equals(other.order, order));
@@ -160,7 +141,6 @@ class _$_SpringBoardState implements _SpringBoardState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(dragging),
       const DeepCollectionEquality().hash(mockDataList),
       const DeepCollectionEquality().hash(order));
 
@@ -172,12 +152,9 @@ class _$_SpringBoardState implements _SpringBoardState {
 
 abstract class _SpringBoardState implements SpringBoardState {
   const factory _SpringBoardState(
-      {bool dragging,
-      required List<MockIconData> mockDataList,
+      {required List<MockIconData> mockDataList,
       required List<int> order}) = _$_SpringBoardState;
 
-  @override
-  bool get dragging;
   @override
   List<MockIconData> get mockDataList;
   @override

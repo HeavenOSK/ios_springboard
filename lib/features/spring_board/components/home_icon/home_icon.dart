@@ -3,13 +3,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
 import 'package:ios_springboard/components/atom/shaker.dart';
 import 'package:ios_springboard/components/atom/zoomable.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon/can_drag_start_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/home_icon_order_faimily.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/home_icon_scales_provider.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon/is_dragging_family.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon/should_shake_family.dart';
 import 'package:ios_springboard/features/spring_board/components/spring_board_draggable.dart';
-import 'package:ios_springboard/features/spring_board/state/dragging_state/dragging_controller.dart';
+import 'package:ios_springboard/features/spring_board/state/dragging_controller/dragging_controller.dart';
 import 'package:ios_springboard/features/spring_board/state/icons/mock_icon_data.dart';
-import 'package:ios_springboard/features/spring_board/state/slot_layer_computed/slot_layer_computed_provider.dart';
-import 'package:ios_springboard/features/spring_board/state/spring_board_controller.dart';
+import 'package:ios_springboard/features/spring_board/state/reorderer/reordering_controller.dart';
+import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
 
 class HomeIcon extends HookConsumerWidget {
   const HomeIcon({
@@ -21,7 +24,10 @@ class HomeIcon extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final slotLayerComputed = ref.watch(slotLayerComputedProvider);
+    final slotLayerComputed = ref.watch(slotLayerComputedValuesProvider);
+    final canDragStart = ref.watch(canDragStartFamily(mockIconData.id));
+    final isDragging = ref.watch(isDraggingFamily(mockIconData.id));
+    final shouldShake = ref.watch(shouldShakeFamily(mockIconData.id));
     final index = ref.watch(
       homeIconOrderIndexFamily(mockIconData.id),
     );
@@ -34,28 +40,27 @@ class HomeIcon extends HookConsumerWidget {
       child: SizedBox.fromSize(
         size: slotLayerComputed.slotSize,
         child: SpringBoardDraggable(
+          canDrag: canDragStart,
           onDragStart: () {
-            ref.read(springBoardController.notifier).updateDragging(
-                  isDragging: true,
+            ref.read(draggingControllerProvider.notifier).startDrag(
+                  id: mockIconData.id,
                 );
           },
           onDragEnd: () {
-            ref.read(springBoardController.notifier).updateDragging(
-                  isDragging: false,
-                );
+            ref.read(draggingControllerProvider.notifier).finishDrag();
           },
           currentSlotPosition: position,
           size: slotLayerComputed.slotSize,
           onUpdate: (currentPosition) {
-            ref.read(draggingController).updatePosition(
+            ref.read(reorderingController).updatePosition(
                   id: mockIconData.id,
                   currentPosition: currentPosition,
                 );
           },
           child: Shaker(
-            shaking: ref.watch(springBoardController).dragging,
+            shaking: shouldShake,
             child: Zoomable(
-              // zooming: ref.watch(springBoardController).dragging,
+              zooming: isDragging,
               size: slotLayerComputed.slotSize,
               duration: const Duration(seconds: 1),
               child: SizedBox.fromSize(

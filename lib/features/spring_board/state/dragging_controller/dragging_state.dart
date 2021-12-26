@@ -7,4 +7,6 @@ class DraggingState with _$DraggingState {
   const factory DraggingState({
     required int id,
   }) = _DraggingState;
+
+  const factory DraggingState.noDragging() = _NoDragging;
 }
