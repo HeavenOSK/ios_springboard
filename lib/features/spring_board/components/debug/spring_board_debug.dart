@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/features/spring_board/components/debug/debug_slot_layer/visible_slot_provider.dart';
 import 'package:ios_springboard/features/spring_board/state/spring_board_controller.dart';
 
 class SpringBoardDebug extends HookConsumerWidget {
@@ -19,14 +18,6 @@ class SpringBoardDebug extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                final visible = ref.read(visibleSlotProvider);
-                ref.read(visibleSlotProvider.notifier).state = !visible;
-              },
-              child: const Text('switch slots visibility'),
-            ),
-            const Gap(8),
             SizedBox(
               width: 128,
               child: Text(
