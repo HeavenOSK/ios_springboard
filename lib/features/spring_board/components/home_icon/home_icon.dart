@@ -25,12 +25,12 @@ class HomeIcon extends HookConsumerWidget {
     final index = ref.watch(
       homeIconOrderIndexFamily(mockIconData.id),
     );
-    final computed = slotLayerComputed.slotItems[index];
+    final position = slotLayerComputed.slotPositions[index];
     return AnimatedPositioned(
       curve: Curves.easeOutCubic,
       duration: const Duration(milliseconds: 500),
-      top: computed.position.dy,
-      left: computed.position.dx,
+      top: position.dy,
+      left: position.dx,
       child: SizedBox.fromSize(
         size: slotLayerComputed.slotSize,
         child: SpringBoardDraggable(
@@ -44,7 +44,7 @@ class HomeIcon extends HookConsumerWidget {
                   isDragging: false,
                 );
           },
-          currentSlotPosition: computed.position,
+          currentSlotPosition: position,
           size: slotLayerComputed.slotSize,
           onUpdate: (currentPosition) {
             ref.read(draggingController).updatePosition(

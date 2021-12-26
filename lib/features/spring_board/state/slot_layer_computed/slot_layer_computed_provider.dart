@@ -3,7 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/app/iphone_scales_provider.dart';
 import 'package:ios_springboard/features/spring_board/screen/spring_board_scales.dart';
 import 'package:ios_springboard/features/spring_board/screen/spring_board_scales_provider.dart';
-import 'package:ios_springboard/features/spring_board/state/slot_layer_computed/slot_item_computed.dart';
 import 'package:ios_springboard/features/spring_board/state/slot_layer_computed/slot_layer_computed.dart';
 import 'package:ios_springboard/providers/position_slot_config/position_slot_config_provider.dart';
 
@@ -18,7 +17,7 @@ final slotLayerComputedProvider = StateProvider<SlotLayerComputed>(
       slotArea.width / config.rowCount,
       slotArea.height / config.columnCount,
     );
-    final slotItems = <SlotItemComputed>[];
+    final slotItems = <Offset>[];
     final dragTargets = <Rect>[];
     for (var cIndex = 0; cIndex < config.columnCount; cIndex++) {
       for (var rIndex = 0; rIndex < config.rowCount; rIndex++) {
@@ -26,11 +25,7 @@ final slotLayerComputedProvider = StateProvider<SlotLayerComputed>(
           rIndex * slotSize.width,
           cIndex * slotSize.height,
         );
-        slotItems.add(
-          SlotItemComputed(
-            position: position,
-          ),
-        );
+        slotItems.add(position);
       }
     }
     for (var cIndex = 0; cIndex < config.columnCount; cIndex++) {
@@ -51,7 +46,7 @@ final slotLayerComputedProvider = StateProvider<SlotLayerComputed>(
     }
     return SlotLayerComputed(
       slotSize: slotSize,
-      slotItems: slotItems,
+      slotPositions: slotItems,
       dragTargets: dragTargets,
     );
   },

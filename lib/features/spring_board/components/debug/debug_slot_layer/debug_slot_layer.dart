@@ -16,12 +16,12 @@ class DebugSlotLayer extends HookConsumerWidget {
     }
     return Stack(
       children: List.generate(
-        slotLayerComputed.slotItems.length,
+        slotLayerComputed.slotPositions.length,
         (index) {
-          final computed = slotLayerComputed.slotItems[index];
+          final position = slotLayerComputed.slotPositions[index];
           return Positioned(
-            top: computed.position.dy,
-            left: computed.position.dx,
+            top: position.dy,
+            left: position.dx,
             child: Container(
               height: slotLayerComputed.slotSize.height,
               width: slotLayerComputed.slotSize.width,

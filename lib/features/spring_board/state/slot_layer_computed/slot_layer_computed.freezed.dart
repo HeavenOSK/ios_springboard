@@ -19,11 +19,11 @@ class _$SlotLayerComputedTearOff {
 
   _SlotLayerComputed call(
       {required Size slotSize,
-      required List<SlotItemComputed> slotItems,
+      required List<Offset> slotPositions,
       required List<Rect> dragTargets}) {
     return _SlotLayerComputed(
       slotSize: slotSize,
-      slotItems: slotItems,
+      slotPositions: slotPositions,
       dragTargets: dragTargets,
     );
   }
@@ -35,7 +35,7 @@ const $SlotLayerComputed = _$SlotLayerComputedTearOff();
 /// @nodoc
 mixin _$SlotLayerComputed {
   Size get slotSize => throw _privateConstructorUsedError;
-  List<SlotItemComputed> get slotItems => throw _privateConstructorUsedError;
+  List<Offset> get slotPositions => throw _privateConstructorUsedError;
   List<Rect> get dragTargets => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -49,9 +49,7 @@ abstract class $SlotLayerComputedCopyWith<$Res> {
           SlotLayerComputed value, $Res Function(SlotLayerComputed) then) =
       _$SlotLayerComputedCopyWithImpl<$Res>;
   $Res call(
-      {Size slotSize,
-      List<SlotItemComputed> slotItems,
-      List<Rect> dragTargets});
+      {Size slotSize, List<Offset> slotPositions, List<Rect> dragTargets});
 }
 
 /// @nodoc
@@ -66,7 +64,7 @@ class _$SlotLayerComputedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? slotSize = freezed,
-    Object? slotItems = freezed,
+    Object? slotPositions = freezed,
     Object? dragTargets = freezed,
   }) {
     return _then(_value.copyWith(
@@ -74,10 +72,10 @@ class _$SlotLayerComputedCopyWithImpl<$Res>
           ? _value.slotSize
           : slotSize // ignore: cast_nullable_to_non_nullable
               as Size,
-      slotItems: slotItems == freezed
-          ? _value.slotItems
-          : slotItems // ignore: cast_nullable_to_non_nullable
-              as List<SlotItemComputed>,
+      slotPositions: slotPositions == freezed
+          ? _value.slotPositions
+          : slotPositions // ignore: cast_nullable_to_non_nullable
+              as List<Offset>,
       dragTargets: dragTargets == freezed
           ? _value.dragTargets
           : dragTargets // ignore: cast_nullable_to_non_nullable
@@ -94,9 +92,7 @@ abstract class _$SlotLayerComputedCopyWith<$Res>
       __$SlotLayerComputedCopyWithImpl<$Res>;
   @override
   $Res call(
-      {Size slotSize,
-      List<SlotItemComputed> slotItems,
-      List<Rect> dragTargets});
+      {Size slotSize, List<Offset> slotPositions, List<Rect> dragTargets});
 }
 
 /// @nodoc
@@ -113,7 +109,7 @@ class __$SlotLayerComputedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? slotSize = freezed,
-    Object? slotItems = freezed,
+    Object? slotPositions = freezed,
     Object? dragTargets = freezed,
   }) {
     return _then(_SlotLayerComputed(
@@ -121,10 +117,10 @@ class __$SlotLayerComputedCopyWithImpl<$Res>
           ? _value.slotSize
           : slotSize // ignore: cast_nullable_to_non_nullable
               as Size,
-      slotItems: slotItems == freezed
-          ? _value.slotItems
-          : slotItems // ignore: cast_nullable_to_non_nullable
-              as List<SlotItemComputed>,
+      slotPositions: slotPositions == freezed
+          ? _value.slotPositions
+          : slotPositions // ignore: cast_nullable_to_non_nullable
+              as List<Offset>,
       dragTargets: dragTargets == freezed
           ? _value.dragTargets
           : dragTargets // ignore: cast_nullable_to_non_nullable
@@ -138,19 +134,19 @@ class __$SlotLayerComputedCopyWithImpl<$Res>
 class _$_SlotLayerComputed implements _SlotLayerComputed {
   const _$_SlotLayerComputed(
       {required this.slotSize,
-      required this.slotItems,
+      required this.slotPositions,
       required this.dragTargets});
 
   @override
   final Size slotSize;
   @override
-  final List<SlotItemComputed> slotItems;
+  final List<Offset> slotPositions;
   @override
   final List<Rect> dragTargets;
 
   @override
   String toString() {
-    return 'SlotLayerComputed(slotSize: $slotSize, slotItems: $slotItems, dragTargets: $dragTargets)';
+    return 'SlotLayerComputed(slotSize: $slotSize, slotPositions: $slotPositions, dragTargets: $dragTargets)';
   }
 
   @override
@@ -159,7 +155,8 @@ class _$_SlotLayerComputed implements _SlotLayerComputed {
         (other.runtimeType == runtimeType &&
             other is _SlotLayerComputed &&
             const DeepCollectionEquality().equals(other.slotSize, slotSize) &&
-            const DeepCollectionEquality().equals(other.slotItems, slotItems) &&
+            const DeepCollectionEquality()
+                .equals(other.slotPositions, slotPositions) &&
             const DeepCollectionEquality()
                 .equals(other.dragTargets, dragTargets));
   }
@@ -168,7 +165,7 @@ class _$_SlotLayerComputed implements _SlotLayerComputed {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(slotSize),
-      const DeepCollectionEquality().hash(slotItems),
+      const DeepCollectionEquality().hash(slotPositions),
       const DeepCollectionEquality().hash(dragTargets));
 
   @JsonKey(ignore: true)
@@ -180,13 +177,13 @@ class _$_SlotLayerComputed implements _SlotLayerComputed {
 abstract class _SlotLayerComputed implements SlotLayerComputed {
   const factory _SlotLayerComputed(
       {required Size slotSize,
-      required List<SlotItemComputed> slotItems,
+      required List<Offset> slotPositions,
       required List<Rect> dragTargets}) = _$_SlotLayerComputed;
 
   @override
   Size get slotSize;
   @override
-  List<SlotItemComputed> get slotItems;
+  List<Offset> get slotPositions;
   @override
   List<Rect> get dragTargets;
   @override

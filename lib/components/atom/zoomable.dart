@@ -25,7 +25,7 @@ class Zoomable extends StatelessWidget {
           scale: value,
           child: Transform.translate(
             offset: -(size * diff).bottomRight(Offset.zero) / 2,
-            child: FittedBox(child: child!),
+            child: FittedBox(child: child),
           ),
         );
       },
