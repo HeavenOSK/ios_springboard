@@ -1,9 +1,9 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/features/spring_board/state/spring_board_controller/spring_board_controller.dart';
+import 'package:ios_springboard/features/spring_board/storage/spring_board_controller.dart';
 
 final homeIconOrderIndexFamily = StateProvider.family<int, int>((ref, id) {
   final order = ref.watch(
-    springBoardController.select(
+    springBoardRegisterer.select(
       (value) => value.order,
     ),
   );

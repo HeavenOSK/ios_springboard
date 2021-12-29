@@ -1,15 +1,15 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/features/spring_board/state/spring_board_controller/spring_board_state.dart';
+import 'package:ios_springboard/features/spring_board/storage/spring_board_storage.dart';
 
-final springBoardController =
-    StateNotifierProvider<SpringBoardController, SpringBoardState>(
-  (ref) => SpringBoardController(),
+final springBoardRegisterer =
+    StateNotifierProvider<SpringBoardRegisterer, SpringBoardStorage>(
+  (ref) => SpringBoardRegisterer(),
 );
 
-class SpringBoardController extends StateNotifier<SpringBoardState> {
-  SpringBoardController()
+class SpringBoardRegisterer extends StateNotifier<SpringBoardStorage> {
+  SpringBoardRegisterer()
       : super(
-          SpringBoardStateX.getInitialState(
+          SpringBoardStorageX.getInitialStorage(
             itemCount: 24,
           ),
         );

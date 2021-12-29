@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/features/spring_board/state/debug_blur_state.dart';
-import 'package:ios_springboard/features/spring_board/state/spring_board_controller/spring_board_controller.dart';
+import 'package:ios_springboard/features/spring_board/storage/spring_board_controller.dart';
 
 class SpringBoardDebug extends HookConsumerWidget {
   const SpringBoardDebug({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class SpringBoardDebug extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final order = ref.watch(
-      springBoardController.select((value) => value.order),
+      springBoardRegisterer.select((value) => value.order),
     );
     return Padding(
       padding: const EdgeInsets.only(left: 32),
@@ -28,14 +28,14 @@ class SpringBoardDebug extends HookConsumerWidget {
             const Gap(8),
             ElevatedButton(
               onPressed: () {
-                ref.read(springBoardController.notifier).shuffle();
+                ref.read(springBoardRegisterer.notifier).shuffle();
               },
               child: const Text('shuffle'),
             ),
             const Gap(8),
             ElevatedButton(
               onPressed: () {
-                ref.read(springBoardController.notifier).reset();
+                ref.read(springBoardRegisterer.notifier).reset();
               },
               child: const Text('reset'),
             ),

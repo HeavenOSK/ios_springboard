@@ -1,3 +1,11 @@
+# 2021/12/30
+- やること
+  - アイコンタップ時のフェイズ移行のコードを書く
+  - アイコンの拡大表示 
+  - コンテキストメニュー
+    - https://github.com/HeavenOSK/flutter_ipad_ui_clone/tree/open_app_navigation/lib/components
+- やったこと 
+  - アイコンタップ時のフェイズ移行のコードを書く
 # 2021/12/29 part2
 - やること
   - コンテキストメニューの実装
@@ -122,7 +130,7 @@
 - やったこと
   - Scale の拡大縮小をクラス内に閉じ込める
   - MockIconData を作成
-  - SpringBoardState に order と mockIconData を追加
+  - SpringBoardStorage に order と mockIconData を追加
 - 次やること 
   - デバッグ用に order の表示と shuffle button を表示する
   - movable の実装消す

@@ -2,18 +2,18 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ios_springboard/features/spring_board/state/icons/mock_icon_data.dart';
 import 'package:ios_springboard/features/spring_board/state/icons/mock_icon_data_list.dart';
 
-part 'spring_board_state.freezed.dart';
+part 'spring_board_storage.freezed.dart';
 
 @freezed
-class SpringBoardState with _$SpringBoardState {
-  const factory SpringBoardState({
+class SpringBoardStorage with _$SpringBoardStorage {
+  const factory SpringBoardStorage({
     required List<MockIconData> mockDataList,
     required List<int> order,
-  }) = _SpringBoardState;
+  }) = _SpringBoardStorage;
 }
 
-extension SpringBoardStateX on SpringBoardState {
-  static SpringBoardState getInitialState({
+extension SpringBoardStorageX on SpringBoardStorage {
+  static SpringBoardStorage getInitialStorage({
     required int itemCount,
   }) {
     final mockDataList = List.generate(
@@ -21,7 +21,7 @@ extension SpringBoardStateX on SpringBoardState {
       generateMockIconData,
     );
     final order = List.generate(itemCount, (index) => index);
-    return SpringBoardState(
+    return SpringBoardStorage(
       mockDataList: mockDataList,
       order: order,
     );

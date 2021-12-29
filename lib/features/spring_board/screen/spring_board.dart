@@ -43,7 +43,7 @@ class _BottomArea extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // final shaking = ref.watch(
-    //   springBoardStateProvider.select((value) => value.movable),
+    //   SpringBoardStorageProvider.select((value) => value.movable),
     // );
     // final scaleRatio = ref.watch(screenScaleRatioProvider);
     final springBoardScales = ref.watch(springBoardScalesProvider);
@@ -78,8 +78,8 @@ class _BottomArea extends HookConsumerWidget {
           //           shaking: shaking,
           //           child: AppIcon(
           //             onLongPress: () {
-          //               ref.read(springBoardStateProvider.notifier).state =
-          //                   ref.read(springBoardStateProvider).copyWith(
+          //               ref.read(SpringBoardStorageProvider.notifier).state =
+          //                   ref.read(SpringBoardStorageProvider).copyWith(
           //                         movable: true,
           //                       );
           //             },

@@ -13,6 +13,7 @@ import 'package:ios_springboard/features/spring_board/state/dragging_controller/
 import 'package:ios_springboard/features/spring_board/state/icons/mock_icon_data.dart';
 import 'package:ios_springboard/features/spring_board/state/reorderer/reordering_controller.dart';
 import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_state/spiring_board_controller.dart';
 
 class HomeIcon extends HookConsumerWidget {
   const HomeIcon({
@@ -42,11 +43,15 @@ class HomeIcon extends HookConsumerWidget {
         child: SpringBoardDraggable(
           canDrag: canDragStart,
           onDragStart: () {
+            ref.read(springBoardController.notifier).onTapStart(
+                  appId: mockIconData.id,
+                );
             ref.read(draggingControllerProvider.notifier).startDrag(
                   id: mockIconData.id,
                 );
           },
           onDragEnd: () {
+            ref.read(springBoardController.notifier).onTapEnd();
             ref.read(draggingControllerProvider.notifier).finishDrag();
           },
           currentSlotPosition: position,
