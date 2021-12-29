@@ -18,13 +18,15 @@ class BlurMask extends HookConsumerWidget {
           return const SizedBox.shrink();
         }
         final sigmaValue = value * 10;
-        return BackdropFilter(
-          filter: ui.ImageFilter.blur(
-            sigmaX: sigmaValue,
-            sigmaY: sigmaValue,
-          ),
-          child: Container(
-            color: Colors.white.withOpacity(0.1),
+        return ClipRect(
+          child: BackdropFilter(
+            filter: ui.ImageFilter.blur(
+              sigmaX: sigmaValue,
+              sigmaY: sigmaValue,
+            ),
+            child: Container(
+              color: Colors.white.withOpacity(0.1),
+            ),
           ),
         );
       },
