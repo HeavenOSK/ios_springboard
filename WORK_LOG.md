@@ -6,6 +6,15 @@
     - Blur をかける
   - SpringBoard をズームアウトする
   - ズームアウトしたら Blur をかける
+- やったこと
+  - SpringBoard 全体に Blur をかけてみた。
+    - すると、ズームアウトをせずともそれっぽくなった
+  - 長押し時の SpringBoard の Phase 移行の疑似コードを書いた
+- 次にやること
+  - アイコンの ShortTap 判定
+  - アイコンの LongPress 判定をして ContextMenu を表示する
+  - ContextMenu が非表示になったあと draggable に移行する
+  - 上記がキャンセルされた際のハンドリングを実機を確認しながら再現する
 # 2021/12/29
 - 今日やること
   - Long press 怪しいので一旦消す
