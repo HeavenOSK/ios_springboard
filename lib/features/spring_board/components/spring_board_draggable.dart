@@ -131,7 +131,6 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
         onPointerDown: !dragging
             ? (event) async {
                 widget.onDragStart();
-                await Future<void>.delayed(const Duration(seconds: 1));
                 lastRawTouchOffset = event.position;
                 localTouchOffset = event.localPosition;
                 dragging = true;
