@@ -60,8 +60,8 @@ class HomeIcon extends HookConsumerWidget {
           child: Shaker(
             shaking: shouldShake,
             child: Zoomable(
-              // zooming: isDragging,
-              zooming: false,
+              zooming: isDragging,
+              // zooming: false,
               size: slotLayerComputed.slotSize,
               duration: const Duration(seconds: 1),
               child: SizedBox.fromSize(
