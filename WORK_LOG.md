@@ -1,11 +1,12 @@
 # 2021/12/30
 - やること
+- やったこと 
   - アイコンタップ時のフェイズ移行のコードを書く
+- 次にやること
   - アイコンの拡大表示 
   - コンテキストメニュー
     - https://github.com/HeavenOSK/flutter_ipad_ui_clone/tree/open_app_navigation/lib/components
-- やったこと 
-  - アイコンタップ時のフェイズ移行のコードを書く
+
 # 2021/12/29 part2
 - やること
   - コンテキストメニューの実装
