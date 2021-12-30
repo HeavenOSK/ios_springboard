@@ -1,8 +1,10 @@
 # 2021/12/30
 - やること
-  - アイコンの拡大表示 
-  - コンテキストメニュー
+  - SpringBoardState のバグ修正する
+  - コンテキストメニューを表示
     - https://github.com/HeavenOSK/flutter_ipad_ui_clone/tree/open_app_navigation/lib/components
+  - blur 表示中に手を離しても表示が切り替わらないこと
+  - background をタッチして Dismiss
 - やったこと 
   - アイコンタップ時のフェイズ移行のコードを書く
   - フェイズ移行のバグ修正を行った
@@ -10,6 +12,7 @@
   - mode が reorder になる前にドラッグを始めた場合、mode を強制的に reorder に移行する
   - Blur と拡大のアニメーションのタイミングを合わせた
   - 拡大時の位置調整を行った
+  - 拡大時にアプリの名前を非表示にする
 # 2021/12/29 part2
 - やること
   - コンテキストメニューの実装
