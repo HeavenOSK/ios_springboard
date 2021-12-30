@@ -4,7 +4,11 @@
 ソースコードが見たい人はこちら👇
 https://github.com/HeavenOSK/ios_springboard
 # Twitter 
-Twitter やってます! https://twitter.com/heavenOSK
+https://twitter.com/heavenOSK
+# Issues
+Issue 化はしない。表示するコンテンツを絞る
+https://github.com/users/HeavenOSK/projects/10/views/1
+
 # 今日やること
 - コンテキストメニューの実装
 

@@ -14,7 +14,7 @@ import 'package:ios_springboard/features/spring_board/state/dragging_controller/
 import 'package:ios_springboard/features/spring_board/state/icons/mock_icon_data.dart';
 import 'package:ios_springboard/features/spring_board/state/reorderer/reordering_controller.dart';
 import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
-import 'package:ios_springboard/features/spring_board/state/spring_board_state/spiring_board_controller.dart';
+import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/spring_board_state/spiring_board_controller.dart';
 
 class HomeIcon extends HookConsumerWidget {
   const HomeIcon({
@@ -44,9 +44,11 @@ class HomeIcon extends HookConsumerWidget {
         size: slotLayerComputed.slotSize,
         child: SpringBoardDraggable(
           canDrag: canDragStart,
-          onDragStart: () {
+          onDragStart: (globalPosition, localPosition) {
             ref.read(springBoardController.notifier).onTapStart(
                   appId: mockIconData.id,
+                  dragGlobalPosition: globalPosition,
+                  dragLocalPosition: localPosition,
                 );
             ref.read(draggingControllerProvider.notifier).startDrag(
                   id: mockIconData.id,
@@ -57,7 +59,9 @@ class HomeIcon extends HookConsumerWidget {
             ref.read(draggingControllerProvider.notifier).finishDrag();
           },
           onUpdate: (currentPosition) {
-            ref.read(springBoardController.notifier).onDragUpdate();
+            ref.read(springBoardController.notifier).onDragUpdate(
+                  dragGlobalPosition: currentPosition,
+                );
             ref.read(reorderingController).updatePosition(
                   id: mockIconData.id,
                   currentPosition: currentPosition,

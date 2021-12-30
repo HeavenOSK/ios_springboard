@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'spring_board_state.freezed.dart';
@@ -7,6 +8,17 @@ enum SpringBoardMode {
   tapStart,
   contextMenu,
   reorder,
+}
+
+@freezed
+class SpringBoardState with _$SpringBoardState {
+  const factory SpringBoardState({
+    @Default(SpringBoardMode.waiting) SpringBoardMode mode,
+    int? focusId,
+    @Default(false) bool locked,
+    Offset? dragGlobalPosition,
+    Offset? dragLocalPosition,
+  }) = _SpringBoardState;
 }
 
 extension SpringBoardModeX on SpringBoardMode {
@@ -24,14 +36,6 @@ extension SpringBoardModeX on SpringBoardMode {
         return Duration.zero;
     }
   }
-}
-
-@freezed
-class SpringBoardState with _$SpringBoardState {
-  const factory SpringBoardState({
-    @Default(SpringBoardMode.waiting) SpringBoardMode mode,
-    int? focusId,
-  }) = _SpringBoardState;
 }
 
 extension SpringBoardStateX on SpringBoardState {

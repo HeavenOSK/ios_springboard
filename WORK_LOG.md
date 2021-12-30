@@ -1,6 +1,18 @@
+# 2021/12/31
+## やること
+- リファクタリング
+  - Listener を Draggable ではなく、親 Widget に持っていって、State で現在位置を管理するようにする
+  - ドラッグを担当するコンポーネントは、 ドラッグが完了後所定の位置に AnimationController で戻すことも担当する
+  - Draggable と Avatar を分離するかは微妙な問題
+## やったこと
+- State 上の dragGlobalPosition を更新する
+
 # 2021/12/30
 - やること
-  - Listener を Draggable ではなく、親 Widget に持っていって、State で現在位置を管理するようにする 
+  - リファクタリング 
+    - Listener を Draggable ではなく、親 Widget に持っていって、State で現在位置を管理するようにする
+    - ドラッグを担当するコンポーネントは、 ドラッグが完了後所定の位置に AnimationController で戻すことも担当する
+    - Draggable と Avatar を分離するかは微妙な問題
   - blur 表示中に手を離しても表示が切り替わらないこと
   - background をタッチして Dismiss
   - コンテキストメニューを表示
@@ -14,6 +26,11 @@
   - 拡大時の位置調整を行った
   - 拡大時にアプリの名前を非表示にする
   - SpringBoardState の mode 切り替えのバグを修正する
+- 次やること
+  - リファクタリング
+    - Listener を Draggable ではなく、親 Widget に持っていって、State で現在位置を管理するようにする
+    - ドラッグを担当するコンポーネントは、 ドラッグが完了後所定の位置に AnimationController で戻すことも担当する
+    - Draggable と Avatar を分離するかは微妙な問題
 # 2021/12/29 part2
 - やること
   - コンテキストメニューの実装

@@ -2,8 +2,8 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/features/spring_board/state/spring_board_state/spiring_board_controller.dart';
-import 'package:ios_springboard/features/spring_board/state/spring_board_state/spring_board_state.dart';
+import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/spring_board_state/spiring_board_controller.dart';
+import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/spring_board_state/spring_board_state.dart';
 
 class BlurMask extends HookConsumerWidget {
   const BlurMask({Key? key}) : super(key: key);

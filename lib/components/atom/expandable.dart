@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ios_springboard/features/spring_board/state/spring_board_state/spring_board_state.dart';
+import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/spring_board_state/spring_board_state.dart';
 
 class Expandable extends StatelessWidget {
   const Expandable({

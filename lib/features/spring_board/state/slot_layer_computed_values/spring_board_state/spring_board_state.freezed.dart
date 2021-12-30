@@ -18,10 +18,17 @@ class _$SpringBoardStateTearOff {
   const _$SpringBoardStateTearOff();
 
   _SpringBoardState call(
-      {SpringBoardMode mode = SpringBoardMode.waiting, int? focusId}) {
+      {SpringBoardMode mode = SpringBoardMode.waiting,
+      int? focusId,
+      bool locked = false,
+      Offset? dragGlobalPosition,
+      Offset? dragLocalPosition}) {
     return _SpringBoardState(
       mode: mode,
       focusId: focusId,
+      locked: locked,
+      dragGlobalPosition: dragGlobalPosition,
+      dragLocalPosition: dragLocalPosition,
     );
   }
 }
@@ -33,6 +40,9 @@ const $SpringBoardState = _$SpringBoardStateTearOff();
 mixin _$SpringBoardState {
   SpringBoardMode get mode => throw _privateConstructorUsedError;
   int? get focusId => throw _privateConstructorUsedError;
+  bool get locked => throw _privateConstructorUsedError;
+  Offset? get dragGlobalPosition => throw _privateConstructorUsedError;
+  Offset? get dragLocalPosition => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SpringBoardStateCopyWith<SpringBoardState> get copyWith =>
@@ -44,7 +54,12 @@ abstract class $SpringBoardStateCopyWith<$Res> {
   factory $SpringBoardStateCopyWith(
           SpringBoardState value, $Res Function(SpringBoardState) then) =
       _$SpringBoardStateCopyWithImpl<$Res>;
-  $Res call({SpringBoardMode mode, int? focusId});
+  $Res call(
+      {SpringBoardMode mode,
+      int? focusId,
+      bool locked,
+      Offset? dragGlobalPosition,
+      Offset? dragLocalPosition});
 }
 
 /// @nodoc
@@ -60,6 +75,9 @@ class _$SpringBoardStateCopyWithImpl<$Res>
   $Res call({
     Object? mode = freezed,
     Object? focusId = freezed,
+    Object? locked = freezed,
+    Object? dragGlobalPosition = freezed,
+    Object? dragLocalPosition = freezed,
   }) {
     return _then(_value.copyWith(
       mode: mode == freezed
@@ -70,6 +88,18 @@ class _$SpringBoardStateCopyWithImpl<$Res>
           ? _value.focusId
           : focusId // ignore: cast_nullable_to_non_nullable
               as int?,
+      locked: locked == freezed
+          ? _value.locked
+          : locked // ignore: cast_nullable_to_non_nullable
+              as bool,
+      dragGlobalPosition: dragGlobalPosition == freezed
+          ? _value.dragGlobalPosition
+          : dragGlobalPosition // ignore: cast_nullable_to_non_nullable
+              as Offset?,
+      dragLocalPosition: dragLocalPosition == freezed
+          ? _value.dragLocalPosition
+          : dragLocalPosition // ignore: cast_nullable_to_non_nullable
+              as Offset?,
     ));
   }
 }
@@ -81,7 +111,12 @@ abstract class _$SpringBoardStateCopyWith<$Res>
           _SpringBoardState value, $Res Function(_SpringBoardState) then) =
       __$SpringBoardStateCopyWithImpl<$Res>;
   @override
-  $Res call({SpringBoardMode mode, int? focusId});
+  $Res call(
+      {SpringBoardMode mode,
+      int? focusId,
+      bool locked,
+      Offset? dragGlobalPosition,
+      Offset? dragLocalPosition});
 }
 
 /// @nodoc
@@ -99,6 +134,9 @@ class __$SpringBoardStateCopyWithImpl<$Res>
   $Res call({
     Object? mode = freezed,
     Object? focusId = freezed,
+    Object? locked = freezed,
+    Object? dragGlobalPosition = freezed,
+    Object? dragLocalPosition = freezed,
   }) {
     return _then(_SpringBoardState(
       mode: mode == freezed
@@ -109,6 +147,18 @@ class __$SpringBoardStateCopyWithImpl<$Res>
           ? _value.focusId
           : focusId // ignore: cast_nullable_to_non_nullable
               as int?,
+      locked: locked == freezed
+          ? _value.locked
+          : locked // ignore: cast_nullable_to_non_nullable
+              as bool,
+      dragGlobalPosition: dragGlobalPosition == freezed
+          ? _value.dragGlobalPosition
+          : dragGlobalPosition // ignore: cast_nullable_to_non_nullable
+              as Offset?,
+      dragLocalPosition: dragLocalPosition == freezed
+          ? _value.dragLocalPosition
+          : dragLocalPosition // ignore: cast_nullable_to_non_nullable
+              as Offset?,
     ));
   }
 }
@@ -117,17 +167,28 @@ class __$SpringBoardStateCopyWithImpl<$Res>
 
 class _$_SpringBoardState implements _SpringBoardState {
   const _$_SpringBoardState(
-      {this.mode = SpringBoardMode.waiting, this.focusId});
+      {this.mode = SpringBoardMode.waiting,
+      this.focusId,
+      this.locked = false,
+      this.dragGlobalPosition,
+      this.dragLocalPosition});
 
   @JsonKey(defaultValue: SpringBoardMode.waiting)
   @override
   final SpringBoardMode mode;
   @override
   final int? focusId;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool locked;
+  @override
+  final Offset? dragGlobalPosition;
+  @override
+  final Offset? dragLocalPosition;
 
   @override
   String toString() {
-    return 'SpringBoardState(mode: $mode, focusId: $focusId)';
+    return 'SpringBoardState(mode: $mode, focusId: $focusId, locked: $locked, dragGlobalPosition: $dragGlobalPosition, dragLocalPosition: $dragLocalPosition)';
   }
 
   @override
@@ -136,14 +197,22 @@ class _$_SpringBoardState implements _SpringBoardState {
         (other.runtimeType == runtimeType &&
             other is _SpringBoardState &&
             const DeepCollectionEquality().equals(other.mode, mode) &&
-            const DeepCollectionEquality().equals(other.focusId, focusId));
+            const DeepCollectionEquality().equals(other.focusId, focusId) &&
+            const DeepCollectionEquality().equals(other.locked, locked) &&
+            const DeepCollectionEquality()
+                .equals(other.dragGlobalPosition, dragGlobalPosition) &&
+            const DeepCollectionEquality()
+                .equals(other.dragLocalPosition, dragLocalPosition));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(mode),
-      const DeepCollectionEquality().hash(focusId));
+      const DeepCollectionEquality().hash(focusId),
+      const DeepCollectionEquality().hash(locked),
+      const DeepCollectionEquality().hash(dragGlobalPosition),
+      const DeepCollectionEquality().hash(dragLocalPosition));
 
   @JsonKey(ignore: true)
   @override
@@ -152,13 +221,23 @@ class _$_SpringBoardState implements _SpringBoardState {
 }
 
 abstract class _SpringBoardState implements SpringBoardState {
-  const factory _SpringBoardState({SpringBoardMode mode, int? focusId}) =
-      _$_SpringBoardState;
+  const factory _SpringBoardState(
+      {SpringBoardMode mode,
+      int? focusId,
+      bool locked,
+      Offset? dragGlobalPosition,
+      Offset? dragLocalPosition}) = _$_SpringBoardState;
 
   @override
   SpringBoardMode get mode;
   @override
   int? get focusId;
+  @override
+  bool get locked;
+  @override
+  Offset? get dragGlobalPosition;
+  @override
+  Offset? get dragLocalPosition;
   @override
   @JsonKey(ignore: true)
   _$SpringBoardStateCopyWith<_SpringBoardState> get copyWith =>

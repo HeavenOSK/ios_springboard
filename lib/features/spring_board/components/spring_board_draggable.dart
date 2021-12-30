@@ -4,6 +4,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/features/spring_board/components/slot_area/slot_area_key.dart';
 import 'package:ios_springboard/features/spring_board/screen/portal_root_key.dart';
 
+typedef NotifyDragPositionsCallback = void Function(
+  Offset dragGlobalPosition,
+  Offset dragLocalPosition,
+);
+
 class SpringBoardDraggable extends ConsumerStatefulWidget {
   const SpringBoardDraggable({
     required this.canDrag,
@@ -18,9 +23,9 @@ class SpringBoardDraggable extends ConsumerStatefulWidget {
 
   final Size size;
   final Widget child;
-  final void Function(Offset) onUpdate;
+  final ValueChanged<Offset> onUpdate;
   final Offset currentSlotPosition;
-  final VoidCallback onDragStart;
+  final NotifyDragPositionsCallback onDragStart;
   final VoidCallback onDragEnd;
   final bool canDrag;
 
@@ -130,7 +135,10 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
         behavior: HitTestBehavior.translucent,
         onPointerDown: !dragging
             ? (event) async {
-                widget.onDragStart();
+                widget.onDragStart(
+                  event.position,
+                  event.localPosition,
+                );
                 lastRawTouchOffset = event.position;
                 localTouchOffset = event.localPosition;
                 dragging = true;
