@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
 import 'package:ios_springboard/components/atom/expandable.dart';
 import 'package:ios_springboard/components/atom/shaker.dart';
+import 'package:ios_springboard/features/spring_board/components/dragging_avatar.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/families/can_drag_start_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/families/is_dragging_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/families/should_expand_family.dart';
@@ -11,10 +12,10 @@ import 'package:ios_springboard/features/spring_board/components/home_icon/home_
 import 'package:ios_springboard/features/spring_board/components/home_icon/home_icon_scales_provider.dart';
 import 'package:ios_springboard/features/spring_board/components/spring_board_draggable.dart';
 import 'package:ios_springboard/features/spring_board/state/dragging_controller/dragging_controller.dart';
-import 'package:ios_springboard/features/spring_board/state/icons/mock_icon_data.dart';
 import 'package:ios_springboard/features/spring_board/state/reorderer/reordering_controller.dart';
-import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
 import 'package:ios_springboard/features/spring_board/state/spring_board_state/spiring_board_controller.dart';
+import 'package:ios_springboard/features/spring_board/storage/icons/mock_icon_data.dart';
+import 'package:ios_springboard/providers/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
 
 class HomeIcon extends HookConsumerWidget {
   const HomeIcon({
@@ -31,6 +32,22 @@ class HomeIcon extends HookConsumerWidget {
     final isDragging = ref.watch(isDraggingFamily(mockIconData.id));
     final shouldShake = ref.watch(shouldShakeFamily(mockIconData.id));
     final shouldExpand = ref.watch(shouldExpandFamily(mockIconData.id));
+    final avatarPosition = ref.watch(
+      draggingControllerProvider.select(
+        (s) => s.map(
+          (value) => value.avatarGlobalPosition,
+          noDragging: (_) => Offset.zero,
+        ),
+      ),
+    );
+    final avatarVisible = ref.watch(
+      draggingControllerProvider.select(
+        (s) => s.map(
+          (value) => value.id == mockIconData.id,
+          noDragging: (_) => false,
+        ),
+      ),
+    );
     final index = ref.watch(
       homeIconOrderIndexFamily(mockIconData.id),
     );
@@ -44,39 +61,50 @@ class HomeIcon extends HookConsumerWidget {
         size: slotLayerComputed.slotSize,
         child: SpringBoardDraggable(
           canDrag: canDragStart,
-          onDragStart: () {
+          onDragStart: (avatarGlobalPosition, dragDetectingPosition) {
             ref.read(springBoardController.notifier).onTapStart(
                   appId: mockIconData.id,
                 );
             ref.read(draggingControllerProvider.notifier).startDrag(
                   id: mockIconData.id,
+                  avatarGlobalPosition: avatarGlobalPosition,
+                  dragDetectingPosition: dragDetectingPosition,
                 );
           },
           onDragEnd: () {
             ref.read(springBoardController.notifier).onTapEnd();
             ref.read(draggingControllerProvider.notifier).finishDrag();
           },
-          onUpdate: (currentPosition) {
+          onUpdate: (avatarGlobalPosition, dragDetectingPosition) {
             ref.read(springBoardController.notifier).onDragUpdate();
+            ref.read(draggingControllerProvider.notifier).updateDrag(
+                  id: mockIconData.id,
+                  avatarGlobalPosition: avatarGlobalPosition,
+                  dragDetectingPosition: dragDetectingPosition,
+                );
             ref.read(reorderingController).updatePosition(
                   id: mockIconData.id,
-                  currentPosition: currentPosition,
+                  currentPosition: dragDetectingPosition,
                 );
           },
           currentSlotPosition: position,
           size: slotLayerComputed.slotSize,
-          child: Shaker(
-            shaking: shouldShake,
-            child: Expandable(
-              expanding: shouldExpand,
-              size: slotLayerComputed.slotSize,
-              child: SizedBox.fromSize(
+          child: DraggingAvatar(
+            avatarVisible: avatarVisible,
+            avatarPosition: avatarPosition,
+            child: Shaker(
+              shaking: shouldShake,
+              child: Expandable(
+                expanding: shouldExpand,
                 size: slotLayerComputed.slotSize,
-                child: Center(
-                  child: _HomeIcon(
-                    shouldExpand: shouldExpand,
-                    isDragging: isDragging,
-                    mockIconData: mockIconData,
+                child: SizedBox.fromSize(
+                  size: slotLayerComputed.slotSize,
+                  child: Center(
+                    child: _HomeIcon(
+                      shouldExpand: shouldExpand,
+                      isDragging: isDragging,
+                      mockIconData: mockIconData,
+                    ),
                   ),
                 ),
               ),

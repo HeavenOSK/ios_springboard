@@ -17,9 +17,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$DraggingStateTearOff {
   const _$DraggingStateTearOff();
 
-  _DraggingState call({required int id}) {
+  _DraggingState call(
+      {required int id,
+      required Offset avatarGlobalPosition,
+      required Offset dragDetectingPosition}) {
     return _DraggingState(
       id: id,
+      avatarGlobalPosition: avatarGlobalPosition,
+      dragDetectingPosition: dragDetectingPosition,
     );
   }
 
@@ -35,19 +40,25 @@ const $DraggingState = _$DraggingStateTearOff();
 mixin _$DraggingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int id) $default, {
+    TResult Function(
+            int id, Offset avatarGlobalPosition, Offset dragDetectingPosition)
+        $default, {
     required TResult Function() noDragging,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(int id)? $default, {
+    TResult Function(
+            int id, Offset avatarGlobalPosition, Offset dragDetectingPosition)?
+        $default, {
     TResult Function()? noDragging,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int id)? $default, {
+    TResult Function(
+            int id, Offset avatarGlobalPosition, Offset dragDetectingPosition)?
+        $default, {
     TResult Function()? noDragging,
     required TResult orElse(),
   }) =>
@@ -95,7 +106,8 @@ abstract class _$DraggingStateCopyWith<$Res> {
   factory _$DraggingStateCopyWith(
           _DraggingState value, $Res Function(_DraggingState) then) =
       __$DraggingStateCopyWithImpl<$Res>;
-  $Res call({int id});
+  $Res call(
+      {int id, Offset avatarGlobalPosition, Offset dragDetectingPosition});
 }
 
 /// @nodoc
@@ -112,12 +124,22 @@ class __$DraggingStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? avatarGlobalPosition = freezed,
+    Object? dragDetectingPosition = freezed,
   }) {
     return _then(_DraggingState(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      avatarGlobalPosition: avatarGlobalPosition == freezed
+          ? _value.avatarGlobalPosition
+          : avatarGlobalPosition // ignore: cast_nullable_to_non_nullable
+              as Offset,
+      dragDetectingPosition: dragDetectingPosition == freezed
+          ? _value.dragDetectingPosition
+          : dragDetectingPosition // ignore: cast_nullable_to_non_nullable
+              as Offset,
     ));
   }
 }
@@ -125,14 +147,21 @@ class __$DraggingStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_DraggingState implements _DraggingState {
-  const _$_DraggingState({required this.id});
+  const _$_DraggingState(
+      {required this.id,
+      required this.avatarGlobalPosition,
+      required this.dragDetectingPosition});
 
   @override
   final int id;
+  @override
+  final Offset avatarGlobalPosition;
+  @override
+  final Offset dragDetectingPosition;
 
   @override
   String toString() {
-    return 'DraggingState(id: $id)';
+    return 'DraggingState(id: $id, avatarGlobalPosition: $avatarGlobalPosition, dragDetectingPosition: $dragDetectingPosition)';
   }
 
   @override
@@ -140,12 +169,19 @@ class _$_DraggingState implements _DraggingState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DraggingState &&
-            const DeepCollectionEquality().equals(other.id, id));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.avatarGlobalPosition, avatarGlobalPosition) &&
+            const DeepCollectionEquality()
+                .equals(other.dragDetectingPosition, dragDetectingPosition));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(id));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(avatarGlobalPosition),
+      const DeepCollectionEquality().hash(dragDetectingPosition));
 
   @JsonKey(ignore: true)
   @override
@@ -155,30 +191,36 @@ class _$_DraggingState implements _DraggingState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int id) $default, {
+    TResult Function(
+            int id, Offset avatarGlobalPosition, Offset dragDetectingPosition)
+        $default, {
     required TResult Function() noDragging,
   }) {
-    return $default(id);
+    return $default(id, avatarGlobalPosition, dragDetectingPosition);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(int id)? $default, {
+    TResult Function(
+            int id, Offset avatarGlobalPosition, Offset dragDetectingPosition)?
+        $default, {
     TResult Function()? noDragging,
   }) {
-    return $default?.call(id);
+    return $default?.call(id, avatarGlobalPosition, dragDetectingPosition);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int id)? $default, {
+    TResult Function(
+            int id, Offset avatarGlobalPosition, Offset dragDetectingPosition)?
+        $default, {
     TResult Function()? noDragging,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(id);
+      return $default(id, avatarGlobalPosition, dragDetectingPosition);
     }
     return orElse();
   }
@@ -216,9 +258,14 @@ class _$_DraggingState implements _DraggingState {
 }
 
 abstract class _DraggingState implements DraggingState {
-  const factory _DraggingState({required int id}) = _$_DraggingState;
+  const factory _DraggingState(
+      {required int id,
+      required Offset avatarGlobalPosition,
+      required Offset dragDetectingPosition}) = _$_DraggingState;
 
   int get id;
+  Offset get avatarGlobalPosition;
+  Offset get dragDetectingPosition;
   @JsonKey(ignore: true)
   _$DraggingStateCopyWith<_DraggingState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -264,7 +311,9 @@ class _$_NoDragging implements _NoDragging {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int id) $default, {
+    TResult Function(
+            int id, Offset avatarGlobalPosition, Offset dragDetectingPosition)
+        $default, {
     required TResult Function() noDragging,
   }) {
     return noDragging();
@@ -273,7 +322,9 @@ class _$_NoDragging implements _NoDragging {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(int id)? $default, {
+    TResult Function(
+            int id, Offset avatarGlobalPosition, Offset dragDetectingPosition)?
+        $default, {
     TResult Function()? noDragging,
   }) {
     return noDragging?.call();
@@ -282,7 +333,9 @@ class _$_NoDragging implements _NoDragging {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int id)? $default, {
+    TResult Function(
+            int id, Offset avatarGlobalPosition, Offset dragDetectingPosition)?
+        $default, {
     TResult Function()? noDragging,
     required TResult orElse(),
   }) {

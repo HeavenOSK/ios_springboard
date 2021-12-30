@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/features/spring_board/state/dragging_controller/dragging_state.dart';
 
@@ -14,8 +15,26 @@ class DraggingController extends StateNotifier<DraggingState> {
 
   void startDrag({
     required int id,
+    required Offset avatarGlobalPosition,
+    required Offset dragDetectingPosition,
   }) {
-    state = DraggingState(id: id);
+    state = DraggingState(
+      id: id,
+      avatarGlobalPosition: avatarGlobalPosition,
+      dragDetectingPosition: dragDetectingPosition,
+    );
+  }
+
+  void updateDrag({
+    required int id,
+    required Offset avatarGlobalPosition,
+    required Offset dragDetectingPosition,
+  }) {
+    state = DraggingState(
+      id: id,
+      avatarGlobalPosition: avatarGlobalPosition,
+      dragDetectingPosition: dragDetectingPosition,
+    );
   }
 
   void finishDrag() {
