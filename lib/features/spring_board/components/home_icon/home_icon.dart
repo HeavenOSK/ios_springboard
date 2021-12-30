@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
+import 'package:ios_springboard/components/atom/expandable.dart';
 import 'package:ios_springboard/components/atom/shaker.dart';
-import 'package:ios_springboard/components/atom/zoomable.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/families/can_drag_start_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/families/is_dragging_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/families/should_shake_family.dart';
@@ -65,8 +65,8 @@ class HomeIcon extends HookConsumerWidget {
           size: slotLayerComputed.slotSize,
           child: Shaker(
             shaking: shouldShake,
-            child: Zoomable(
-              zooming: isDragging,
+            child: Expandable(
+              expanding: isDragging,
               // zooming: false,
               size: slotLayerComputed.slotSize,
               duration: const Duration(seconds: 1),

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-class Zoomable extends StatelessWidget {
-  const Zoomable({
+class Expandable extends StatelessWidget {
+  const Expandable({
     required this.size,
     required this.child,
     required this.duration,
-    this.zooming = false,
+    this.expanding = false,
     Key? key,
   }) : super(key: key);
 
   final Size size;
   final Widget child;
-  final bool zooming;
+  final bool expanding;
   final Duration duration;
 
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<double>(
-      tween: Tween<double>(begin: 1, end: zooming ? 1.1 : 1.0),
+      tween: Tween<double>(begin: 1, end: expanding ? 1.1 : 1.0),
       duration: duration,
       builder: (context, value, child) {
         final diff = value - 1;
