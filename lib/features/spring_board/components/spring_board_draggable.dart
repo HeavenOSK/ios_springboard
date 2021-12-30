@@ -35,6 +35,7 @@ typedef NotifyDragPositionsCallback = void Function(
 
 class SpringBoardDraggable extends ConsumerStatefulWidget {
   const SpringBoardDraggable({
+    required this.avatarVisible,
     required this.canDrag,
     required this.onDragEnd,
     required this.onDragStart,
@@ -52,6 +53,7 @@ class SpringBoardDraggable extends ConsumerStatefulWidget {
   final NotifyDragPositionsCallback onDragStart;
   final VoidCallback onDragEnd;
   final bool canDrag;
+  final bool avatarVisible;
 
   @override
   ConsumerState<SpringBoardDraggable> createState() =>
@@ -81,24 +83,20 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
     );
   }
 
-  bool _dragging = false;
-
-  bool get dragging => _dragging;
-
-  set dragging(bool value) {
-    if (_dragging == value) {
-      return;
-    }
-    _dragging = value;
-    if (mounted) {
-      setState(() {});
-    }
-  }
+  late bool avatarVisible = widget.avatarVisible;
 
   void _animatePosition(Animation<Offset> positionAnimation) {
     widget.onUpdate(
       positionAnimation.value,
     );
+  }
+
+  @override
+  void didUpdateWidget(SpringBoardDraggable oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.avatarVisible != widget.avatarVisible) {
+      avatarVisible = widget.avatarVisible;
+    }
   }
 
   void _finishDragging({
@@ -119,7 +117,6 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
       (_) {
         cancelAnimation.removeListener(_animate);
         widget.onDragEnd();
-        dragging = false;
       },
     );
   }
@@ -131,13 +128,12 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
       ignoring: !widget.canDrag,
       child: Listener(
         behavior: HitTestBehavior.translucent,
-        onPointerDown: !dragging
+        onPointerDown: !avatarVisible
             ? (event) async {
                 widget.onDragStart(
                   event.position,
                   event.localPosition,
                 );
-                dragging = true;
               }
             : null,
         onPointerMove: (event) {
@@ -156,7 +152,7 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
           );
         },
         child: PortalEntry(
-          visible: dragging,
+          visible: avatarVisible,
           portal: IgnorePointer(
             child: Stack(
               children: [
@@ -169,9 +165,9 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
             ),
           ),
           child: IgnorePointer(
-            ignoring: dragging,
+            ignoring: avatarVisible,
             child: Opacity(
-              opacity: dragging ? 0 : 1,
+              opacity: avatarVisible ? 0 : 1,
               child: widget.child,
             ),
           ),

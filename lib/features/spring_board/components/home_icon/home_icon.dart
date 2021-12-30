@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
 import 'package:ios_springboard/components/atom/expandable.dart';
 import 'package:ios_springboard/components/atom/shaker.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon/families/avatar_visible_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/families/can_drag_start_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/families/is_dragging_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/families/should_expand_family.dart';
@@ -31,6 +32,7 @@ class HomeIcon extends HookConsumerWidget {
     final isDragging = ref.watch(isDraggingFamily(mockIconData.id));
     final shouldShake = ref.watch(shouldShakeFamily(mockIconData.id));
     final shouldExpand = ref.watch(shouldExpandFamily(mockIconData.id));
+    final avatarVisible = ref.watch(avatarVisibleFamily(mockIconData.id));
 
     final index = ref.watch(
       homeIconOrderIndexFamily(mockIconData.id),
@@ -44,6 +46,7 @@ class HomeIcon extends HookConsumerWidget {
       child: SizedBox.fromSize(
         size: slotLayerComputed.slotSize,
         child: SpringBoardDraggable(
+          avatarVisible: avatarVisible,
           canDrag: canDragStart,
           onDragStart: (globalPosition, localPosition) {
             ref.read(springBoardController.notifier).onTapStart(
