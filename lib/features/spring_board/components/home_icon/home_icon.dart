@@ -55,6 +55,7 @@ class HomeIcon extends HookConsumerWidget {
             ref.read(draggingControllerProvider.notifier).finishDrag();
           },
           onUpdate: (currentPosition) {
+            ref.read(springBoardController.notifier).onDragUpdate();
             ref.read(reorderingController).updatePosition(
                   id: mockIconData.id,
                   currentPosition: currentPosition,

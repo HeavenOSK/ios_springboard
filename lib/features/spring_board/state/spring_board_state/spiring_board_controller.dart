@@ -44,6 +44,17 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
     );
   }
 
+  // It cares the situations that the user starts drag before
+  // the mode is not reorder.
+  void onDragUpdate() {
+    if (state.mode == SpringBoardMode.reorder) {
+      return;
+    }
+    state = state.copyWith(
+      mode: SpringBoardMode.reorder,
+    );
+  }
+
   void onTapEnd() {
     switch (state.mode) {
       case SpringBoardMode.waiting:
