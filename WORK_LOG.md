@@ -1,9 +1,10 @@
 # 2021/12/30
 - やること
-  - コンテキストメニューを表示
-    - https://github.com/HeavenOSK/flutter_ipad_ui_clone/tree/open_app_navigation/lib/components
+  - Listener を Draggable ではなく、親 Widget に持っていって、State で現在位置を管理するようにする 
   - blur 表示中に手を離しても表示が切り替わらないこと
   - background をタッチして Dismiss
+  - コンテキストメニューを表示
+    - https://github.com/HeavenOSK/flutter_ipad_ui_clone/tree/open_app_navigation/lib/components
 - やったこと 
   - アイコンタップ時のフェイズ移行のコードを書く
   - フェイズ移行のバグ修正を行った
