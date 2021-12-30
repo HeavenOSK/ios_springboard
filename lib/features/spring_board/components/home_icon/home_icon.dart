@@ -54,14 +54,14 @@ class HomeIcon extends HookConsumerWidget {
             ref.read(springBoardController.notifier).onTapEnd();
             ref.read(draggingControllerProvider.notifier).finishDrag();
           },
-          currentSlotPosition: position,
-          size: slotLayerComputed.slotSize,
           onUpdate: (currentPosition) {
             ref.read(reorderingController).updatePosition(
                   id: mockIconData.id,
                   currentPosition: currentPosition,
                 );
           },
+          currentSlotPosition: position,
+          size: slotLayerComputed.slotSize,
           child: Shaker(
             shaking: shouldShake,
             child: Zoomable(

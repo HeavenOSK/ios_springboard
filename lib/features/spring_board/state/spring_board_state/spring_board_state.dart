@@ -5,7 +5,7 @@ part 'spring_board_state.freezed.dart';
 enum SpringBoardMode {
   waiting,
   tapStart,
-  showContext,
+  contextMenu,
   reorder,
 }
 
@@ -24,14 +24,15 @@ extension SpringBoardStateX on SpringBoardState {
         return true;
       case SpringBoardMode.tapStart:
         return this.mode == SpringBoardMode.waiting;
-      case SpringBoardMode.showContext:
-        return this.mode == SpringBoardMode.showContext;
+      case SpringBoardMode.contextMenu:
+        return this.mode == SpringBoardMode.tapStart;
       case SpringBoardMode.reorder:
         return false;
     }
   }
 
   bool get isWaitingMode => mode == SpringBoardMode.waiting;
+  bool get isContextMenuMode => mode == SpringBoardMode.contextMenu;
 
   bool get isReorderMode => mode == SpringBoardMode.reorder;
 }

@@ -2,14 +2,20 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/features/spring_board/state/debug_blur_state.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_state/spiring_board_controller.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_state/spring_board_state.dart';
 
 class BlurMask extends HookConsumerWidget {
   const BlurMask({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final shouldBlur = ref.watch(debugBlurState);
+    final shouldBlur = ref.watch(
+      springBoardController.select(
+        (value) => value.isContextMenuMode,
+      ),
+    );
+
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0, end: shouldBlur ? 1 : 0),
       duration: const Duration(milliseconds: 250),

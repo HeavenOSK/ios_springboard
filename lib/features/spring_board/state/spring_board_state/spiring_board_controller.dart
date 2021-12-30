@@ -27,11 +27,11 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
     await Future<void>.delayed(
       const Duration(milliseconds: 500),
     );
-    if (!state.canMoveModeFor(SpringBoardMode.showContext)) {
+    if (!state.canMoveModeFor(SpringBoardMode.contextMenu)) {
       return;
     }
     state = state.copyWith(
-      mode: SpringBoardMode.showContext,
+      mode: SpringBoardMode.contextMenu,
     );
     if (!state.canMoveModeFor(SpringBoardMode.reorder)) {
       return;
@@ -48,12 +48,12 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
     switch (state.mode) {
       case SpringBoardMode.waiting:
       case SpringBoardMode.reorder:
-      case SpringBoardMode.showContext:
+      case SpringBoardMode.contextMenu:
+        exitReorderingSession();
         return;
       case SpringBoardMode.tapStart:
         // TODO(HeavenOSK): アプリを開く
         exitReorderingSession();
-        return;
         return;
     }
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/features/spring_board/state/debug_blur_state.dart';
 import 'package:ios_springboard/features/spring_board/storage/spring_board_controller.dart';
 
 class SpringBoardDebug extends HookConsumerWidget {
@@ -38,14 +37,6 @@ class SpringBoardDebug extends HookConsumerWidget {
                 ref.read(springBoardRegisterer.notifier).reset();
               },
               child: const Text('reset'),
-            ),
-            const Gap(8),
-            ElevatedButton(
-              onPressed: () {
-                ref.read(debugBlurState.notifier).state =
-                    !ref.read(debugBlurState);
-              },
-              child: const Text('switch blur'),
             ),
           ],
         ),
