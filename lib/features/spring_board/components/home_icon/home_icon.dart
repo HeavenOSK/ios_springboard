@@ -31,6 +31,7 @@ class HomeIcon extends HookConsumerWidget {
     final isDragging = ref.watch(isDraggingFamily(mockIconData.id));
     final shouldShake = ref.watch(shouldShakeFamily(mockIconData.id));
     final shouldExpand = ref.watch(shouldExpandFamily(mockIconData.id));
+
     final index = ref.watch(
       homeIconOrderIndexFamily(mockIconData.id),
     );
@@ -64,7 +65,7 @@ class HomeIcon extends HookConsumerWidget {
                 );
             ref.read(reorderingController).updatePosition(
                   id: mockIconData.id,
-                  currentPosition: currentPosition,
+                  dragGlobalPosition: currentPosition,
                 );
           },
           currentSlotPosition: position,
