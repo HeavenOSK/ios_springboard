@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/features/spring_board/components/slot_area/slot_area_key.dart';
 import 'package:ios_springboard/features/spring_board/screen/portal_root_key.dart';
-
-typedef NotifyPositionsCallback = void Function(
-  Offset avatarGlobalPosition,
-  Offset dragDetectingPosition,
-);
 
 class SpringBoardDraggable extends ConsumerStatefulWidget {
   const SpringBoardDraggable({
@@ -22,9 +18,9 @@ class SpringBoardDraggable extends ConsumerStatefulWidget {
 
   final Size size;
   final Widget child;
-  final NotifyPositionsCallback onUpdate;
+  final void Function(Offset) onUpdate;
   final Offset currentSlotPosition;
-  final NotifyPositionsCallback onDragStart;
+  final VoidCallback onDragStart;
   final VoidCallback onDragEnd;
   final bool canDrag;
 
@@ -134,10 +130,7 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
         behavior: HitTestBehavior.translucent,
         onPointerDown: !dragging
             ? (event) async {
-                widget.onDragStart(
-                  event.position - slotAreaOffset,
-                  visiblePosition,
-                );
+                widget.onDragStart();
                 lastRawTouchOffset = event.position;
                 localTouchOffset = event.localPosition;
                 dragging = true;
@@ -149,7 +142,6 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
           });
           widget.onUpdate(
             event.position - slotAreaOffset,
-            visiblePosition,
           );
         },
         onPointerUp: (event) {
@@ -164,7 +156,27 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
           );
           widget.onDragEnd();
         },
-        child: widget.child,
+        child: PortalEntry(
+          visible: dragging,
+          portal: IgnorePointer(
+            child: Stack(
+              children: [
+                Positioned(
+                  left: visiblePosition.dx,
+                  top: visiblePosition.dy,
+                  child: widget.child,
+                ),
+              ],
+            ),
+          ),
+          child: IgnorePointer(
+            ignoring: dragging,
+            child: Opacity(
+              opacity: dragging ? 0 : 1,
+              child: widget.child,
+            ),
+          ),
+        ),
       ),
     );
   }

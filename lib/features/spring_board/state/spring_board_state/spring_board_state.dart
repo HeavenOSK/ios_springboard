@@ -9,14 +9,6 @@ enum SpringBoardMode {
   reorder,
 }
 
-@freezed
-class SpringBoardState with _$SpringBoardState {
-  const factory SpringBoardState({
-    @Default(SpringBoardMode.waiting) SpringBoardMode mode,
-    int? focusId,
-  }) = _SpringBoardState;
-}
-
 extension SpringBoardModeX on SpringBoardMode {
   // Returns Duration.zero instead of null for
   // developer experience.
@@ -32,6 +24,14 @@ extension SpringBoardModeX on SpringBoardMode {
         return Duration.zero;
     }
   }
+}
+
+@freezed
+class SpringBoardState with _$SpringBoardState {
+  const factory SpringBoardState({
+    @Default(SpringBoardMode.waiting) SpringBoardMode mode,
+    int? focusId,
+  }) = _SpringBoardState;
 }
 
 extension SpringBoardStateX on SpringBoardState {
