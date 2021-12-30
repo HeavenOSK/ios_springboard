@@ -4,18 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/home_icon_order_faimily.dart';
-import 'package:ios_springboard/features/spring_board/components/slot_area/slot_area_key.dart';
 import 'package:ios_springboard/features/spring_board/state/reorderer/reodered_history.dart';
 import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
 import 'package:ios_springboard/features/spring_board/storage/spring_board_controller.dart';
 import 'package:ios_springboard/providers/position_slot_config/position_slot_config_provider.dart';
+import 'package:ios_springboard/providers/slot_area_offset_provider.dart';
 
-final _slotAreaOffsetProvider = StateProvider<Offset>(
-  (_) {
-    final box = slotAreaKey.currentContext!.findRenderObject()! as RenderBox;
-    return box.localToGlobal(Offset.zero);
-  },
-);
 final reorderingController = Provider(
   (ref) => ReorderingController(ref.read),
 );
@@ -42,8 +36,10 @@ class ReorderingController {
     required int id,
     required Offset dragGlobalPosition,
   }) {
-    final slotAreaOffset = _read(_slotAreaOffsetProvider);
-    final dragTargetIndex = _checkInTarget(dragGlobalPosition - slotAreaOffset);
+    final slotAreaOffset = _read(slotAreaOffsetProvider);
+    final dragTargetIndex = _checkInTarget(
+      dragGlobalPosition - slotAreaOffset,
+    );
     if (dragTargetIndex == null) {
       return;
     }

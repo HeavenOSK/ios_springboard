@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/features/spring_board/screen/portal_root_key.dart';
 import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/spring_board_state/spiring_board_controller.dart';
-
-final _portalRootOffsetProvider = StateProvider<Offset>(
-  (_) {
-    final box = portalRootKey.currentContext!.findRenderObject()! as RenderBox;
-    return box.localToGlobal(Offset.zero);
-  },
-);
+import 'package:ios_springboard/providers/portal_root_offset_provider.dart';
+import 'package:ios_springboard/providers/slot_area_offset_provider.dart';
 
 final _avatarPositionProvider = StateProvider<Offset>(
   (ref) {
@@ -27,7 +21,7 @@ final _avatarPositionProvider = StateProvider<Offset>(
       return Offset.zero;
     }
     final portalRootOffset = ref.watch(
-      _portalRootOffsetProvider,
+      portalRootOffsetProvider,
     );
 
     return globalPosition - localPosition - portalRootOffset;
@@ -96,32 +90,26 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
       return;
     }
     _dragging = value;
-    if (!_dragging) {
-      lastRawTouchOffset = null;
-      localTouchOffset = null;
-    }
     if (mounted) {
       setState(() {});
     }
   }
 
-  Offset? lastRawTouchOffset;
-  Offset? localTouchOffset;
-
   void _animatePosition(Animation<Offset> positionAnimation) {
-    setState(() {
-      lastRawTouchOffset = positionAnimation.value;
-    });
+    widget.onUpdate(
+      positionAnimation.value,
+    );
   }
 
   void _finishDragging({
     required Offset currentPosition,
   }) {
     final cancelAnimation = _getCancelAnimation(
-        currentPosition: currentPosition,
-        finishPosition: widget.currentSlotPosition + localTouchOffset!
-        // + slotAreaOffset,
-        );
+      currentPosition: currentPosition,
+      finishPosition: widget.currentSlotPosition +
+          ref.watch(springBoardController).dragLocalPosition! +
+          ref.read(slotAreaOffsetProvider),
+    );
     void _animate() {
       _animatePosition(cancelAnimation);
     }
@@ -130,6 +118,7 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
     _cancelAnimationController.forward(from: 0).then(
       (_) {
         cancelAnimation.removeListener(_animate);
+        widget.onDragEnd();
         dragging = false;
       },
     );
@@ -148,15 +137,10 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
                   event.position,
                   event.localPosition,
                 );
-                lastRawTouchOffset = event.position;
-                localTouchOffset = event.localPosition;
                 dragging = true;
               }
             : null,
         onPointerMove: (event) {
-          setState(() {
-            lastRawTouchOffset = event.position;
-          });
           widget.onUpdate(
             event.position,
           );
@@ -165,13 +149,11 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
           _finishDragging(
             currentPosition: event.position,
           );
-          widget.onDragEnd();
         },
         onPointerCancel: (event) {
           _finishDragging(
             currentPosition: event.position,
           );
-          widget.onDragEnd();
         },
         child: PortalEntry(
           visible: dragging,

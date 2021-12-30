@@ -8,6 +8,8 @@
 - State 上の dragGlobalPosition を更新する
 - Avatar は dragGlobalPosition を監視して位置を補正するようにする
 - Slot の位置を globalPosition で計算するようにする
+- 手を離した時に AnimationController で所定の位置に戻す
+- Slot の位置を globalPosition で計算するようにする
 # 2021/12/30
 - やること
   - リファクタリング 
