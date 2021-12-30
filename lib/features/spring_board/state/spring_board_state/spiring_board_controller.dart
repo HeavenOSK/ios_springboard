@@ -25,7 +25,7 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
     // TODO(HeavenOSK): アイコンの点滅を実装する
     // TODO(HeavenOSK): アプリの起動を実装する
     await Future<void>.delayed(
-      const Duration(milliseconds: 500),
+      SpringBoardMode.tapStart.sceneDuration,
     );
     if (!state.canMoveModeFor(SpringBoardMode.contextMenu)) {
       return;
@@ -33,12 +33,12 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
     state = state.copyWith(
       mode: SpringBoardMode.contextMenu,
     );
+    await Future<void>.delayed(
+      SpringBoardMode.contextMenu.sceneDuration,
+    );
     if (!state.canMoveModeFor(SpringBoardMode.reorder)) {
       return;
     }
-    await Future<void>.delayed(
-      const Duration(milliseconds: 500),
-    );
     state = state.copyWith(
       mode: SpringBoardMode.reorder,
     );

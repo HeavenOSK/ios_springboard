@@ -9,6 +9,23 @@ enum SpringBoardMode {
   reorder,
 }
 
+extension SpringBoardModeX on SpringBoardMode {
+  // Returns Duration.zero instead of null for
+  // developer experience.
+  Duration get sceneDuration {
+    switch (this) {
+      case SpringBoardMode.waiting:
+        return Duration.zero;
+      case SpringBoardMode.tapStart:
+        return const Duration(milliseconds: 250);
+      case SpringBoardMode.contextMenu:
+        return const Duration(milliseconds: 350);
+      case SpringBoardMode.reorder:
+        return Duration.zero;
+    }
+  }
+}
+
 @freezed
 class SpringBoardState with _$SpringBoardState {
   const factory SpringBoardState({
@@ -32,7 +49,24 @@ extension SpringBoardStateX on SpringBoardState {
   }
 
   bool get isWaitingMode => mode == SpringBoardMode.waiting;
+
   bool get isContextMenuMode => mode == SpringBoardMode.contextMenu;
 
   bool get isReorderMode => mode == SpringBoardMode.reorder;
+
+  bool shouldExpand({
+    required int id,
+  }) {
+    if (focusId != id) {
+      return false;
+    }
+    switch (mode) {
+      case SpringBoardMode.waiting:
+        return false;
+      case SpringBoardMode.tapStart:
+      case SpringBoardMode.contextMenu:
+      case SpringBoardMode.reorder:
+        return true;
+    }
+  }
 }

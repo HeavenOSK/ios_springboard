@@ -18,7 +18,7 @@ class BlurMask extends HookConsumerWidget {
 
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0, end: shouldBlur ? 1 : 0),
-      duration: const Duration(milliseconds: 250),
+      duration: SpringBoardMode.tapStart.sceneDuration,
       builder: (context, value, child) {
         if (value <= 0) {
           return const SizedBox.shrink();

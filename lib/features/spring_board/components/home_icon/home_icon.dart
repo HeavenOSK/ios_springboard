@@ -5,6 +5,7 @@ import 'package:ios_springboard/components/atom/expandable.dart';
 import 'package:ios_springboard/components/atom/shaker.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/families/can_drag_start_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/families/is_dragging_family.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon/families/should_expand_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/families/should_shake_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/home_icon_order_faimily.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/home_icon_scales_provider.dart';
@@ -29,6 +30,7 @@ class HomeIcon extends HookConsumerWidget {
     final canDragStart = ref.watch(canDragStartFamily(mockIconData.id));
     final isDragging = ref.watch(isDraggingFamily(mockIconData.id));
     final shouldShake = ref.watch(shouldShakeFamily(mockIconData.id));
+    final shouldExpand = ref.watch(shouldExpandFamily(mockIconData.id));
     final index = ref.watch(
       homeIconOrderIndexFamily(mockIconData.id),
     );
@@ -66,10 +68,8 @@ class HomeIcon extends HookConsumerWidget {
           child: Shaker(
             shaking: shouldShake,
             child: Expandable(
-              expanding: isDragging,
-              // zooming: false,
+              expanding: shouldExpand,
               size: slotLayerComputed.slotSize,
-              duration: const Duration(seconds: 1),
               child: SizedBox.fromSize(
                 size: slotLayerComputed.slotSize,
                 child: Center(
