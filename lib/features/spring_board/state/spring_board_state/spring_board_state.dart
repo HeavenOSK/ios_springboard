@@ -19,7 +19,7 @@ extension SpringBoardModeX on SpringBoardMode {
       case SpringBoardMode.tapStart:
         return const Duration(milliseconds: 250);
       case SpringBoardMode.contextMenu:
-        return const Duration(milliseconds: 350);
+        return const Duration(milliseconds: 800);
       case SpringBoardMode.reorder:
         return Duration.zero;
     }
@@ -44,7 +44,7 @@ extension SpringBoardStateX on SpringBoardState {
       case SpringBoardMode.contextMenu:
         return this.mode == SpringBoardMode.tapStart;
       case SpringBoardMode.reorder:
-        return false;
+        return this.mode == SpringBoardMode.contextMenu;
     }
   }
 
