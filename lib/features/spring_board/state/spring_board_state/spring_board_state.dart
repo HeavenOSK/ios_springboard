@@ -6,7 +6,7 @@ enum SpringBoardMode {
   waiting,
   tapStart,
   showContext,
-  canReorder,
+  reorder,
 }
 
 @freezed
@@ -26,8 +26,12 @@ extension SpringBoardStateX on SpringBoardState {
         return this.mode == SpringBoardMode.waiting;
       case SpringBoardMode.showContext:
         return this.mode == SpringBoardMode.showContext;
-      case SpringBoardMode.canReorder:
+      case SpringBoardMode.reorder:
         return false;
     }
   }
+
+  bool get isWaitingMode => mode == SpringBoardMode.waiting;
+
+  bool get isReorderMode => mode == SpringBoardMode.reorder;
 }

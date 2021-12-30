@@ -33,21 +33,21 @@ class SpringBoardController extends StateNotifier<SpringBoardState> {
     state = state.copyWith(
       mode: SpringBoardMode.showContext,
     );
-    if (!state.canMoveModeFor(SpringBoardMode.canReorder)) {
+    if (!state.canMoveModeFor(SpringBoardMode.reorder)) {
       return;
     }
     await Future<void>.delayed(
       const Duration(milliseconds: 500),
     );
     state = state.copyWith(
-      mode: SpringBoardMode.canReorder,
+      mode: SpringBoardMode.reorder,
     );
   }
 
   void onTapEnd() {
     switch (state.mode) {
       case SpringBoardMode.waiting:
-      case SpringBoardMode.canReorder:
+      case SpringBoardMode.reorder:
       case SpringBoardMode.showContext:
         return;
       case SpringBoardMode.tapStart:
