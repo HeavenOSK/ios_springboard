@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ios_springboard/components/atom/drag_gesture_handler.dart';
 import 'package:ios_springboard/features/spring_board/components/avatar_presenter.dart';
 import 'package:ios_springboard/features/spring_board/state/spring_board_state/spiring_board_controller.dart';
 import 'package:ios_springboard/providers/portal_root_offset_provider.dart';
@@ -124,38 +125,28 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
   @override
   Widget build(BuildContext context) {
     final visiblePosition = ref.watch(_avatarPositionProvider);
-    return IgnorePointer(
-      ignoring: !widget.canDrag,
-      child: Listener(
-        behavior: HitTestBehavior.translucent,
-        onPointerDown: !avatarVisible
-            ? (event) async {
-                widget.onDragStart(
-                  event.position,
-                  event.localPosition,
-                );
-              }
-            : null,
-        onPointerMove: (event) {
-          widget.onUpdate(
-            event.position,
-          );
-        },
-        onPointerUp: (event) {
-          _finishDragging(
-            currentPosition: event.position,
-          );
-        },
-        onPointerCancel: (event) {
-          _finishDragging(
-            currentPosition: event.position,
-          );
-        },
-        child: AvatarPresenter(
-          avatarVisible: avatarVisible,
-          avatarPosition: visiblePosition,
-          child: widget.child,
-        ),
+    return DragGestureHandler(
+      canDrag: !widget.canDrag,
+      onDragStart: (globalPosition, localPosition) {
+        widget.onDragStart(
+          globalPosition,
+          localPostion,
+        );
+      },
+      onDragEnd: (globalPosition) {
+        _finishDragging(
+          currentPosition: globalPosition,
+        );
+      },
+      onDragUpdate: (globalPosition) {
+        widget.onUpdate(
+          globalPosition,
+        );
+      },
+      child: AvatarPresenter(
+        avatarVisible: avatarVisible,
+        avatarPosition: visiblePosition,
+        child: widget.child,
       ),
     );
   }
