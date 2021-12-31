@@ -1,15 +1,21 @@
 # 2021/12/31
-## やること
-- リファクタリング
-  - Listener を Draggable ではなく、親 Widget に持っていって、State で現在位置を管理するようにする
-  - ドラッグを担当するコンポーネントは、 ドラッグが完了後所定の位置に AnimationController で戻すことも担当する
-  - Draggable と Avatar を分離するかは微妙な問題
 ## やったこと
 - State 上の dragGlobalPosition を更新する
 - Avatar は dragGlobalPosition を監視して位置を補正するようにする
 - Slot の位置を globalPosition で計算するようにする
 - 手を離した時に AnimationController で所定の位置に戻す
 - Slot の位置を globalPosition で計算するようにする
+## 次やること
+- Draggable から Avatar を分離する
+- Avatar には slot 位置を与えるようにする
+  - コンポーネントに自分で自分の位置を計算させるか
+  - 統括管理してコンポーネントに考えさせずに、位置を与えるか
+## 設計手法
+- global => data storage 
+  - できるだけ管理をしない
+- local => container/presentational
+  - dynamic/static のレイヤを分離する
+  - computed な値は dynamic 側で計算する
 # 2021/12/30
 - やること
   - リファクタリング 
