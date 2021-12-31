@@ -3,15 +3,15 @@ import 'package:flutter_portal/flutter_portal.dart';
 
 class AvatarPresenter extends StatelessWidget {
   const AvatarPresenter({
-    required this.child,
-    required this.avatarVisible,
     required this.avatarPosition,
+    required this.avatarVisible,
+    required this.child,
     Key? key,
   }) : super(key: key);
 
-  final Widget child;
-  final bool avatarVisible;
   final Offset avatarPosition;
+  final bool avatarVisible;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
