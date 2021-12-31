@@ -1,3 +1,11 @@
+# 2021/12/31 Part2
+- やったこと
+  - Better な設計
+  - Container/Presentational で分割するリファクタリング
+- 次にやること
+  - ロジックの全消し
+  - Container 層を再実装する
+
 # 2021/12/31
 ## やったこと
 - State 上の dragGlobalPosition を更新する
