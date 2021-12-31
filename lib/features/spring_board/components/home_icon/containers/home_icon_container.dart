@@ -36,10 +36,7 @@ class HomeIconContainer extends HookConsumerWidget {
       top: position.dy,
       left: position.dx,
       child: DragGestureHandler(
-        canDrag: true,
-        onDragStart: homeIconController.onDragStart,
-        onDragUpdate: homeIconController.onDragUpdate,
-        onDragEnd: homeIconController.onDragEnd,
+        canDrag: false,
         child: SizedBox.fromSize(
           size: slotLayerComputed.slotSize,
           child: Shaker(

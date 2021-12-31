@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon/state/home_icon_dragging_state/home_icon_dragging_state.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon/state/home_icon_dragging_state/home_icon_dragging_state_provider.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/state/home_icon_mode.dart';
 import 'package:ios_springboard/utils/sleep.dart';
 
@@ -20,13 +22,9 @@ class HomeIconController {
   final int _id;
   final Reader _read;
 
-  Future<void> onDragStart(
-    Offset globalPosition,
-    Offset localPosition,
-  ) async {
+  Future<void> onSessionStart() async {
     _read(homeIconMode(_id).notifier).state = HomeIconMode.tapped;
     await sleep(milliseconds: 500);
-    HomeIconMode mode;
     if (!_read(homeIconMode(_id)).isTapped) {
       return;
     }
@@ -39,12 +37,20 @@ class HomeIconController {
     // TODO(HeavenOSK): SpringBoard に drag 状態を伝える
   }
 
-  void onDragUpdate(Offset globalPosition) {
+  void onPositionUpdate(
+    Offset globalPosition,
+    Offset localPosition,
+  ) {
     _read(homeIconMode(_id).notifier).state = HomeIconMode.dragging;
-    // TODO(HeavenOSK): SpringBoard に drag 状態を伝える
+    _read(homeIconDraggingStateProvider.notifier).state = HomeIconDraggingState(
+      id: _id,
+      globalPosition: globalPosition,
+      localPosition: localPosition,
+    );
   }
 
-  void onDragEnd(Offset globalPosition) {
+  void onSessionFinished() {
+    _read(homeIconDraggingStateProvider.notifier).state = null;
     switch (_read(homeIconMode(_id))) {
       case HomeIconMode.waiting:
         return;
