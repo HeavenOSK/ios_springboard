@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/spring_board_state/spiring_board_controller.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_state/spiring_board_controller.dart';
 import 'package:ios_springboard/providers/portal_root_offset_provider.dart';
 import 'package:ios_springboard/providers/slot_area_offset_provider.dart';
 

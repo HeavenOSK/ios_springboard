@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/features/spring_board/storage/spring_board_controller.dart';
+import 'package:ios_springboard/features/spring_board/storage/spring_board_registerer.dart';
 
 class SpringBoardDebug extends HookConsumerWidget {
   const SpringBoardDebug({Key? key}) : super(key: key);
