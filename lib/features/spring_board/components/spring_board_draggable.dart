@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ios_springboard/features/spring_board/components/avatar_presenter.dart';
 import 'package:ios_springboard/features/spring_board/state/spring_board_state/spiring_board_controller.dart';
 import 'package:ios_springboard/providers/portal_root_offset_provider.dart';
 import 'package:ios_springboard/providers/slot_area_offset_provider.dart';
@@ -151,26 +151,10 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
             currentPosition: event.position,
           );
         },
-        child: PortalEntry(
-          visible: avatarVisible,
-          portal: IgnorePointer(
-            child: Stack(
-              children: [
-                Positioned(
-                  left: visiblePosition.dx,
-                  top: visiblePosition.dy,
-                  child: widget.child,
-                ),
-              ],
-            ),
-          ),
-          child: IgnorePointer(
-            ignoring: avatarVisible,
-            child: Opacity(
-              opacity: avatarVisible ? 0 : 1,
-              child: widget.child,
-            ),
-          ),
+        child: AvatarPresenter(
+          avatarVisible: avatarVisible,
+          avatarPosition: visiblePosition,
+          child: widget.child,
         ),
       ),
     );
