@@ -7,13 +7,13 @@ import 'package:ios_springboard/features/spring_board/storage/spring_board_regis
 class HomeIconPresentational extends HookConsumerWidget {
   const HomeIconPresentational({
     required this.shouldExpand,
-    required this.isDragging,
+    required this.shouldHideName,
     required this.mockIconData,
     Key? key,
   }) : super(key: key);
 
   final MockIconData mockIconData;
-  final bool isDragging;
+  final bool shouldHideName;
   final bool shouldExpand;
 
   @override
@@ -33,10 +33,12 @@ class HomeIconPresentational extends HookConsumerWidget {
               child: Material(
                 type: MaterialType.transparency,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 1.7),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 1.7,
+                  ),
                   child: FittedBox(
                     child: Opacity(
-                      opacity: shouldExpand || isDragging ? 0.0 : 1.0,
+                      opacity: shouldExpand || shouldHideName ? 0.0 : 1.0,
                       child: Text(
                         mockIconData.name,
                         style: const TextStyle(

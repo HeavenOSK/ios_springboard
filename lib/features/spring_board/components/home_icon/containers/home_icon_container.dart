@@ -40,7 +40,7 @@ class HomeIconContainer extends HookConsumerWidget {
               child: Center(
                 child: HomeIconPresentational(
                   shouldExpand: false,
-                  isDragging: false,
+                  shouldHideName: false,
                   mockIconData: mockIconData,
                 ),
               ),
