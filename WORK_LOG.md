@@ -2,9 +2,12 @@
 - やったこと
   - Better な設計
   - Container/Presentational で分割するリファクタリング
+  - リファクタリング色々やった
+  - HomeIconSessionHandler がかなり良さそう
 - 次にやること
-  - ロジックの全消し
-  - Container 層を再実装する
+  - HomeIconSessionHandler 内で mode の切り替えを行うようにする
+    - HomeIconController を置き換えるような形
+  - HomeIconSessionHandler の riverpod 周りのコードが増えてきたので part ファイルで分離する。
 
 # 2021/12/31
 ## やったこと
