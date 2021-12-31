@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/features/spring_board/components/blur_mask.dart';
+import 'package:ios_springboard/features/spring_board/components/blur_mask/blur_mask_container.dart';
 import 'package:ios_springboard/features/spring_board/components/spring_board_scrollable_area.dart';
 import 'package:ios_springboard/features/spring_board/screen/portal_root_key.dart';
 import 'package:ios_springboard/features/spring_board/screen/spring_board_scales_provider.dart';
@@ -29,7 +29,7 @@ class SpringBoard extends HookConsumerWidget {
             child: _BottomArea(),
           ),
           Positioned.fill(
-            child: BlurMask(),
+            child: BlurMaskContainer(),
           )
         ],
       ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/config/home_icon_scales_provider.dart';
-import 'package:ios_springboard/features/spring_board/state/icons/mock_icon_data.dart';
+import 'package:ios_springboard/features/spring_board/storage/spring_board_registerer/mock_icon_data/mock_icon_data.dart';
 
 class HomeIconPresentational extends HookConsumerWidget {
   const HomeIconPresentational({

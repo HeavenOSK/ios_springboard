@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ios_springboard/features/spring_board/state/spring_board_state/spring_board_state.dart';
 
 class Expandable extends StatelessWidget {
   const Expandable({
@@ -20,7 +19,7 @@ class Expandable extends StatelessWidget {
         begin: 1,
         end: expanding ? 1.1 : 1.0,
       ),
-      duration: SpringBoardMode.tapStart.sceneDuration,
+      duration: const Duration(milliseconds: 300),
       builder: (context, value, child) {
         return Transform.scale(
           scale: value,

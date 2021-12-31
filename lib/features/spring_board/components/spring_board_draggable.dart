@@ -2,25 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/drag_gesture_handler.dart';
 import 'package:ios_springboard/features/spring_board/components/avatar_presenter.dart';
-import 'package:ios_springboard/features/spring_board/state/spring_board_state/spiring_board_controller.dart';
 import 'package:ios_springboard/providers/portal_root_offset_provider.dart';
 import 'package:ios_springboard/providers/slot_area_offset_provider.dart';
 
 final _avatarPositionProvider = StateProvider<Offset>(
   (ref) {
-    final globalPosition = ref.watch(
-      springBoardController.select(
-        (value) => value.dragGlobalPosition,
-      ),
-    );
-    final localPosition = ref.watch(
-      springBoardController.select(
-        (value) => value.dragLocalPosition,
-      ),
-    );
-    if (globalPosition == null || localPosition == null) {
-      return Offset.zero;
-    }
+    const globalPosition = Offset.zero;
+    const localPosition = Offset.zero;
     final portalRootOffset = ref.watch(
       portalRootOffsetProvider,
     );
@@ -103,10 +91,11 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
   void _finishDragging({
     required Offset currentPosition,
   }) {
+    const dragLocalPosition = Offset.zero;
     final cancelAnimation = _getCancelAnimation(
       currentPosition: currentPosition,
       finishPosition: widget.currentSlotPosition +
-          ref.watch(springBoardController).dragLocalPosition! +
+          dragLocalPosition +
           ref.read(slotAreaOffsetProvider),
     );
     void _animate() {
@@ -130,7 +119,7 @@ class _SpringBoardDraggableState extends ConsumerState<SpringBoardDraggable>
       onDragStart: (globalPosition, localPosition) {
         widget.onDragStart(
           globalPosition,
-          localPostion,
+          localPosition,
         );
       },
       onDragEnd: (globalPosition) {

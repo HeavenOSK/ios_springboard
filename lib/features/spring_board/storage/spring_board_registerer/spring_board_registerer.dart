@@ -1,5 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/features/spring_board/storage/spring_board_storage.dart';
+import 'package:ios_springboard/features/spring_board/storage/spring_board_registerer/spring_board_storage.dart';
 
 final springBoardRegisterer =
     StateNotifierProvider<SpringBoardRegisterer, SpringBoardStorage>(
