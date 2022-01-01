@@ -73,14 +73,11 @@ class _HomeIconSessionHandlerContainerState
     required Offset globalPosition,
     required Offset localPosition,
   }) async {
-    if (!ref
-        .read(_homeIconSession(widget.id))
-        .canMoveFor(HomeIconMode.tapped)) {
-      return;
-    }
+    // TODO(HeavenOSK): ロックしてる場合はアプリを開いてあげる必要がある
     ref.read(_homeIconSession(widget.id).notifier).state =
         ref.read(_homeIconSession(widget.id)).copyWith(
               mode: HomeIconMode.tapped,
+              locked: false,
             );
 
     ref.read(_draggingState(widget.id).notifier).state = HomeIconDraggingState(
@@ -126,19 +123,17 @@ class _HomeIconSessionHandlerContainerState
             );
   }
 
-  void onSessionEnd() {
+  void _finishSession() {
     switch (ref.read(_homeIconSession(widget.id)).mode) {
       case HomeIconMode.waiting:
         return;
       case HomeIconMode.tapped:
+      case HomeIconMode.showContextMenu:
         ref.read(_homeIconSession(widget.id).notifier).state =
             ref.read(_homeIconSession(widget.id)).copyWith(
                   mode: HomeIconMode.waiting,
                 );
         // TODO(HeavenOSK): アプリを開く処理を発火させる必要がある
-        return;
-      case HomeIconMode.showContextMenu:
-        // ContextMenu を出しっぱなしにする
         return;
       case HomeIconMode.dragging:
       case HomeIconMode.endDragging:
@@ -156,6 +151,13 @@ class _HomeIconSessionHandlerContainerState
     required Offset globalPosition,
     required Offset localPosition,
   }) {
+    if (ref.read(_homeIconSession(widget.id)).mode.isShowContextMenu) {
+      ref.read(_homeIconSession(widget.id).notifier).state =
+          ref.read(_homeIconSession(widget.id)).copyWith(
+                locked: true,
+              );
+      return;
+    }
     ref.read(_homeIconSession(widget.id).notifier).state =
         ref.read(_homeIconSession(widget.id)).copyWith(
               mode: HomeIconMode.endDragging,
@@ -184,7 +186,7 @@ class _HomeIconSessionHandlerContainerState
                   globalPosition: null,
                   localPosition: null,
                 );
-        onSessionEnd();
+        _finishSession();
       },
     );
   }
@@ -199,14 +201,6 @@ class _HomeIconSessionHandlerContainerState
     final avatarPosition = ref.watch(
       _avatarPosition(widget.id),
     );
-    // ref.listen(
-    //   _homeIconMode(widget.id),
-    //   (previous, next) {
-    //     if (widget.id == 0) {
-    //       print(mode);
-    //     }
-    //   },
-    // );
     return DragGestureHandler(
       canDragStart: widget.canDragStart,
       onDragStart: (globalPosition, localPosition) {
@@ -231,6 +225,7 @@ class _HomeIconSessionHandlerContainerState
         context,
         mode,
         avatarPosition,
+        _finishSession,
       ),
     );
   }

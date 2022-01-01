@@ -8,6 +8,7 @@ class AvatarPresenter extends StatelessWidget {
     required this.avatarVisible,
     required this.shouldBlur,
     required this.child,
+    required this.onTapBlur,
     Key? key,
   }) : super(key: key);
 
@@ -15,26 +16,30 @@ class AvatarPresenter extends StatelessWidget {
   final bool avatarVisible;
   final bool shouldBlur;
   final Widget child;
+  final VoidCallback onTapBlur;
 
   @override
   Widget build(BuildContext context) {
     return PortalEntry(
       visible: avatarVisible,
-      portal: IgnorePointer(
-        child: Stack(
-          children: [
-            Positioned.fill(
+      portal: Stack(
+        children: [
+          Positioned.fill(
+            child: GestureDetector(
+              onTap: onTapBlur,
               child: BlurMaskPresentational(
                 shouldBlur: shouldBlur,
               ),
             ),
-            Positioned(
-              left: avatarPosition.dx,
-              top: avatarPosition.dy,
+          ),
+          Positioned(
+            left: avatarPosition.dx,
+            top: avatarPosition.dy,
+            child: IgnorePointer(
               child: child,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       child: IgnorePointer(
         ignoring: avatarVisible,

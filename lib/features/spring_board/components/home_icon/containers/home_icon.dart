@@ -38,10 +38,12 @@ class HomeIcon extends HookConsumerWidget {
           context,
           mode,
           avatarPosition,
+          dismissCallback,
         ) {
           final shouldExpand = mode.shouldExpand;
           return AvatarPresenter(
             shouldBlur: mode.shouldBlur,
+            onTapBlur: dismissCallback,
             avatarVisible: mode.avatarVisible,
             avatarPosition: avatarPosition,
             child: SizedBox.fromSize(

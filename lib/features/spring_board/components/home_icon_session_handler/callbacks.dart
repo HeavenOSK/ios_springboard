@@ -4,4 +4,5 @@ typedef HomeIconBuilder = Widget Function(
   BuildContext context,
   HomeIconMode mode,
   Offset avatarPosition,
+  VoidCallback dissmissCallback,
 );

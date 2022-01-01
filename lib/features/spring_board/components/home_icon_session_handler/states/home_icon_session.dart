@@ -18,15 +18,14 @@ extension HomeIconSessionX on HomeIconSession {
     }
     switch (targetMode) {
       case HomeIconMode.waiting:
-        return true;
       case HomeIconMode.tapped:
-        return mode.isWaiting;
+        return true;
       case HomeIconMode.showContextMenu:
-        return mode.isTapped;
+        return mode.isTapped && !locked;
       case HomeIconMode.dragging:
-        return mode.isShowContextMenu;
+        return mode.isShowContextMenu && !locked;
       case HomeIconMode.endDragging:
-        return mode.isDragging;
+        return mode.isDragging && !locked;
     }
   }
 }
