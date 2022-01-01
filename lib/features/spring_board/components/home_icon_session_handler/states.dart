@@ -1,7 +1,7 @@
 part of 'home_icon_session_handler.dart';
 
-final _homeIconMode = StateProvider.family<HomeIconMode, int>(
-  (ref, id) => HomeIconMode.waiting,
+final _homeIconSession = StateProvider.family<HomeIconSession, int>(
+  (ref, id) => const HomeIconSession(),
 );
 
 final _draggingState = StateProvider.family<HomeIconDraggingState, int>(
