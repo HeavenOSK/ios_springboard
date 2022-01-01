@@ -4,11 +4,15 @@
   - アイコンのアニメーションを AnimatedContainer を使って修正
   - Portal を使って Avatar に BackdropFilter を追加した
   - showContext mode で手放した時にロックするようにした
+  - 静的な状態で表示してみる
 - 次やること
   - コンテキストメニューの表示 
-    - 静的な状態で表示してみる
     - アニメーションで表示する
+      - TweenAnimationBuilder で Opacity Transform.scale を変化させる 
+    - コンテキストメニューを適切な位置に表示する
     - ビジネスロジックと結合する
+  - SpringBoardState を作っていく
+    - プルプルさせる動作とか
 # 2021/12/31 Part2
 - やったこと
   - Better な設計
