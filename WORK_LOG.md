@@ -3,6 +3,7 @@
   - mode の更新の修正
   - アイコンのアニメーションを AnimatedContainer を使って修正
   - Portal を使って Avatar に BackdropFilter を追加した
+  - showContext mode で手放した時にロックするようにした
 # 2021/12/31 Part2
 - やったこと
   - Better な設計
