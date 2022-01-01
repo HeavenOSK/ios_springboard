@@ -43,4 +43,6 @@ extension HomeIconModeBehaviors on HomeIconMode {
         return false;
     }
   }
+
+  bool get shouldBlur => this == HomeIconMode.showContextMenu;
 }

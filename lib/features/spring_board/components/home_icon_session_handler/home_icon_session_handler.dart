@@ -87,7 +87,7 @@ class _HomeIconSessionHandlerContainerState
     }
     ref.read(_homeIconMode(widget.id).notifier).state =
         HomeIconMode.showContextMenu;
-    await sleep(milliseconds: 500);
+    await sleep(milliseconds: 1500);
     if (!ref.read(_homeIconMode(widget.id)).isShowContextMenu) {
       return;
     }

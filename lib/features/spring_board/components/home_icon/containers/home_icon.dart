@@ -41,7 +41,8 @@ class HomeIcon extends HookConsumerWidget {
         ) {
           final shouldExpand = mode.shouldExpand;
           return AvatarPresenter(
-            avatarVisible: mode == HomeIconMode.dragging,
+            shouldBlur: mode.shouldBlur,
+            avatarVisible: mode.avatarVisible,
             avatarPosition: avatarPosition,
             child: SizedBox.fromSize(
               size: slotLayerComputed.slotSize,

@@ -15,7 +15,10 @@ class BlurMaskPresentational extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0, end: shouldBlur ? 1 : 0),
-      duration: const Duration(milliseconds: 350),
+      // Duration も変更できる
+      duration: shouldBlur
+          ? const Duration(milliseconds: 350)
+          : const Duration(milliseconds: 180),
       builder: (context, value, child) {
         if (value <= 0) {
           return const SizedBox.shrink();
