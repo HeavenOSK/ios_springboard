@@ -18,9 +18,7 @@ class _$HomeIconDraggingStateTearOff {
   const _$HomeIconDraggingStateTearOff();
 
   _HomeIconDraggingState call(
-      {required int id,
-      required Offset globalPosition,
-      required Offset localPosition}) {
+      {required int id, Offset? globalPosition, Offset? localPosition}) {
     return _HomeIconDraggingState(
       id: id,
       globalPosition: globalPosition,
@@ -35,8 +33,8 @@ const $HomeIconDraggingState = _$HomeIconDraggingStateTearOff();
 /// @nodoc
 mixin _$HomeIconDraggingState {
   int get id => throw _privateConstructorUsedError;
-  Offset get globalPosition => throw _privateConstructorUsedError;
-  Offset get localPosition => throw _privateConstructorUsedError;
+  Offset? get globalPosition => throw _privateConstructorUsedError;
+  Offset? get localPosition => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeIconDraggingStateCopyWith<HomeIconDraggingState> get copyWith =>
@@ -48,7 +46,7 @@ abstract class $HomeIconDraggingStateCopyWith<$Res> {
   factory $HomeIconDraggingStateCopyWith(HomeIconDraggingState value,
           $Res Function(HomeIconDraggingState) then) =
       _$HomeIconDraggingStateCopyWithImpl<$Res>;
-  $Res call({int id, Offset globalPosition, Offset localPosition});
+  $Res call({int id, Offset? globalPosition, Offset? localPosition});
 }
 
 /// @nodoc
@@ -74,11 +72,11 @@ class _$HomeIconDraggingStateCopyWithImpl<$Res>
       globalPosition: globalPosition == freezed
           ? _value.globalPosition
           : globalPosition // ignore: cast_nullable_to_non_nullable
-              as Offset,
+              as Offset?,
       localPosition: localPosition == freezed
           ? _value.localPosition
           : localPosition // ignore: cast_nullable_to_non_nullable
-              as Offset,
+              as Offset?,
     ));
   }
 }
@@ -90,7 +88,7 @@ abstract class _$HomeIconDraggingStateCopyWith<$Res>
           $Res Function(_HomeIconDraggingState) then) =
       __$HomeIconDraggingStateCopyWithImpl<$Res>;
   @override
-  $Res call({int id, Offset globalPosition, Offset localPosition});
+  $Res call({int id, Offset? globalPosition, Offset? localPosition});
 }
 
 /// @nodoc
@@ -118,11 +116,11 @@ class __$HomeIconDraggingStateCopyWithImpl<$Res>
       globalPosition: globalPosition == freezed
           ? _value.globalPosition
           : globalPosition // ignore: cast_nullable_to_non_nullable
-              as Offset,
+              as Offset?,
       localPosition: localPosition == freezed
           ? _value.localPosition
           : localPosition // ignore: cast_nullable_to_non_nullable
-              as Offset,
+              as Offset?,
     ));
   }
 }
@@ -131,16 +129,14 @@ class __$HomeIconDraggingStateCopyWithImpl<$Res>
 
 class _$_HomeIconDraggingState implements _HomeIconDraggingState {
   const _$_HomeIconDraggingState(
-      {required this.id,
-      required this.globalPosition,
-      required this.localPosition});
+      {required this.id, this.globalPosition, this.localPosition});
 
   @override
   final int id;
   @override
-  final Offset globalPosition;
+  final Offset? globalPosition;
   @override
-  final Offset localPosition;
+  final Offset? localPosition;
 
   @override
   String toString() {
@@ -176,15 +172,15 @@ class _$_HomeIconDraggingState implements _HomeIconDraggingState {
 abstract class _HomeIconDraggingState implements HomeIconDraggingState {
   const factory _HomeIconDraggingState(
       {required int id,
-      required Offset globalPosition,
-      required Offset localPosition}) = _$_HomeIconDraggingState;
+      Offset? globalPosition,
+      Offset? localPosition}) = _$_HomeIconDraggingState;
 
   @override
   int get id;
   @override
-  Offset get globalPosition;
+  Offset? get globalPosition;
   @override
-  Offset get localPosition;
+  Offset? get localPosition;
   @override
   @JsonKey(ignore: true)
   _$HomeIconDraggingStateCopyWith<_HomeIconDraggingState> get copyWith =>

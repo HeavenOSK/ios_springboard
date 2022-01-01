@@ -12,22 +12,14 @@ class Expandable extends StatelessWidget {
   final Widget child;
   final bool expanding;
 
+  double get scale => expanding ? 1.1 : 1.0;
+
   @override
   Widget build(BuildContext context) {
-    return TweenAnimationBuilder<double>(
-      tween: Tween<double>(
-        begin: 1,
-        end: expanding ? 1.1 : 1.0,
-      ),
-      duration: const Duration(milliseconds: 300),
-      builder: (context, value, child) {
-        return Transform.scale(
-          scale: value,
-          child: FittedBox(
-            child: child,
-          ),
-        );
-      },
+    return AnimatedContainer(
+      transform: Matrix4.diagonal3Values(scale, scale, 1),
+      transformAlignment: Alignment.center,
+      duration: const Duration(milliseconds: 250),
       child: child,
     );
   }

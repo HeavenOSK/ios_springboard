@@ -37,8 +37,9 @@ class HomeIconPresentational extends HookConsumerWidget {
                     vertical: 1.7,
                   ),
                   child: FittedBox(
-                    child: Opacity(
+                    child: AnimatedOpacity(
                       opacity: shouldExpand || shouldHideName ? 0.0 : 1.0,
+                      duration: const Duration(milliseconds: 250),
                       child: Text(
                         mockIconData.name,
                         style: const TextStyle(

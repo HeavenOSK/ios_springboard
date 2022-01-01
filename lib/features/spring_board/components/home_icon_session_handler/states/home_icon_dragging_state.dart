@@ -7,7 +7,7 @@ part 'home_icon_dragging_state.freezed.dart';
 class HomeIconDraggingState with _$HomeIconDraggingState {
   const factory HomeIconDraggingState({
     required int id,
-    required Offset globalPosition,
-    required Offset localPosition,
+    Offset? globalPosition,
+    Offset? localPosition,
   }) = _HomeIconDraggingState;
 }

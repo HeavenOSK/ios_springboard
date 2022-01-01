@@ -6,14 +6,16 @@ typedef OnDragStart = void Function(
 );
 typedef OnDragUpdate = void Function(
   Offset globalPosition,
+  Offset localPosition,
 );
 typedef OnDragEnd = void Function(
   Offset globalPosition,
+  Offset localPosition,
 );
 
 class DragGestureHandler extends StatelessWidget {
   const DragGestureHandler({
-    required this.canDrag,
+    required this.canDragStart,
     this.onDragStart,
     this.onDragUpdate,
     this.onDragEnd,
@@ -24,13 +26,13 @@ class DragGestureHandler extends StatelessWidget {
   final OnDragStart? onDragStart;
   final OnDragUpdate? onDragUpdate;
   final OnDragEnd? onDragEnd;
-  final bool canDrag;
+  final bool canDragStart;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
-      ignoring: !canDrag,
+      ignoring: !canDragStart,
       child: Listener(
         behavior: HitTestBehavior.translucent,
         onPointerDown: (event) {
@@ -42,16 +44,19 @@ class DragGestureHandler extends StatelessWidget {
         onPointerMove: (event) {
           onDragUpdate?.call(
             event.position,
+            event.localPosition,
           );
         },
         onPointerUp: (event) {
           onDragEnd?.call(
             event.position,
+            event.localPosition,
           );
         },
         onPointerCancel: (event) {
           onDragEnd?.call(
             event.position,
+            event.localPosition,
           );
         },
         child: child,
