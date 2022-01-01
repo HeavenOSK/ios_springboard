@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/expandable.dart';
@@ -42,6 +43,7 @@ class HomeIcon extends HookConsumerWidget {
         ) {
           final shouldExpand = mode.shouldExpand;
           return AvatarPresenter(
+            showContextMenu: mode.isShowContextMenu,
             shouldBlur: mode.shouldBlur,
             onTapBlur: dismissCallback,
             avatarVisible: mode.avatarVisible,

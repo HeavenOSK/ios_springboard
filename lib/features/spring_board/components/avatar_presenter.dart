@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/blur_mask.dart';
+import 'package:ios_springboard/features/spring_board/components/context_menu/context_menu.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon/config/home_icon_scales_provider.dart';
 
-class AvatarPresenter extends StatelessWidget {
+class AvatarPresenter extends ConsumerWidget {
   const AvatarPresenter({
     required this.avatarPosition,
     required this.avatarVisible,
     required this.shouldBlur,
     required this.child,
     required this.onTapBlur,
+    required this.showContextMenu,
     Key? key,
   }) : super(key: key);
 
@@ -17,9 +21,11 @@ class AvatarPresenter extends StatelessWidget {
   final bool shouldBlur;
   final Widget child;
   final VoidCallback onTapBlur;
+  final bool showContextMenu;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final homeIconScales = ref.watch(homeIconScalesProvider);
     return PortalEntry(
       visible: avatarVisible,
       portal: Stack(
@@ -37,6 +43,13 @@ class AvatarPresenter extends StatelessWidget {
             top: avatarPosition.dy,
             child: IgnorePointer(
               child: child,
+            ),
+          ),
+          Positioned(
+            left: avatarPosition.dx,
+            top: avatarPosition.dy + homeIconScales.areaSize.height,
+            child: ContextMenu(
+              visible: showContextMenu,
             ),
           ),
         ],
