@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ios_springboard/features/spring_board/components/context_menu/context_menu.dart';
 import 'package:ios_springboard/features/spring_board/components/spring_board_scrollable_area.dart';
 import 'package:ios_springboard/features/spring_board/screen/portal_root_key.dart';
 import 'package:ios_springboard/features/spring_board/screen/spring_board_scales_provider.dart';
@@ -26,6 +27,9 @@ class SpringBoard extends HookConsumerWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: _BottomArea(),
+          ),
+          Center(
+            child: ContextMenu(),
           ),
         ],
       ),

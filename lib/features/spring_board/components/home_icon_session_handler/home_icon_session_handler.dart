@@ -181,6 +181,9 @@ class _HomeIconSessionHandlerContainerState
     _cancelAnimationController.forward(from: 0).then(
       (_) {
         cancelAnimation.removeListener(_animate);
+        if (!ref.read(_homeIconSession(widget.id)).mode.isEndDragging) {
+          return;
+        }
         ref.read(_draggingState(widget.id).notifier).state =
             ref.read(_draggingState(widget.id)).copyWith(
                   globalPosition: null,
