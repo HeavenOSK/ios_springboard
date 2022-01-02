@@ -2,7 +2,7 @@
 - やったこと
   - Anchored Widget を作成した
   - ContextMenu を Anchored を使って表示した
-  - AnchorPattern を実装して適切な位置に ContextMenu を表示できるようにした
+  - AnchorPattern を実装して適切なアンカー位置で ContextMenu を表示できるようにした
 # 2022/01/02
 - やること
   - コンテキストメニューの表示
