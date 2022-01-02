@@ -7,6 +7,15 @@
     - プルプルさせる動作とか
 - やったこと
   - ContextMenu の表示・非表示、アニメーションを実装する 
+- 次やること
+  - Anchored を実装する
+    - StackParentData を使う感じ
+    - child size から childAnchor を計算する
+    - targetRect を引数でもらって targetAnchor を計算する
+    - 課題
+      - child size をどうやって取る?
+    - ゴール
+      - 色々計算した値から StackParenetData 用の Data を作れば OK
 # 2022/01/01 
 - やったこと
   - mode の更新の修正
