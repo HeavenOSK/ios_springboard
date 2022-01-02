@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/components/atom/app_icon/app_icon_scales_provider.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon/components/app_icon/config/app_icon_scales_provider.dart';
 
 class AppIcon extends HookConsumerWidget {
   const AppIcon({

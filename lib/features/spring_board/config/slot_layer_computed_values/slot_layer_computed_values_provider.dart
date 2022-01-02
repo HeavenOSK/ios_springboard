@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/app/iphone_scales_provider.dart';
-import 'package:ios_springboard/features/spring_board/screen/spring_board_scales.dart';
-import 'package:ios_springboard/features/spring_board/screen/spring_board_scales_provider.dart';
-import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/slot_layer_computed_values.dart';
+import 'package:ios_springboard/components/atom/iphone/config/iphone_scales_provider.dart';
+import 'package:ios_springboard/features/spring_board/config/slot_layer_computed_values/slot_layer_computed_values.dart';
+import 'package:ios_springboard/features/spring_board/config/spring_board_scales/spring_board_scales.dart';
+import 'package:ios_springboard/features/spring_board/config/spring_board_scales/spring_board_scales_provider.dart';
 import 'package:ios_springboard/providers/position_slot_config/position_slot_config_provider.dart';
 
 final slotLayerComputedValuesProvider = StateProvider<SlotLayerComputedValues>(

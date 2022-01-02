@@ -17,7 +17,7 @@ final _avatarPosition = StateProvider.family<Offset, int>(
       return Offset.zero;
     }
     final portalRootOffset = ref.watch(
-      portalRootOffsetProvider,
+      portalRootPositionProvider,
     );
     final position = globalPosition - localPosition - portalRootOffset;
     return position;

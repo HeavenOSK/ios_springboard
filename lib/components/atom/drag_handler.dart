@@ -13,8 +13,8 @@ typedef OnDragEnd = void Function(
   Offset localPosition,
 );
 
-class DragGestureHandler extends StatelessWidget {
-  const DragGestureHandler({
+class DragHandler extends StatelessWidget {
+  const DragHandler({
     required this.canDragStart,
     this.onDragStart,
     this.onDragUpdate,

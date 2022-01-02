@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ios_springboard/app/iphone_scales.dart';
+import 'package:ios_springboard/components/atom/iphone/config/iphone_scales.dart';
 
 part 'spring_board_scales.freezed.dart';
 

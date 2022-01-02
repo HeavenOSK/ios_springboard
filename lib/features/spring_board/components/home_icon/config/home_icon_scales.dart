@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ios_springboard/components/atom/app_icon/app_icon_scales.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon/components/app_icon/config/app_icon_scales.dart';
 
 part 'home_icon_scales.freezed.dart';
 

@@ -4,12 +4,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/expandable.dart';
 import 'package:ios_springboard/components/atom/shaker.dart';
 import 'package:ios_springboard/features/spring_board/components/avatar_presenter.dart';
-import 'package:ios_springboard/features/spring_board/components/context_menu/anchor_pattern_family.dart';
+import 'package:ios_springboard/features/spring_board/components/context_menu/enums/anchor_pattern_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/presentationals/home_icon_presentational.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/state/home_icon_order_faimily.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/home_icon_mode.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/home_icon_session_handler.dart';
-import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
+import 'package:ios_springboard/features/spring_board/config/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
 import 'package:ios_springboard/features/spring_board/storage/spring_board_registerer/mock_icon_data/mock_icon_data.dart';
 
 class HomeIcon extends HookConsumerWidget {

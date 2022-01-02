@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/components/atom/app_icon/app_icon.dart';
-import 'package:ios_springboard/features/spring_board/components/context_menu/anchor_pattern.dart';
-import 'package:ios_springboard/features/spring_board/components/context_menu/anchor_pattern_family.dart';
 import 'package:ios_springboard/features/spring_board/components/context_menu/context_menu.dart';
-import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
+import 'package:ios_springboard/features/spring_board/components/context_menu/enums/anchor_pattern.dart';
+import 'package:ios_springboard/features/spring_board/components/context_menu/enums/anchor_pattern_family.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon/components/app_icon/app_icon.dart';
+import 'package:ios_springboard/features/spring_board/config/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
 import 'package:ios_springboard/features/spring_board/storage/spring_board_registerer/mock_icon_data/mock_icon_data.dart';
 
 class HomeIconPresentational extends HookConsumerWidget {
@@ -32,9 +32,8 @@ class HomeIconPresentational extends HookConsumerWidget {
     final anchorPattern = ref.watch(
       anchorPatternFamily(mockIconData.id),
     );
-    return SizedBox(
-      height: slotLayerComputed.slotSize.height,
-      width: slotLayerComputed.slotSize.width,
+    return SizedBox.fromSize(
+      size: slotLayerComputed.slotSize,
       child: Column(
         children: [
           PortalEntry(

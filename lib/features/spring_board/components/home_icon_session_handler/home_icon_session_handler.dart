@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/components/atom/drag_gesture_handler.dart';
+import 'package:ios_springboard/components/atom/drag_handler.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/state/home_icon_order_faimily.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/home_icon_mode.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/states/home_icon_dragging_state.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/states/home_icon_session.dart';
-import 'package:ios_springboard/features/spring_board/state/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
-import 'package:ios_springboard/providers/portal_root_offset_provider.dart';
-import 'package:ios_springboard/providers/slot_area_offset_provider.dart';
+import 'package:ios_springboard/features/spring_board/config/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
+import 'package:ios_springboard/providers/area_positions/portal_root_position_provider.dart';
+import 'package:ios_springboard/providers/area_positions/slot_area_position_provider.dart';
 import 'package:ios_springboard/utils/sleep.dart';
 
 part 'callbacks.dart';
@@ -171,7 +171,7 @@ class _HomeIconSessionHandlerContainerState
       currentPosition: globalPosition,
       finishPosition: slotPosition +
           (ref.read(_draggingState(widget.id)).localPosition ?? Offset.zero) +
-          ref.read(slotAreaOffsetProvider),
+          ref.read(slotAreaPositionProvider),
     );
     void _animate() {
       _animatePosition(cancelAnimation);
@@ -204,7 +204,7 @@ class _HomeIconSessionHandlerContainerState
     final avatarPosition = ref.watch(
       _avatarPosition(widget.id),
     );
-    return DragGestureHandler(
+    return DragHandler(
       canDragStart: widget.canDragStart,
       onDragStart: (globalPosition, localPosition) {
         onDragStart(

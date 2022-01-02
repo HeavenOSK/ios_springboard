@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/app/iphone_scales_provider.dart';
+import 'package:ios_springboard/components/atom/iphone/config/iphone_scales_provider.dart';
 
 class IPhone extends HookConsumerWidget {
   const IPhone({

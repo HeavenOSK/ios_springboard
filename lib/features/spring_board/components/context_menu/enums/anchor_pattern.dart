@@ -34,3 +34,19 @@ extension AnchorPatternX on AnchorPattern {
     }
   }
 }
+
+extension AnimationAlignmentX on AnchorPattern {
+  Alignment get animationAlignment {
+    switch (this) {
+      case AnchorPattern.underLeftArea:
+        return (Alignment.topCenter + Alignment.topLeft) / 2;
+      case AnchorPattern.underRightArea:
+        return (Alignment.topCenter + Alignment.topRight) / 2;
+
+      case AnchorPattern.upLeftArea:
+        return (Alignment.bottomCenter + Alignment.bottomLeft) / 2;
+      case AnchorPattern.upRightArea:
+        return (Alignment.bottomCenter + Alignment.bottomRight) / 2;
+    }
+  }
+}

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/features/spring_board/components/spring_board_scrollable_area.dart';
-import 'package:ios_springboard/features/spring_board/screen/portal_root_key.dart';
-import 'package:ios_springboard/features/spring_board/screen/spring_board_scales_provider.dart';
+import 'package:ios_springboard/features/spring_board/config/spring_board_scales/spring_board_scales_provider.dart';
+import 'package:ios_springboard/providers/area_positions/portal_root_key.dart';
 
 class SpringBoard extends HookConsumerWidget {
   const SpringBoard({Key? key}) : super(key: key);
@@ -38,11 +38,9 @@ class _BottomArea extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final shaking = ref.watch(
-    //   SpringBoardStorageProvider.select((value) => value.movable),
-    // );
-    // final scaleRatio = ref.watch(screenScaleRatioProvider);
-    final springBoardScales = ref.watch(springBoardScalesProvider);
+    final springBoardScales = ref.watch(
+      springBoardScalesProvider,
+    );
     return SizedBox(
       height: springBoardScales.bottomAreaHeight,
       width: double.infinity,
@@ -61,30 +59,6 @@ class _BottomArea extends HookConsumerWidget {
               ),
             ),
           ),
-          // Positioned.fill(
-          //   child: Padding(
-          //     padding: const EdgeInsets.symmetric(
-          //       horizontal: SpringBoardScales.horizontalPadding,
-          //     ),
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //       children: List.generate(
-          //         4,
-          //         (index) => Shaker(
-          //           shaking: shaking,
-          //           child: AppIcon(
-          //             onLongPress: () {
-          //               ref.read(SpringBoardStorageProvider.notifier).state =
-          //                   ref.read(SpringBoardStorageProvider).copyWith(
-          //                         movable: true,
-          //                       );
-          //             },
-          //           ),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );
