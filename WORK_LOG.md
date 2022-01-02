@@ -1,3 +1,7 @@
+# 2022/01/02 Part2
+- やったこと
+  - Anchored Widget を作成した
+  - ContextMenu を Anchored を使って表示した
 # 2022/01/02
 - やること
   - コンテキストメニューの表示
@@ -6,7 +10,7 @@
   - SpringBoardState を作っていく
     - プルプルさせる動作とか
 - やったこと
-  - ContextMenu の表示・非表示、アニメーションを実装する 
+  - ContextMenu の表示・非表示、アニメーションを実装する
 - 次やること
   - Anchored を実装する
     - StackParentData を使う感じ
