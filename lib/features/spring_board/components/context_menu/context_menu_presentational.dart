@@ -13,11 +13,7 @@ class _ContextMenuPresentational extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final contextMenuScales = ref.watch(contextMenuScalesProvider);
-    final width = ref.watch(
-      slotLayerComputedValuesProvider.select(
-        (value) => value.slotSize.width * 3,
-      ),
-    );
+
     return TweenAnimationBuilder<double>(
       // t と同じもの
       tween: Tween(begin: 0, end: visible ? 1 : 0),
@@ -37,7 +33,7 @@ class _ContextMenuPresentational extends ConsumerWidget {
                 contextMenuScales.itemHeight / 4,
               ),
               child: SizedBox(
-                width: width,
+                width: contextMenuScales.computedWidth,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [

@@ -29,7 +29,6 @@ extension AnchorPatternX on AnchorPattern {
         return Alignment.topRight;
       case AnchorPattern.upLeftArea:
         return Alignment.bottomLeft;
-
       case AnchorPattern.upRightArea:
         return Alignment.bottomRight;
     }
