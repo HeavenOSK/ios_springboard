@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'position_slot_config.dart';
+part of 'slot_config.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,11 +14,11 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$PositionSlotConfigTearOff {
-  const _$PositionSlotConfigTearOff();
+class _$SlotConfigTearOff {
+  const _$SlotConfigTearOff();
 
-  _PositionSlotConfig call({int rowCount = 4, int columnCount = 6}) {
-    return _PositionSlotConfig(
+  _SlotConfig call({int rowCount = 4, int columnCount = 6}) {
+    return _SlotConfig(
       rowCount: rowCount,
       columnCount: columnCount,
     );
@@ -26,34 +26,33 @@ class _$PositionSlotConfigTearOff {
 }
 
 /// @nodoc
-const $PositionSlotConfig = _$PositionSlotConfigTearOff();
+const $SlotConfig = _$SlotConfigTearOff();
 
 /// @nodoc
-mixin _$PositionSlotConfig {
+mixin _$SlotConfig {
   int get rowCount => throw _privateConstructorUsedError;
   int get columnCount => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PositionSlotConfigCopyWith<PositionSlotConfig> get copyWith =>
+  $SlotConfigCopyWith<SlotConfig> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PositionSlotConfigCopyWith<$Res> {
-  factory $PositionSlotConfigCopyWith(
-          PositionSlotConfig value, $Res Function(PositionSlotConfig) then) =
-      _$PositionSlotConfigCopyWithImpl<$Res>;
+abstract class $SlotConfigCopyWith<$Res> {
+  factory $SlotConfigCopyWith(
+          SlotConfig value, $Res Function(SlotConfig) then) =
+      _$SlotConfigCopyWithImpl<$Res>;
   $Res call({int rowCount, int columnCount});
 }
 
 /// @nodoc
-class _$PositionSlotConfigCopyWithImpl<$Res>
-    implements $PositionSlotConfigCopyWith<$Res> {
-  _$PositionSlotConfigCopyWithImpl(this._value, this._then);
+class _$SlotConfigCopyWithImpl<$Res> implements $SlotConfigCopyWith<$Res> {
+  _$SlotConfigCopyWithImpl(this._value, this._then);
 
-  final PositionSlotConfig _value;
+  final SlotConfig _value;
   // ignore: unused_field
-  final $Res Function(PositionSlotConfig) _then;
+  final $Res Function(SlotConfig) _then;
 
   @override
   $Res call({
@@ -74,32 +73,30 @@ class _$PositionSlotConfigCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$PositionSlotConfigCopyWith<$Res>
-    implements $PositionSlotConfigCopyWith<$Res> {
-  factory _$PositionSlotConfigCopyWith(
-          _PositionSlotConfig value, $Res Function(_PositionSlotConfig) then) =
-      __$PositionSlotConfigCopyWithImpl<$Res>;
+abstract class _$SlotConfigCopyWith<$Res> implements $SlotConfigCopyWith<$Res> {
+  factory _$SlotConfigCopyWith(
+          _SlotConfig value, $Res Function(_SlotConfig) then) =
+      __$SlotConfigCopyWithImpl<$Res>;
   @override
   $Res call({int rowCount, int columnCount});
 }
 
 /// @nodoc
-class __$PositionSlotConfigCopyWithImpl<$Res>
-    extends _$PositionSlotConfigCopyWithImpl<$Res>
-    implements _$PositionSlotConfigCopyWith<$Res> {
-  __$PositionSlotConfigCopyWithImpl(
-      _PositionSlotConfig _value, $Res Function(_PositionSlotConfig) _then)
-      : super(_value, (v) => _then(v as _PositionSlotConfig));
+class __$SlotConfigCopyWithImpl<$Res> extends _$SlotConfigCopyWithImpl<$Res>
+    implements _$SlotConfigCopyWith<$Res> {
+  __$SlotConfigCopyWithImpl(
+      _SlotConfig _value, $Res Function(_SlotConfig) _then)
+      : super(_value, (v) => _then(v as _SlotConfig));
 
   @override
-  _PositionSlotConfig get _value => super._value as _PositionSlotConfig;
+  _SlotConfig get _value => super._value as _SlotConfig;
 
   @override
   $Res call({
     Object? rowCount = freezed,
     Object? columnCount = freezed,
   }) {
-    return _then(_PositionSlotConfig(
+    return _then(_SlotConfig(
       rowCount: rowCount == freezed
           ? _value.rowCount
           : rowCount // ignore: cast_nullable_to_non_nullable
@@ -114,8 +111,8 @@ class __$PositionSlotConfigCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PositionSlotConfig implements _PositionSlotConfig {
-  const _$_PositionSlotConfig({this.rowCount = 4, this.columnCount = 6});
+class _$_SlotConfig implements _SlotConfig {
+  const _$_SlotConfig({this.rowCount = 4, this.columnCount = 6});
 
   @JsonKey(defaultValue: 4)
   @override
@@ -126,14 +123,14 @@ class _$_PositionSlotConfig implements _PositionSlotConfig {
 
   @override
   String toString() {
-    return 'PositionSlotConfig(rowCount: $rowCount, columnCount: $columnCount)';
+    return 'SlotConfig(rowCount: $rowCount, columnCount: $columnCount)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PositionSlotConfig &&
+            other is _SlotConfig &&
             const DeepCollectionEquality().equals(other.rowCount, rowCount) &&
             const DeepCollectionEquality()
                 .equals(other.columnCount, columnCount));
@@ -147,13 +144,12 @@ class _$_PositionSlotConfig implements _PositionSlotConfig {
 
   @JsonKey(ignore: true)
   @override
-  _$PositionSlotConfigCopyWith<_PositionSlotConfig> get copyWith =>
-      __$PositionSlotConfigCopyWithImpl<_PositionSlotConfig>(this, _$identity);
+  _$SlotConfigCopyWith<_SlotConfig> get copyWith =>
+      __$SlotConfigCopyWithImpl<_SlotConfig>(this, _$identity);
 }
 
-abstract class _PositionSlotConfig implements PositionSlotConfig {
-  const factory _PositionSlotConfig({int rowCount, int columnCount}) =
-      _$_PositionSlotConfig;
+abstract class _SlotConfig implements SlotConfig {
+  const factory _SlotConfig({int rowCount, int columnCount}) = _$_SlotConfig;
 
   @override
   int get rowCount;
@@ -161,6 +157,6 @@ abstract class _PositionSlotConfig implements PositionSlotConfig {
   int get columnCount;
   @override
   @JsonKey(ignore: true)
-  _$PositionSlotConfigCopyWith<_PositionSlotConfig> get copyWith =>
+  _$SlotConfigCopyWith<_SlotConfig> get copyWith =>
       throw _privateConstructorUsedError;
 }

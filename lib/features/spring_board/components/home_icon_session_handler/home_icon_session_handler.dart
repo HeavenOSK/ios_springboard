@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/drag_handler.dart';
-import 'package:ios_springboard/features/spring_board/components/home_icon/state/home_icon_order_faimily.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon/state/icon_order_faimily.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/home_icon_mode.dart';
-import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/states/home_icon_dragging_state.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/states/drag_state.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/states/home_icon_session.dart';
-import 'package:ios_springboard/features/spring_board/config/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
+import 'package:ios_springboard/features/spring_board/config/slot_computed_props/slot_computed_props_provider.dart';
 import 'package:ios_springboard/providers/area_positions/portal_root_position_provider.dart';
 import 'package:ios_springboard/providers/area_positions/slot_area_position_provider.dart';
 import 'package:ios_springboard/utils/sleep.dart';
@@ -63,8 +63,8 @@ class _HomeIconSessionHandlerContainerState
   }
 
   void _animatePosition(Animation<Offset> positionAnimation) {
-    ref.read(_draggingState(widget.id).notifier).state =
-        ref.read(_draggingState(widget.id)).copyWith(
+    ref.read(_dragState(widget.id).notifier).state =
+        ref.read(_dragState(widget.id)).copyWith(
               globalPosition: positionAnimation.value,
             );
   }
@@ -80,7 +80,7 @@ class _HomeIconSessionHandlerContainerState
               locked: false,
             );
 
-    ref.read(_draggingState(widget.id).notifier).state = HomeIconDraggingState(
+    ref.read(_dragState(widget.id).notifier).state = DragState(
       id: widget.id,
       globalPosition: globalPosition,
       localPosition: localPosition,
@@ -116,8 +116,8 @@ class _HomeIconSessionHandlerContainerState
         ref.read(_homeIconSession(widget.id)).copyWith(
               mode: HomeIconMode.dragging,
             );
-    ref.read(_draggingState(widget.id).notifier).state =
-        ref.read(_draggingState(widget.id)).copyWith(
+    ref.read(_dragState(widget.id).notifier).state =
+        ref.read(_dragState(widget.id)).copyWith(
               globalPosition: globalPosition,
               // localPosition: localPosition,
             );
@@ -162,16 +162,16 @@ class _HomeIconSessionHandlerContainerState
         ref.read(_homeIconSession(widget.id)).copyWith(
               mode: HomeIconMode.endDragging,
             );
-    final slotLayerComputed = ref.read(slotLayerComputedValuesProvider);
+    final slotLayerComputed = ref.read(slotComputedProps);
     final index = ref.read(
-      homeIconOrderIndexFamily(widget.id),
+      iconOrderIndexFamily(widget.id),
     );
     final slotPosition = slotLayerComputed.slotPositions[index];
     final cancelAnimation = _getCancelAnimation(
       currentPosition: globalPosition,
       finishPosition: slotPosition +
-          (ref.read(_draggingState(widget.id)).localPosition ?? Offset.zero) +
-          ref.read(slotAreaPositionProvider),
+          (ref.read(_dragState(widget.id)).localPosition ?? Offset.zero) +
+          ref.read(slotAreaPosition),
     );
     void _animate() {
       _animatePosition(cancelAnimation);
@@ -184,8 +184,8 @@ class _HomeIconSessionHandlerContainerState
         if (!ref.read(_homeIconSession(widget.id)).mode.isEndDragging) {
           return;
         }
-        ref.read(_draggingState(widget.id).notifier).state =
-            ref.read(_draggingState(widget.id)).copyWith(
+        ref.read(_dragState(widget.id).notifier).state =
+            ref.read(_dragState(widget.id)).copyWith(
                   globalPosition: null,
                   localPosition: null,
                 );

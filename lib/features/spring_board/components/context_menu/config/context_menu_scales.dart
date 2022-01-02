@@ -1,12 +1,12 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ios_springboard/features/spring_board/config/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
+import 'package:ios_springboard/features/spring_board/config/slot_computed_props/slot_computed_props_provider.dart';
 import 'package:ios_springboard/providers/scale_rate_provider.dart';
 
 final contextMenuScalesProvider = StateProvider<ContextMenuScales>(
   (ref) {
-    final rate = ref.watch(scaleRateProvider);
+    final rate = ref.watch(scaleRate);
     final computedWidth = ref.watch(
-      slotLayerComputedValuesProvider.select(
+      slotComputedProps.select(
         (value) => value.slotSize.width / 1.1 * 3,
       ),
     );

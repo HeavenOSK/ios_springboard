@@ -6,10 +6,10 @@ import 'package:ios_springboard/components/atom/shaker.dart';
 import 'package:ios_springboard/features/spring_board/components/avatar_presenter.dart';
 import 'package:ios_springboard/features/spring_board/components/context_menu/enums/anchor_pattern_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/presentationals/home_icon_presentational.dart';
-import 'package:ios_springboard/features/spring_board/components/home_icon/state/home_icon_order_faimily.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon/state/icon_order_faimily.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/home_icon_mode.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/home_icon_session_handler.dart';
-import 'package:ios_springboard/features/spring_board/config/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
+import 'package:ios_springboard/features/spring_board/config/slot_computed_props/slot_computed_props_provider.dart';
 import 'package:ios_springboard/features/spring_board/storage/spring_board_registerer/mock_icon_data/mock_icon_data.dart';
 
 class HomeIcon extends HookConsumerWidget {
@@ -22,9 +22,9 @@ class HomeIcon extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final slotLayerComputed = ref.watch(slotLayerComputedValuesProvider);
+    final slotLayerComputed = ref.watch(slotComputedProps);
     final index = ref.watch(
-      homeIconOrderIndexFamily(mockIconData.id),
+      iconOrderIndexFamily(mockIconData.id),
     );
     final position = slotLayerComputed.slotPositions[index];
     final anchorPattern = ref.watch(

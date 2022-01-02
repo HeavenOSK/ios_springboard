@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'home_icon_dragging_state.dart';
+part of 'drag_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$HomeIconDraggingStateTearOff {
-  const _$HomeIconDraggingStateTearOff();
+class _$DragStateTearOff {
+  const _$DragStateTearOff();
 
-  _HomeIconDraggingState call(
+  _DragState call(
       {required int id, Offset? globalPosition, Offset? localPosition}) {
-    return _HomeIconDraggingState(
+    return _DragState(
       id: id,
       globalPosition: globalPosition,
       localPosition: localPosition,
@@ -28,35 +28,33 @@ class _$HomeIconDraggingStateTearOff {
 }
 
 /// @nodoc
-const $HomeIconDraggingState = _$HomeIconDraggingStateTearOff();
+const $DragState = _$DragStateTearOff();
 
 /// @nodoc
-mixin _$HomeIconDraggingState {
+mixin _$DragState {
   int get id => throw _privateConstructorUsedError;
   Offset? get globalPosition => throw _privateConstructorUsedError;
   Offset? get localPosition => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeIconDraggingStateCopyWith<HomeIconDraggingState> get copyWith =>
+  $DragStateCopyWith<DragState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeIconDraggingStateCopyWith<$Res> {
-  factory $HomeIconDraggingStateCopyWith(HomeIconDraggingState value,
-          $Res Function(HomeIconDraggingState) then) =
-      _$HomeIconDraggingStateCopyWithImpl<$Res>;
+abstract class $DragStateCopyWith<$Res> {
+  factory $DragStateCopyWith(DragState value, $Res Function(DragState) then) =
+      _$DragStateCopyWithImpl<$Res>;
   $Res call({int id, Offset? globalPosition, Offset? localPosition});
 }
 
 /// @nodoc
-class _$HomeIconDraggingStateCopyWithImpl<$Res>
-    implements $HomeIconDraggingStateCopyWith<$Res> {
-  _$HomeIconDraggingStateCopyWithImpl(this._value, this._then);
+class _$DragStateCopyWithImpl<$Res> implements $DragStateCopyWith<$Res> {
+  _$DragStateCopyWithImpl(this._value, this._then);
 
-  final HomeIconDraggingState _value;
+  final DragState _value;
   // ignore: unused_field
-  final $Res Function(HomeIconDraggingState) _then;
+  final $Res Function(DragState) _then;
 
   @override
   $Res call({
@@ -82,25 +80,22 @@ class _$HomeIconDraggingStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$HomeIconDraggingStateCopyWith<$Res>
-    implements $HomeIconDraggingStateCopyWith<$Res> {
-  factory _$HomeIconDraggingStateCopyWith(_HomeIconDraggingState value,
-          $Res Function(_HomeIconDraggingState) then) =
-      __$HomeIconDraggingStateCopyWithImpl<$Res>;
+abstract class _$DragStateCopyWith<$Res> implements $DragStateCopyWith<$Res> {
+  factory _$DragStateCopyWith(
+          _DragState value, $Res Function(_DragState) then) =
+      __$DragStateCopyWithImpl<$Res>;
   @override
   $Res call({int id, Offset? globalPosition, Offset? localPosition});
 }
 
 /// @nodoc
-class __$HomeIconDraggingStateCopyWithImpl<$Res>
-    extends _$HomeIconDraggingStateCopyWithImpl<$Res>
-    implements _$HomeIconDraggingStateCopyWith<$Res> {
-  __$HomeIconDraggingStateCopyWithImpl(_HomeIconDraggingState _value,
-      $Res Function(_HomeIconDraggingState) _then)
-      : super(_value, (v) => _then(v as _HomeIconDraggingState));
+class __$DragStateCopyWithImpl<$Res> extends _$DragStateCopyWithImpl<$Res>
+    implements _$DragStateCopyWith<$Res> {
+  __$DragStateCopyWithImpl(_DragState _value, $Res Function(_DragState) _then)
+      : super(_value, (v) => _then(v as _DragState));
 
   @override
-  _HomeIconDraggingState get _value => super._value as _HomeIconDraggingState;
+  _DragState get _value => super._value as _DragState;
 
   @override
   $Res call({
@@ -108,7 +103,7 @@ class __$HomeIconDraggingStateCopyWithImpl<$Res>
     Object? globalPosition = freezed,
     Object? localPosition = freezed,
   }) {
-    return _then(_HomeIconDraggingState(
+    return _then(_DragState(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -127,8 +122,8 @@ class __$HomeIconDraggingStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_HomeIconDraggingState implements _HomeIconDraggingState {
-  const _$_HomeIconDraggingState(
+class _$_DragState implements _DragState {
+  const _$_DragState(
       {required this.id, this.globalPosition, this.localPosition});
 
   @override
@@ -140,14 +135,14 @@ class _$_HomeIconDraggingState implements _HomeIconDraggingState {
 
   @override
   String toString() {
-    return 'HomeIconDraggingState(id: $id, globalPosition: $globalPosition, localPosition: $localPosition)';
+    return 'DragState(id: $id, globalPosition: $globalPosition, localPosition: $localPosition)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _HomeIconDraggingState &&
+            other is _DragState &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.globalPosition, globalPosition) &&
@@ -164,16 +159,15 @@ class _$_HomeIconDraggingState implements _HomeIconDraggingState {
 
   @JsonKey(ignore: true)
   @override
-  _$HomeIconDraggingStateCopyWith<_HomeIconDraggingState> get copyWith =>
-      __$HomeIconDraggingStateCopyWithImpl<_HomeIconDraggingState>(
-          this, _$identity);
+  _$DragStateCopyWith<_DragState> get copyWith =>
+      __$DragStateCopyWithImpl<_DragState>(this, _$identity);
 }
 
-abstract class _HomeIconDraggingState implements HomeIconDraggingState {
-  const factory _HomeIconDraggingState(
+abstract class _DragState implements DragState {
+  const factory _DragState(
       {required int id,
       Offset? globalPosition,
-      Offset? localPosition}) = _$_HomeIconDraggingState;
+      Offset? localPosition}) = _$_DragState;
 
   @override
   int get id;
@@ -183,6 +177,6 @@ abstract class _HomeIconDraggingState implements HomeIconDraggingState {
   Offset? get localPosition;
   @override
   @JsonKey(ignore: true)
-  _$HomeIconDraggingStateCopyWith<_HomeIconDraggingState> get copyWith =>
+  _$DragStateCopyWith<_DragState> get copyWith =>
       throw _privateConstructorUsedError;
 }

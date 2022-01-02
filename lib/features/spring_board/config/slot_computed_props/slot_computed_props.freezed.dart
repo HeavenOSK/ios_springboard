@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'slot_layer_computed_values.dart';
+part of 'slot_computed_props.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,14 +14,14 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$SlotLayerComputedValuesTearOff {
-  const _$SlotLayerComputedValuesTearOff();
+class _$SlotComputedPropsTearOff {
+  const _$SlotComputedPropsTearOff();
 
-  _SlotLayerComputedValues call(
+  _SlotComputedProps call(
       {required Size slotSize,
       required List<Offset> slotPositions,
       required List<Rect> dragTargets}) {
-    return _SlotLayerComputedValues(
+    return _SlotComputedProps(
       slotSize: slotSize,
       slotPositions: slotPositions,
       dragTargets: dragTargets,
@@ -30,36 +30,36 @@ class _$SlotLayerComputedValuesTearOff {
 }
 
 /// @nodoc
-const $SlotLayerComputedValues = _$SlotLayerComputedValuesTearOff();
+const $SlotComputedProps = _$SlotComputedPropsTearOff();
 
 /// @nodoc
-mixin _$SlotLayerComputedValues {
+mixin _$SlotComputedProps {
   Size get slotSize => throw _privateConstructorUsedError;
   List<Offset> get slotPositions => throw _privateConstructorUsedError;
   List<Rect> get dragTargets => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SlotLayerComputedValuesCopyWith<SlotLayerComputedValues> get copyWith =>
+  $SlotComputedPropsCopyWith<SlotComputedProps> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SlotLayerComputedValuesCopyWith<$Res> {
-  factory $SlotLayerComputedValuesCopyWith(SlotLayerComputedValues value,
-          $Res Function(SlotLayerComputedValues) then) =
-      _$SlotLayerComputedValuesCopyWithImpl<$Res>;
+abstract class $SlotComputedPropsCopyWith<$Res> {
+  factory $SlotComputedPropsCopyWith(
+          SlotComputedProps value, $Res Function(SlotComputedProps) then) =
+      _$SlotComputedPropsCopyWithImpl<$Res>;
   $Res call(
       {Size slotSize, List<Offset> slotPositions, List<Rect> dragTargets});
 }
 
 /// @nodoc
-class _$SlotLayerComputedValuesCopyWithImpl<$Res>
-    implements $SlotLayerComputedValuesCopyWith<$Res> {
-  _$SlotLayerComputedValuesCopyWithImpl(this._value, this._then);
+class _$SlotComputedPropsCopyWithImpl<$Res>
+    implements $SlotComputedPropsCopyWith<$Res> {
+  _$SlotComputedPropsCopyWithImpl(this._value, this._then);
 
-  final SlotLayerComputedValues _value;
+  final SlotComputedProps _value;
   // ignore: unused_field
-  final $Res Function(SlotLayerComputedValues) _then;
+  final $Res Function(SlotComputedProps) _then;
 
   @override
   $Res call({
@@ -85,27 +85,26 @@ class _$SlotLayerComputedValuesCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SlotLayerComputedValuesCopyWith<$Res>
-    implements $SlotLayerComputedValuesCopyWith<$Res> {
-  factory _$SlotLayerComputedValuesCopyWith(_SlotLayerComputedValues value,
-          $Res Function(_SlotLayerComputedValues) then) =
-      __$SlotLayerComputedValuesCopyWithImpl<$Res>;
+abstract class _$SlotComputedPropsCopyWith<$Res>
+    implements $SlotComputedPropsCopyWith<$Res> {
+  factory _$SlotComputedPropsCopyWith(
+          _SlotComputedProps value, $Res Function(_SlotComputedProps) then) =
+      __$SlotComputedPropsCopyWithImpl<$Res>;
   @override
   $Res call(
       {Size slotSize, List<Offset> slotPositions, List<Rect> dragTargets});
 }
 
 /// @nodoc
-class __$SlotLayerComputedValuesCopyWithImpl<$Res>
-    extends _$SlotLayerComputedValuesCopyWithImpl<$Res>
-    implements _$SlotLayerComputedValuesCopyWith<$Res> {
-  __$SlotLayerComputedValuesCopyWithImpl(_SlotLayerComputedValues _value,
-      $Res Function(_SlotLayerComputedValues) _then)
-      : super(_value, (v) => _then(v as _SlotLayerComputedValues));
+class __$SlotComputedPropsCopyWithImpl<$Res>
+    extends _$SlotComputedPropsCopyWithImpl<$Res>
+    implements _$SlotComputedPropsCopyWith<$Res> {
+  __$SlotComputedPropsCopyWithImpl(
+      _SlotComputedProps _value, $Res Function(_SlotComputedProps) _then)
+      : super(_value, (v) => _then(v as _SlotComputedProps));
 
   @override
-  _SlotLayerComputedValues get _value =>
-      super._value as _SlotLayerComputedValues;
+  _SlotComputedProps get _value => super._value as _SlotComputedProps;
 
   @override
   $Res call({
@@ -113,7 +112,7 @@ class __$SlotLayerComputedValuesCopyWithImpl<$Res>
     Object? slotPositions = freezed,
     Object? dragTargets = freezed,
   }) {
-    return _then(_SlotLayerComputedValues(
+    return _then(_SlotComputedProps(
       slotSize: slotSize == freezed
           ? _value.slotSize
           : slotSize // ignore: cast_nullable_to_non_nullable
@@ -132,8 +131,8 @@ class __$SlotLayerComputedValuesCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SlotLayerComputedValues implements _SlotLayerComputedValues {
-  const _$_SlotLayerComputedValues(
+class _$_SlotComputedProps implements _SlotComputedProps {
+  const _$_SlotComputedProps(
       {required this.slotSize,
       required this.slotPositions,
       required this.dragTargets});
@@ -147,14 +146,14 @@ class _$_SlotLayerComputedValues implements _SlotLayerComputedValues {
 
   @override
   String toString() {
-    return 'SlotLayerComputedValues(slotSize: $slotSize, slotPositions: $slotPositions, dragTargets: $dragTargets)';
+    return 'SlotComputedProps(slotSize: $slotSize, slotPositions: $slotPositions, dragTargets: $dragTargets)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SlotLayerComputedValues &&
+            other is _SlotComputedProps &&
             const DeepCollectionEquality().equals(other.slotSize, slotSize) &&
             const DeepCollectionEquality()
                 .equals(other.slotPositions, slotPositions) &&
@@ -171,16 +170,15 @@ class _$_SlotLayerComputedValues implements _SlotLayerComputedValues {
 
   @JsonKey(ignore: true)
   @override
-  _$SlotLayerComputedValuesCopyWith<_SlotLayerComputedValues> get copyWith =>
-      __$SlotLayerComputedValuesCopyWithImpl<_SlotLayerComputedValues>(
-          this, _$identity);
+  _$SlotComputedPropsCopyWith<_SlotComputedProps> get copyWith =>
+      __$SlotComputedPropsCopyWithImpl<_SlotComputedProps>(this, _$identity);
 }
 
-abstract class _SlotLayerComputedValues implements SlotLayerComputedValues {
-  const factory _SlotLayerComputedValues(
+abstract class _SlotComputedProps implements SlotComputedProps {
+  const factory _SlotComputedProps(
       {required Size slotSize,
       required List<Offset> slotPositions,
-      required List<Rect> dragTargets}) = _$_SlotLayerComputedValues;
+      required List<Rect> dragTargets}) = _$_SlotComputedProps;
 
   @override
   Size get slotSize;
@@ -190,6 +188,6 @@ abstract class _SlotLayerComputedValues implements SlotLayerComputedValues {
   List<Rect> get dragTargets;
   @override
   @JsonKey(ignore: true)
-  _$SlotLayerComputedValuesCopyWith<_SlotLayerComputedValues> get copyWith =>
+  _$SlotComputedPropsCopyWith<_SlotComputedProps> get copyWith =>
       throw _privateConstructorUsedError;
 }

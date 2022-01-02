@@ -38,11 +38,9 @@ class _BottomArea extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final springBoardScales = ref.watch(
-      springBoardScalesProvider,
-    );
+    final sbScales = ref.watch(springBoardScales);
     return SizedBox(
-      height: springBoardScales.bottomAreaHeight,
+      height: sbScales.bottomAreaHeight,
       width: double.infinity,
       child: Stack(
         children: [

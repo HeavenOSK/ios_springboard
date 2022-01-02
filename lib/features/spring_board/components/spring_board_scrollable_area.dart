@@ -8,16 +8,16 @@ class ScrollableArea extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final springBoardScales = ref.watch(springBoardScalesProvider);
+    final sbScales = ref.watch(springBoardScales);
 
     return Container(
-      height: springBoardScales.bottomAreaHeight,
+      height: sbScales.bottomAreaHeight,
       width: double.infinity,
       color: Colors.blue,
       padding: EdgeInsets.symmetric(
-        horizontal: springBoardScales.horizontalPadding,
+        horizontal: sbScales.horizontalPadding,
       ).copyWith(
-        top: springBoardScales.topPadding,
+        top: sbScales.topPadding,
       ),
       child: Stack(
         children: const [

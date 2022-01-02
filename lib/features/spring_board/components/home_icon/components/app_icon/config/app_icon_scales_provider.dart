@@ -4,6 +4,6 @@ import 'package:ios_springboard/providers/scale_rate_provider.dart';
 
 final appIconScalesProvider = StateProvider(
   (ref) => AppIconScales(
-    rate: ref.watch(scaleRateProvider),
+    rate: ref.watch(scaleRate),
   ),
 );

@@ -5,7 +5,7 @@ import 'package:ios_springboard/features/spring_board/components/context_menu/co
 import 'package:ios_springboard/features/spring_board/components/context_menu/enums/anchor_pattern.dart';
 import 'package:ios_springboard/features/spring_board/components/context_menu/enums/anchor_pattern_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/components/app_icon/app_icon.dart';
-import 'package:ios_springboard/features/spring_board/config/slot_layer_computed_values/slot_layer_computed_values_provider.dart';
+import 'package:ios_springboard/features/spring_board/config/slot_computed_props/slot_computed_props_provider.dart';
 import 'package:ios_springboard/features/spring_board/storage/spring_board_registerer/mock_icon_data/mock_icon_data.dart';
 
 class HomeIconPresentational extends HookConsumerWidget {
@@ -27,7 +27,7 @@ class HomeIconPresentational extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final slotLayerComputed = ref.watch(
-      slotLayerComputedValuesProvider,
+      slotComputedProps,
     );
     final anchorPattern = ref.watch(
       anchorPatternFamily(mockIconData.id),

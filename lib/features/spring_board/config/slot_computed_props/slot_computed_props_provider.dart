@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/iphone/config/iphone_scales_provider.dart';
-import 'package:ios_springboard/features/spring_board/config/slot_layer_computed_values/slot_layer_computed_values.dart';
+import 'package:ios_springboard/features/spring_board/config/slot_computed_props/slot_computed_props.dart';
 import 'package:ios_springboard/features/spring_board/config/spring_board_scales/spring_board_scales.dart';
 import 'package:ios_springboard/features/spring_board/config/spring_board_scales/spring_board_scales_provider.dart';
-import 'package:ios_springboard/providers/position_slot_config/position_slot_config_provider.dart';
+import 'package:ios_springboard/providers/slot_config/slot_config_provider.dart';
 
-final slotLayerComputedValuesProvider = StateProvider<SlotLayerComputedValues>(
+final slotComputedProps = StateProvider<SlotComputedProps>(
   (ref) {
-    final config = ref.watch(positionSlotConfigProvider);
+    final config = ref.watch(slotConfig);
     final iPhoneScales = ref.watch(iPhoneScalesProvider);
-    final slotArea = ref.watch(springBoardScalesProvider).slotArea(
+    final slotArea = ref.watch(springBoardScales).slotArea(
           iPhoneScales: iPhoneScales,
         );
     final slotSize = Size(
@@ -44,7 +44,7 @@ final slotLayerComputedValuesProvider = StateProvider<SlotLayerComputedValues>(
         dragTargets.add(dragTarget);
       }
     }
-    return SlotLayerComputedValues(
+    return SlotComputedProps(
       slotSize: slotSize,
       slotPositions: slotItems,
       dragTargets: dragTargets,

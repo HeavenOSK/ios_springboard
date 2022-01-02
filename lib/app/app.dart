@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/iphone/iphone.dart';
@@ -11,7 +10,7 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-      navigatorKey: ref.watch(navigatorKeyProvider),
+      navigatorKey: ref.watch(navigatorKey),
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const _Canvas(),
