@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/expandable.dart';
 import 'package:ios_springboard/components/atom/shaker.dart';
 import 'package:ios_springboard/features/spring_board/components/avatar_presenter.dart';
+import 'package:ios_springboard/features/spring_board/components/context_menu/anchor_pattern_family.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/presentationals/home_icon_presentational.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/state/home_icon_order_faimily.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/home_icon_mode.dart';
@@ -26,7 +27,9 @@ class HomeIcon extends HookConsumerWidget {
       homeIconOrderIndexFamily(mockIconData.id),
     );
     final position = slotLayerComputed.slotPositions[index];
-
+    final anchorPattern = ref.watch(
+      anchorPatternFamily(mockIconData.id),
+    );
     return AnimatedPositioned(
       curve: Curves.easeOutCubic,
       duration: const Duration(milliseconds: 500),
@@ -45,7 +48,6 @@ class HomeIcon extends HookConsumerWidget {
           final shouldExpand = mode.shouldExpand;
           return AvatarPresenter(
             id: mockIconData.id,
-            showContextMenu: mode.isShowContextMenu,
             shouldBlur: mode.shouldBlur,
             onTapBlur: dismissCallback,
             avatarVisible: mode.avatarVisible,
@@ -61,6 +63,8 @@ class HomeIcon extends HookConsumerWidget {
                     size: slotLayerComputed.slotSize,
                     child: Center(
                       child: HomeIconPresentational(
+                        anchorPattern: anchorPattern,
+                        showContextMenu: mode.isShowContextMenu,
                         shouldExpand: mode != HomeIconMode.waiting,
                         shouldHideName: mode != HomeIconMode.waiting,
                         mockIconData: mockIconData,

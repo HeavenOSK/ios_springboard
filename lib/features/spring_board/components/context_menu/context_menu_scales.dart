@@ -6,7 +6,7 @@ final contextMenuScalesProvider = StateProvider<ContextMenuScales>((ref) {
   final rate = ref.watch(scaleRateProvider);
   final computedWidth = ref.watch(
     slotLayerComputedValuesProvider.select(
-      (value) => value.slotSize.width * 3,
+      (value) => value.slotSize.width / 1.1 * 3,
     ),
   );
   return ContextMenuScales(
@@ -24,7 +24,7 @@ class ContextMenuScales {
   final double rate;
   final double computedWidth;
 
-  double get itemHeight => 8.2 * rate;
+  double get itemHeight => 8.2 / 1.1 * rate;
 
-  double get itemHorizontalPadding => 2.5 * rate;
+  double get itemHorizontalPadding => 2.5 / 1.1 * rate;
 }

@@ -4,11 +4,13 @@ class _ContextMenuPresentational extends ConsumerWidget {
   const _ContextMenuPresentational({
     required this.visible,
     required this.itemCount,
+    required this.animationAlignment,
     Key? key,
   }) : super(key: key);
 
   final int itemCount;
   final bool visible;
+  final Alignment animationAlignment;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,7 +27,7 @@ class _ContextMenuPresentational extends ConsumerWidget {
         // ref: https://github.com/HeavenOSK/flutter_swipable_stack/blob/f92bb649b6e9ff789c3f93a5519f58521897db7e/lib/src/swipable_stack.dart#L104
         return Transform.scale(
           scale: value,
-          alignment: (Alignment.topCenter + Alignment.topLeft) / 2,
+          alignment: animationAlignment,
           child: Opacity(
             opacity: value,
             child: ClipRRect(
