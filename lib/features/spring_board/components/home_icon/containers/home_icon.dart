@@ -26,6 +26,7 @@ class HomeIcon extends HookConsumerWidget {
       homeIconOrderIndexFamily(mockIconData.id),
     );
     final position = slotLayerComputed.slotPositions[index];
+
     return AnimatedPositioned(
       curve: Curves.easeOutCubic,
       duration: const Duration(milliseconds: 500),
@@ -43,6 +44,7 @@ class HomeIcon extends HookConsumerWidget {
         ) {
           final shouldExpand = mode.shouldExpand;
           return AvatarPresenter(
+            id: mockIconData.id,
             showContextMenu: mode.isShowContextMenu,
             shouldBlur: mode.shouldBlur,
             onTapBlur: dismissCallback,

@@ -3,6 +3,8 @@ import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/anchored.dart';
 import 'package:ios_springboard/components/atom/blur_mask.dart';
+import 'package:ios_springboard/features/spring_board/components/context_menu/anchor_pattern.dart';
+import 'package:ios_springboard/features/spring_board/components/context_menu/anchor_pattern_family.dart';
 import 'package:ios_springboard/features/spring_board/components/context_menu/context_menu.dart';
 import 'package:ios_springboard/features/spring_board/components/context_menu/context_menu_scales.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/config/home_icon_scales_provider.dart';
@@ -15,6 +17,7 @@ class AvatarPresenter extends ConsumerWidget {
     required this.child,
     required this.onTapBlur,
     required this.showContextMenu,
+    required this.id,
     Key? key,
   }) : super(key: key);
 
@@ -24,12 +27,13 @@ class AvatarPresenter extends ConsumerWidget {
   final Widget child;
   final VoidCallback onTapBlur;
   final bool showContextMenu;
+  final int id;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final homeIconScales = ref.watch(homeIconScalesProvider);
     final contextMenuScales = ref.watch(contextMenuScalesProvider);
-
+    final anchorPattern = ref.watch(anchorPatternFamily(id));
     return PortalEntry(
       visible: avatarVisible,
       portal: Stack(
@@ -60,15 +64,8 @@ class AvatarPresenter extends ConsumerWidget {
               contextMenuScales.width,
               contextMenuScales.itemHeight * 3,
             ),
-            targetAnchor: Alignment.bottomLeft,
-            childAnchor: Alignment.topLeft,
-            child: ContextMenu(
-              visible: showContextMenu,
-            ),
-          ),
-          Positioned(
-            left: avatarPosition.dx,
-            top: avatarPosition.dy + homeIconScales.areaSize.height,
+            targetAnchor: anchorPattern.targetAnchor,
+            childAnchor: anchorPattern.childAnchor,
             child: ContextMenu(
               visible: showContextMenu,
             ),

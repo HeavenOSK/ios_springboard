@@ -20,9 +20,8 @@ class Anchored extends ParentDataWidget<StackParentData> {
   @override
   void applyParentData(RenderObject renderObject) {
     assert(renderObject.parentData is StackParentData);
-    bool needsLayout = false;
-    final StackParentData parentData =
-        renderObject.parentData! as StackParentData;
+    var needsLayout = false;
+    final parentData = renderObject.parentData! as StackParentData;
     final linkedOffset = targetAnchor.withinRect(targetRect) -
         childAnchor.withinRect(
           Rect.fromLTWH(
