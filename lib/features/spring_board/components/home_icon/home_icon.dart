@@ -10,6 +10,7 @@ import 'package:ios_springboard/features/spring_board/components/home_icon/state
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/home_icon_mode.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/home_icon_session_handler.dart';
 import 'package:ios_springboard/features/spring_board/config/slot_computed_props/slot_computed_props_provider.dart';
+import 'package:ios_springboard/features/spring_board/state/reorderer/reorderer.dart';
 import 'package:ios_springboard/features/spring_board/storage/spring_board_registerer/mock_icon_data/mock_icon_data.dart';
 
 class HomeIcon extends HookConsumerWidget {
@@ -23,6 +24,7 @@ class HomeIcon extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final slotLayerComputed = ref.watch(slotComputedProps);
+    final _reorderer = ref.watch(reorderer);
     final index = ref.watch(
       iconOrderIndexFamily(mockIconData.id),
     );
@@ -36,6 +38,12 @@ class HomeIcon extends HookConsumerWidget {
       top: position.dy,
       left: position.dx,
       child: HomeIconSessionHandler(
+        onDragUpdate: (globalPosition) {
+          _reorderer.updatePosition(
+            id: mockIconData.id,
+            dragGlobalPosition: globalPosition,
+          );
+        },
         id: mockIconData.id,
         canDragStart: true,
         onTap: () {},

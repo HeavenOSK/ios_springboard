@@ -10,7 +10,7 @@ import 'package:ios_springboard/features/spring_board/storage/spring_board_regis
 import 'package:ios_springboard/providers/area_positions/slot_area_position_provider.dart';
 import 'package:ios_springboard/providers/slot_config/slot_config_provider.dart';
 
-final reorderer = Provider(
+final reorderer = Provider<Reorderer>(
   (ref) => Reorderer(ref.read),
 );
 

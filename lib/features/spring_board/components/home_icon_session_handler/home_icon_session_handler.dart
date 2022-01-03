@@ -19,6 +19,7 @@ class HomeIconSessionHandler extends ConsumerStatefulWidget {
     required this.id,
     required this.builder,
     required this.onTap,
+    required this.onDragUpdate,
     Key? key,
   }) : super(key: key);
 
@@ -26,6 +27,7 @@ class HomeIconSessionHandler extends ConsumerStatefulWidget {
   final HomeIconBuilder builder;
   final int id;
   final bool canDragStart;
+  final ValueChanged<Offset> onDragUpdate;
 
   @override
   ConsumerState<HomeIconSessionHandler> createState() =>
@@ -121,6 +123,7 @@ class _HomeIconSessionHandlerContainerState
               globalPosition: globalPosition,
               // localPosition: localPosition,
             );
+    widget.onDragUpdate(globalPosition);
   }
 
   void _finishSession() {
