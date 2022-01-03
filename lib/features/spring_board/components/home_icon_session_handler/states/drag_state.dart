@@ -9,5 +9,6 @@ class DragState with _$DragState {
     required int id,
     Offset? globalPosition,
     Offset? localPosition,
+    @Default(false) bool isDragging,
   }) = _DragState;
 }

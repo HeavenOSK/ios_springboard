@@ -18,11 +18,15 @@ class _$DragStateTearOff {
   const _$DragStateTearOff();
 
   _DragState call(
-      {required int id, Offset? globalPosition, Offset? localPosition}) {
+      {required int id,
+      Offset? globalPosition,
+      Offset? localPosition,
+      bool isDragging = false}) {
     return _DragState(
       id: id,
       globalPosition: globalPosition,
       localPosition: localPosition,
+      isDragging: isDragging,
     );
   }
 }
@@ -35,6 +39,7 @@ mixin _$DragState {
   int get id => throw _privateConstructorUsedError;
   Offset? get globalPosition => throw _privateConstructorUsedError;
   Offset? get localPosition => throw _privateConstructorUsedError;
+  bool get isDragging => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DragStateCopyWith<DragState> get copyWith =>
@@ -45,7 +50,8 @@ mixin _$DragState {
 abstract class $DragStateCopyWith<$Res> {
   factory $DragStateCopyWith(DragState value, $Res Function(DragState) then) =
       _$DragStateCopyWithImpl<$Res>;
-  $Res call({int id, Offset? globalPosition, Offset? localPosition});
+  $Res call(
+      {int id, Offset? globalPosition, Offset? localPosition, bool isDragging});
 }
 
 /// @nodoc
@@ -61,6 +67,7 @@ class _$DragStateCopyWithImpl<$Res> implements $DragStateCopyWith<$Res> {
     Object? id = freezed,
     Object? globalPosition = freezed,
     Object? localPosition = freezed,
+    Object? isDragging = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -75,6 +82,10 @@ class _$DragStateCopyWithImpl<$Res> implements $DragStateCopyWith<$Res> {
           ? _value.localPosition
           : localPosition // ignore: cast_nullable_to_non_nullable
               as Offset?,
+      isDragging: isDragging == freezed
+          ? _value.isDragging
+          : isDragging // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -85,7 +96,8 @@ abstract class _$DragStateCopyWith<$Res> implements $DragStateCopyWith<$Res> {
           _DragState value, $Res Function(_DragState) then) =
       __$DragStateCopyWithImpl<$Res>;
   @override
-  $Res call({int id, Offset? globalPosition, Offset? localPosition});
+  $Res call(
+      {int id, Offset? globalPosition, Offset? localPosition, bool isDragging});
 }
 
 /// @nodoc
@@ -102,6 +114,7 @@ class __$DragStateCopyWithImpl<$Res> extends _$DragStateCopyWithImpl<$Res>
     Object? id = freezed,
     Object? globalPosition = freezed,
     Object? localPosition = freezed,
+    Object? isDragging = freezed,
   }) {
     return _then(_DragState(
       id: id == freezed
@@ -116,6 +129,10 @@ class __$DragStateCopyWithImpl<$Res> extends _$DragStateCopyWithImpl<$Res>
           ? _value.localPosition
           : localPosition // ignore: cast_nullable_to_non_nullable
               as Offset?,
+      isDragging: isDragging == freezed
+          ? _value.isDragging
+          : isDragging // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -124,7 +141,10 @@ class __$DragStateCopyWithImpl<$Res> extends _$DragStateCopyWithImpl<$Res>
 
 class _$_DragState implements _DragState {
   const _$_DragState(
-      {required this.id, this.globalPosition, this.localPosition});
+      {required this.id,
+      this.globalPosition,
+      this.localPosition,
+      this.isDragging = false});
 
   @override
   final int id;
@@ -132,10 +152,13 @@ class _$_DragState implements _DragState {
   final Offset? globalPosition;
   @override
   final Offset? localPosition;
+  @JsonKey(defaultValue: false)
+  @override
+  final bool isDragging;
 
   @override
   String toString() {
-    return 'DragState(id: $id, globalPosition: $globalPosition, localPosition: $localPosition)';
+    return 'DragState(id: $id, globalPosition: $globalPosition, localPosition: $localPosition, isDragging: $isDragging)';
   }
 
   @override
@@ -147,7 +170,9 @@ class _$_DragState implements _DragState {
             const DeepCollectionEquality()
                 .equals(other.globalPosition, globalPosition) &&
             const DeepCollectionEquality()
-                .equals(other.localPosition, localPosition));
+                .equals(other.localPosition, localPosition) &&
+            const DeepCollectionEquality()
+                .equals(other.isDragging, isDragging));
   }
 
   @override
@@ -155,7 +180,8 @@ class _$_DragState implements _DragState {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(globalPosition),
-      const DeepCollectionEquality().hash(localPosition));
+      const DeepCollectionEquality().hash(localPosition),
+      const DeepCollectionEquality().hash(isDragging));
 
   @JsonKey(ignore: true)
   @override
@@ -167,7 +193,8 @@ abstract class _DragState implements DragState {
   const factory _DragState(
       {required int id,
       Offset? globalPosition,
-      Offset? localPosition}) = _$_DragState;
+      Offset? localPosition,
+      bool isDragging}) = _$_DragState;
 
   @override
   int get id;
@@ -175,6 +202,8 @@ abstract class _DragState implements DragState {
   Offset? get globalPosition;
   @override
   Offset? get localPosition;
+  @override
+  bool get isDragging;
   @override
   @JsonKey(ignore: true)
   _$DragStateCopyWith<_DragState> get copyWith =>

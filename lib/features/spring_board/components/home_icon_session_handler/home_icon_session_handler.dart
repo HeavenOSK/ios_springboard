@@ -4,8 +4,11 @@ import 'package:ios_springboard/components/atom/drag_handler.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon/state/icon_order_faimily.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/home_icon_mode.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/states/drag_state.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/states/drag_state_provider.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/states/home_icon_session.dart';
 import 'package:ios_springboard/features/spring_board/config/slot_computed_props/slot_computed_props_provider.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_mode/spring_board_mode.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_mode/spring_board_mode_provider.dart';
 import 'package:ios_springboard/providers/area_positions/portal_root_position_provider.dart';
 import 'package:ios_springboard/providers/area_positions/slot_area_position_provider.dart';
 import 'package:ios_springboard/utils/sleep.dart';
@@ -65,8 +68,8 @@ class _HomeIconSessionHandlerContainerState
   }
 
   void _animatePosition(Animation<Offset> positionAnimation) {
-    ref.read(_dragState(widget.id).notifier).state =
-        ref.read(_dragState(widget.id)).copyWith(
+    ref.read(dragState(widget.id).notifier).state =
+        ref.read(dragState(widget.id)).copyWith(
               globalPosition: positionAnimation.value,
             );
   }
@@ -82,10 +85,11 @@ class _HomeIconSessionHandlerContainerState
               locked: false,
             );
 
-    ref.read(_dragState(widget.id).notifier).state = DragState(
+    ref.read(dragState(widget.id).notifier).state = DragState(
       id: widget.id,
       globalPosition: globalPosition,
       localPosition: localPosition,
+      isDragging: false,
     );
     await sleep(milliseconds: 500);
     if (!ref
@@ -107,7 +111,7 @@ class _HomeIconSessionHandlerContainerState
         ref.read(_homeIconSession(widget.id)).copyWith(
               mode: HomeIconMode.dragging,
             );
-    // TODO(HeavenOSK): SpringBoard に drag 状態を伝える
+    ref.read(springBoardMode.notifier).state = SpringBoardMode.reorderable;
   }
 
   void onDragUpdate({
@@ -118,11 +122,13 @@ class _HomeIconSessionHandlerContainerState
         ref.read(_homeIconSession(widget.id)).copyWith(
               mode: HomeIconMode.dragging,
             );
-    ref.read(_dragState(widget.id).notifier).state =
-        ref.read(_dragState(widget.id)).copyWith(
+    ref.read(dragState(widget.id).notifier).state =
+        ref.read(dragState(widget.id)).copyWith(
               globalPosition: globalPosition,
               // localPosition: localPosition,
+              isDragging: true,
             );
+    ref.read(springBoardMode.notifier).state = SpringBoardMode.reorderable;
     widget.onDragUpdate(globalPosition);
   }
 
@@ -161,6 +167,9 @@ class _HomeIconSessionHandlerContainerState
               );
       return;
     }
+    if (ref.read(_homeIconSession(widget.id)).mode.isDragging) {
+      ref.read(springBoardMode.notifier).state = SpringBoardMode.reorderable;
+    }
     ref.read(_homeIconSession(widget.id).notifier).state =
         ref.read(_homeIconSession(widget.id)).copyWith(
               mode: HomeIconMode.endDragging,
@@ -173,7 +182,7 @@ class _HomeIconSessionHandlerContainerState
     final cancelAnimation = _getCancelAnimation(
       currentPosition: globalPosition,
       finishPosition: slotPosition +
-          (ref.read(_dragState(widget.id)).localPosition ?? Offset.zero) +
+          (ref.read(dragState(widget.id)).localPosition ?? Offset.zero) +
           ref.read(slotAreaPosition),
     );
     void _animate() {
@@ -187,10 +196,11 @@ class _HomeIconSessionHandlerContainerState
         if (!ref.read(_homeIconSession(widget.id)).mode.isEndDragging) {
           return;
         }
-        ref.read(_dragState(widget.id).notifier).state =
-            ref.read(_dragState(widget.id)).copyWith(
+        ref.read(dragState(widget.id).notifier).state =
+            ref.read(dragState(widget.id)).copyWith(
                   globalPosition: null,
                   localPosition: null,
+                  isDragging: false,
                 );
         _finishSession();
       },

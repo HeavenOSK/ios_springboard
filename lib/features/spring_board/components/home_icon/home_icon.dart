@@ -9,8 +9,11 @@ import 'package:ios_springboard/features/spring_board/components/home_icon/prese
 import 'package:ios_springboard/features/spring_board/components/home_icon/state/icon_order_faimily.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/home_icon_mode.dart';
 import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/home_icon_session_handler.dart';
+import 'package:ios_springboard/features/spring_board/components/home_icon_session_handler/states/drag_state_provider.dart';
 import 'package:ios_springboard/features/spring_board/config/slot_computed_props/slot_computed_props_provider.dart';
 import 'package:ios_springboard/features/spring_board/state/reorderer/reorderer.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_mode/spring_board_mode.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_mode/spring_board_mode_provider.dart';
 import 'package:ios_springboard/features/spring_board/storage/spring_board_registerer/mock_icon_data/mock_icon_data.dart';
 
 class HomeIcon extends HookConsumerWidget {
@@ -24,6 +27,16 @@ class HomeIcon extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final slotLayerComputed = ref.watch(slotComputedProps);
+    final shouldShake = ref.watch(
+      springBoardMode.select(
+        (value) => value.isReorderableMode,
+      ),
+    );
+    final _isDragging = ref.watch(
+      dragState(mockIconData.id).select(
+        (value) => value.isDragging,
+      ),
+    );
     final _reorderer = ref.watch(reorderer);
     final index = ref.watch(
       iconOrderIndexFamily(mockIconData.id),
@@ -63,7 +76,7 @@ class HomeIcon extends HookConsumerWidget {
             child: SizedBox.fromSize(
               size: slotLayerComputed.slotSize,
               child: Shaker(
-                shaking: false,
+                shaking: !_isDragging && shouldShake,
                 child: Expandable(
                   expanding: shouldExpand,
                   size: slotLayerComputed.slotSize,

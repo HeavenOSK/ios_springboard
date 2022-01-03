@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/components/atom/iphone/config/iphone_scales_provider.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_mode/spring_board_mode.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_mode/spring_board_mode_provider.dart';
 
 class IPhone extends HookConsumerWidget {
   const IPhone({
@@ -110,20 +112,25 @@ class _BottomArea extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final iPhoneScale = ref.watch(iPhoneScalesProvider);
-    return SizedBox(
-      height: iPhoneScale.padding.bottom,
-      child: Center(
-        child: Container(
-          height: iPhoneScale.homeButtonRadius * 2,
-          width: iPhoneScale.homeButtonRadius * 2,
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            border: Border.all(
-              color: Colors.white.withOpacity(0.3),
-              width: 0.3,
-            ),
-            borderRadius: BorderRadius.circular(
-              iPhoneScale.homeButtonRadius,
+    return GestureDetector(
+      onTap: () {
+        ref.read(springBoardMode.notifier).state = SpringBoardMode.waiting;
+      },
+      child: SizedBox(
+        height: iPhoneScale.padding.bottom,
+        child: Center(
+          child: Container(
+            height: iPhoneScale.homeButtonRadius * 2,
+            width: iPhoneScale.homeButtonRadius * 2,
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              border: Border.all(
+                color: Colors.white.withOpacity(0.7),
+                width: 0.3,
+              ),
+              borderRadius: BorderRadius.circular(
+                iPhoneScale.homeButtonRadius,
+              ),
             ),
           ),
         ),

@@ -8,6 +8,7 @@ class AppIcon extends HookConsumerWidget {
     this.icon,
     Key? key,
   }) : super(key: key);
+
   final Color? color;
   final String? icon;
 
