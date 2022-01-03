@@ -5,6 +5,8 @@ import 'package:flutter_portal/flutter_portal.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:ios_springboard/features/spring_board/components/spring_board_scrollable_area.dart';
 import 'package:ios_springboard/features/spring_board/config/spring_board_scales/spring_board_scales_provider.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_mode/spring_board_mode.dart';
+import 'package:ios_springboard/features/spring_board/state/spring_board_mode/spring_board_mode_provider.dart';
 import 'package:ios_springboard/providers/area_positions/portal_root_key.dart';
 
 class SpringBoard extends HookConsumerWidget {
@@ -19,11 +21,22 @@ class SpringBoard extends HookConsumerWidget {
         child: child!,
       ),
       home: Stack(
-        children: const [
+        children: [
           Positioned.fill(
+            child: GestureDetector(
+              onTap: () {
+                ref.read(springBoardMode.notifier).state =
+                    SpringBoardMode.waiting;
+              },
+              child: const ColoredBox(
+                color: Colors.blue,
+              ),
+            ),
+          ),
+          const Positioned.fill(
             child: ScrollableArea(),
           ),
-          Align(
+          const Align(
             alignment: Alignment.bottomCenter,
             child: _BottomArea(),
           ),

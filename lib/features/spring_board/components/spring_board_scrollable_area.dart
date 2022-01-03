@@ -13,7 +13,6 @@ class ScrollableArea extends HookConsumerWidget {
     return Container(
       height: sbScales.bottomAreaHeight,
       width: double.infinity,
-      color: Colors.blue,
       padding: EdgeInsets.symmetric(
         horizontal: sbScales.horizontalPadding,
       ).copyWith(
