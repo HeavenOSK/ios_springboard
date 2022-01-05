@@ -63,18 +63,18 @@
   - HomeIconSessionHandler の riverpod 周りのコードが増えてきたので part ファイルで分離する。
 
 # 2021/12/31
-## やったこと
+### やったこと
 - State 上の dragGlobalPosition を更新する
 - Avatar は dragGlobalPosition を監視して位置を補正するようにする
 - Slot の位置を globalPosition で計算するようにする
 - 手を離した時に AnimationController で所定の位置に戻す
 - Slot の位置を globalPosition で計算するようにする
-## 次やること
+### 次やること
 - Draggable から Avatar を分離する
 - Avatar には slot 位置を与えるようにする
   - コンポーネントに自分で自分の位置を計算させるか
   - 統括管理してコンポーネントに考えさせずに、位置を与えるか
-## 設計手法
+### 設計手法
 - global => data storage 
   - できるだけ管理をしない
 - local => container/presentational
